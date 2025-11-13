@@ -1049,26 +1049,36 @@
   </div>
 
   <script type='text/javascript'>
-    var divElement = document.getElementById('viz1763044688609');
-    var vizElement = divElement.getElementsByTagName('object')[0];
-    if (divElement.offsetWidth > 800) {
+  var divElement = document.getElementById('viz1763044688609');
+  var vizElement = divElement.getElementsByTagName('object')[0];
+
+  function resizeViz() {
+    var width = divElement.offsetWidth;
+
+    // Desktop & tablet → tampil besar
+    if (width > 600) {
       vizElement.style.width = '100%';
-      vizElement.style.maxWidth = '1800px';
-      vizElement.style.height = (divElement.offsetWidth * 0.75) + 'px';
-      vizElement.style.maxHeight = '1327px';
-    } else if (divElement.offsetWidth > 500) {
-      vizElement.style.width = '100%';
-      vizElement.style.maxWidth = '1800px';
-      vizElement.style.height = (divElement.offsetWidth * 0.75) + 'px';
-      vizElement.style.maxHeight = '1327px';
-    } else {
-      vizElement.style.width = '100%';
-      vizElement.style.height = '2477px';
+      vizElement.style.height = (width * 0.55) + 'px'; // landscape
+    } 
+    // Mobile → paksa landscape ratio + scale down
+    else {
+      vizElement.style.width = '1200px';   // paksa resolusi landscape
+      vizElement.style.height = '700px';
+      vizElement.style.transform = 'scale(' + (width / 1200) + ')';
+      vizElement.style.transformOrigin = 'top left';
+      divElement.style.height = (700 * (width / 1200)) + 'px';
     }
-    var scriptElement = document.createElement('script');
-    scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';
-    vizElement.parentNode.insertBefore(scriptElement, vizElement);
-  </script>
+  }
+
+  // Insert Tableau script
+  var scriptElement = document.createElement('script');
+  scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';
+  scriptElement.onload = resizeViz;
+  vizElement.parentNode.insertBefore(scriptElement, vizElement);
+
+  // Resize when screen changes
+  window.addEventListener('resize', resizeViz);
+</script>
 </section>
 
 
