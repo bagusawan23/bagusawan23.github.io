@@ -1,0 +1,1131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Bagus Kurniawan | Data Practitioner & Data Scientist</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Portfolio of Bagus Kurniawan - Data Practitioner, Data Scientist, and Data Analyst." />
+
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --bg: #050816;
+      --bg-alt: #0f172a;
+      --card: #020617;
+      --accent: #38bdf8;
+      --accent-soft: rgba(56, 189, 248, 0.15);
+      --text: #e5e7eb;
+      --text-muted: #9ca3af;
+      --border-soft: rgba(148, 163, 184, 0.3);
+      --radius-lg: 18px;
+      --shadow-soft: 0 18px 40px rgba(15, 23, 42, 0.75);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+      background: radial-gradient(circle at top, #1e293b 0, #020617 40%, #000 80%);
+      color: var(--text);
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    .page {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 24px 16px 64px;
+    }
+
+    @media (min-width: 768px) {
+      .page {
+        padding: 32px 24px 72px;
+      }
+    }
+
+    /* Navbar */
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 32px;
+    }
+
+    .nav-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .logo-circle {
+      width: 32px;
+      height: 32px;
+      border-radius: 999px;
+      border: 2px solid var(--accent);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 16px;
+      color: var(--accent);
+      box-shadow: 0 0 20px rgba(56, 189, 248, 0.4);
+    }
+
+    .nav-title {
+      font-size: 15px;
+      font-weight: 500;
+      color: var(--text-muted);
+    }
+
+    .nav-links {
+      display: none;
+      gap: 20px;
+      font-size: 14px;
+    }
+
+    .nav-links a {
+      color: var(--text-muted);
+      transition: color 0.2s ease, transform 0.2s ease;
+    }
+
+    .nav-links a:hover {
+      color: var(--accent);
+      transform: translateY(-1px);
+    }
+
+    @media (min-width: 768px) {
+      .nav-links {
+        display: flex;
+      }
+    }
+
+    /* Pill badge */
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 4px 10px 4px 4px;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.85);
+      border: 1px solid var(--border-soft);
+      font-size: 11px;
+      color: var(--text-muted);
+      margin-bottom: 18px;
+      backdrop-filter: blur(10px);
+    }
+
+    .pill-dot {
+      width: 18px;
+      height: 18px;
+      border-radius: 999px;
+      background: radial-gradient(circle at 30% 30%, #f9fafb, #38bdf8);
+      box-shadow: 0 0 18px rgba(56, 189, 248, 0.8);
+    }
+
+    /* Hero */
+    .hero {
+      display: grid;
+      grid-template-columns: 1.4fr 1.1fr;
+      gap: 28px;
+      align-items: center;
+      margin-bottom: 40px;
+    }
+
+    @media (max-width: 768px) {
+      .hero {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .hero-title {
+      font-size: clamp(28px, 4vw, 34px);
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+
+    .hero-title span {
+      color: var(--accent);
+    }
+
+    .hero-subtitle {
+      font-size: 15px;
+      color: var(--text-muted);
+      margin-bottom: 18px;
+      max-width: 540px;
+    }
+
+    .hero-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 20px;
+    }
+
+    .hero-tag {
+      font-size: 11px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.35);
+      background: rgba(15, 23, 42, 0.75);
+      color: var(--text-muted);
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .btn-primary,
+    .btn-ghost {
+      font-size: 13px;
+      padding: 8px 16px;
+      border-radius: 999px;
+      border: 1px solid transparent;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease,
+        border-color 0.2s ease, color 0.2s ease;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #0ea5e9, #22c55e);
+      color: #0b1120;
+      font-weight: 600;
+      box-shadow: 0 14px 35px rgba(56, 189, 248, 0.4);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 18px 40px rgba(56, 189, 248, 0.6);
+    }
+
+    .btn-ghost {
+      border-color: var(--border-soft);
+      background: rgba(15, 23, 42, 0.7);
+      color: var(--text-muted);
+    }
+
+    .btn-ghost:hover {
+      background: rgba(15, 23, 42, 0.9);
+      border-color: var(--accent);
+      color: var(--accent);
+      transform: translateY(-1px);
+    }
+
+    /* Hero right card */
+    .hero-card {
+      background: radial-gradient(circle at top left, #1f2937, #020617);
+      border-radius: 24px;
+      border: 1px solid rgba(148, 163, 184, 0.4);
+      padding: 18px 18px 20px;
+      box-shadow: var(--shadow-soft);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+
+    .hero-card-badge {
+      padding: 3px 8px;
+      border-radius: 999px;
+      border: 1px solid rgba(56, 189, 248, 0.4);
+      background: rgba(15, 23, 42, 0.8);
+      color: var(--accent);
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    .hero-card-main {
+      display: grid;
+      grid-template-columns: 1.1fr 1fr;
+      gap: 12px;
+      align-items: center;
+    }
+
+    @media (max-width: 768px) {
+      .hero-card-main {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .profile-circle {
+      width: 82px;
+      height: 82px;
+      border-radius: 999px;
+      border: 2px solid rgba(148, 163, 184, 0.5);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 34px;
+      font-weight: 700;
+      margin-bottom: 10px;
+      background: radial-gradient(circle at 20% 10%, #38bdf8, #020617);
+      box-shadow: 0 20px 50px rgba(15, 23, 42, 0.9);
+    }
+
+    .hero-card-name {
+      font-size: 16px;
+      font-weight: 600;
+      margin-bottom: 3px;
+    }
+
+    .hero-card-role {
+      font-size: 12px;
+      color: var(--accent);
+      margin-bottom: 8px;
+    }
+
+    .hero-card-desc {
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+
+    .hero-card-metrics {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 8px;
+      margin-top: 10px;
+    }
+
+    .metric {
+      border-radius: 14px;
+      border: 1px solid rgba(148, 163, 184, 0.35);
+      padding: 8px 9px;
+      background: rgba(15, 23, 42, 0.9);
+    }
+
+    .metric-label {
+      font-size: 10px;
+      color: var(--text-muted);
+      margin-bottom: 4px;
+    }
+
+    .metric-value {
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    .metric-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      margin-top: 4px;
+      font-size: 10px;
+      padding: 3px 7px;
+      border-radius: 999px;
+      background: var(--accent-soft);
+      color: var(--accent);
+    }
+
+    .metric-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 999px;
+      background: var(--accent);
+    }
+
+    .hero-card-footer {
+      margin-top: 14px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 10px;
+      color: var(--text-muted);
+    }
+
+    .hero-card-tech {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+
+    .tech-chip {
+      padding: 3px 7px;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.5);
+      font-size: 9px;
+      background: rgba(15, 23, 42, 0.9);
+    }
+
+    /* Sections */
+    section {
+      margin-bottom: 32px;
+    }
+
+    .section-heading {
+      font-size: 18px;
+      font-weight: 600;
+      margin-bottom: 12px;
+    }
+
+    .section-subtitle {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-bottom: 16px;
+      max-width: 720px;
+    }
+
+    /* About */
+    .about-card {
+      border-radius: var(--radius-lg);
+      padding: 14px 16px;
+      border: 1px solid var(--border-soft);
+      background: rgba(15, 23, 42, 0.9);
+    }
+
+    .about-card p {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-bottom: 8px;
+    }
+
+    .about-card p:last-child {
+      margin-bottom: 0;
+    }
+
+    /* Skills */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 10px;
+    }
+
+    .skill-card {
+      border-radius: var(--radius-lg);
+      padding: 10px 12px;
+      border: 1px solid var(--border-soft);
+      background: rgba(15, 23, 42, 0.9);
+      font-size: 12px;
+    }
+
+    .skill-title {
+      font-weight: 600;
+      margin-bottom: 6px;
+      font-size: 12px;
+    }
+
+    .skill-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .skill-tag {
+      padding: 2px 7px;
+      border-radius: 999px;
+      background: rgba(31, 41, 55, 0.9);
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+
+    /* Experience & projects */
+    .timeline {
+      display: grid;
+      gap: 10px;
+    }
+
+    .timeline-item {
+      border-radius: var(--radius-lg);
+      padding: 12px 14px;
+      border: 1px solid var(--border-soft);
+      background: rgba(15, 23, 42, 0.9);
+      font-size: 12px;
+    }
+
+    .timeline-header {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 4px;
+    }
+
+    .timeline-title {
+      font-weight: 600;
+      font-size: 13px;
+    }
+
+    .timeline-meta {
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+
+    .timeline-body {
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-bottom: 6px;
+    }
+
+    .timeline-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .timeline-tag {
+      padding: 2px 7px;
+      border-radius: 999px;
+      background: rgba(31, 41, 55, 0.9);
+      font-size: 10px;
+      color: var(--text-muted);
+    }
+
+    .project-link {
+      font-size: 11px;
+      color: var(--accent);
+      margin-top: 4px;
+      display: inline-block;
+    }
+
+    .project-link:hover {
+      text-decoration: underline;
+    }
+
+    /* Contact */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+      gap: 14px;
+    }
+
+    @media (max-width: 768px) {
+      .contact-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .contact-card {
+      border-radius: var(--radius-lg);
+      padding: 12px 14px;
+      border: 1px solid var(--border-soft);
+      background: rgba(15, 23, 42, 0.9);
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+
+    .contact-label {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--text-muted);
+      margin-bottom: 4px;
+    }
+
+    .contact-value {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--text);
+      margin-bottom: 6px;
+    }
+
+    .social-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 8px;
+    }
+
+    .social-pill {
+      padding: 4px 9px;
+      border-radius: 999px;
+      border: 1px solid var(--border-soft);
+      font-size: 11px;
+      color: var(--text-muted);
+      background: rgba(15, 23, 42, 0.9);
+      transition: border-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
+    }
+
+    .social-pill:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+      transform: translateY(-1px);
+    }
+
+    /* Certifications & orgs */
+    .list-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 10px;
+    }
+
+    .list-card {
+      border-radius: var(--radius-lg);
+      padding: 10px 12px;
+      border: 1px solid var(--border-soft);
+      background: rgba(15, 23, 42, 0.9);
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    .list-card-title {
+      font-weight: 600;
+      font-size: 12px;
+      margin-bottom: 6px;
+      color: var(--text);
+    }
+
+    .list-card ul {
+      list-style: none;
+      padding-left: 0;
+    }
+
+    .list-card li {
+      font-size: 11px;
+      margin-bottom: 4px;
+    }
+
+    /* Footer */
+    .footer {
+      margin-top: 32px;
+      font-size: 11px;
+      color: var(--text-muted);
+      text-align: center;
+    }
+
+    .footer span {
+      color: var(--accent);
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <!-- NAVBAR -->
+    <header class="nav">
+      <div class="nav-left">
+        <div class="logo-circle">B</div>
+        <div class="nav-title">Bagus Kurniawan · Data Practitioner</div>
+      </div>
+      <nav class="nav-links">
+        <a href="#about">About</a>
+        <a href="#skills">Skills</a>
+        <a href="#experience">Experience</a>
+        <a href="#projects">Highlights</a>
+        <a href="#certifications">Certifications</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </header>
+
+    <!-- HERO -->
+    <main>
+      <section class="hero">
+        <div>
+          <div class="pill">
+            <div class="pill-dot"></div>
+            <span>Data Science · Analytics · Generative AI</span>
+          </div>
+
+          <h1 class="hero-title">
+            Hi, I'm <span>Bagus Kurniawan</span> — Data Practitioner with a strong mathematics background.
+          </h1>
+
+          <p class="hero-subtitle">
+            Passionate about turning complex data into clear, data-driven narratives. I work with Python, R, SQL, BI tools, and Elasticsearch to build analysis, dashboards, and models that support real business decisions.
+          </p>
+
+          <div class="hero-tags">
+            <div class="hero-tag">Data Science</div>
+            <div class="hero-tag">Data Analytics</div>
+            <div class="hero-tag">Python · R · SQL</div>
+            <div class="hero-tag">Power BI & Tableau</div>
+            <div class="hero-tag">Elasticsearch</div>
+            <div class="hero-tag">Generative AI (LLM)</div>
+          </div>
+
+          <div class="hero-actions">
+            <a href="#experience" class="btn-primary">
+              View professional experience →
+            </a>
+            <a href="#contact" class="btn-ghost">
+              Contact & links
+            </a>
+          </div>
+        </div>
+
+        <!-- Hero side card -->
+        <aside class="hero-card">
+          <div class="hero-card-header">
+            <div>Snapshot · 2025</div>
+            <div class="hero-card-badge">Open to Opportunities</div>
+          </div>
+
+          <div class="hero-card-main">
+            <div>
+              <div class="profile-circle">BK</div>
+              <div class="hero-card-name">Bagus Kurniawan</div>
+              <div class="hero-card-role">Data Analytics & Reporting · Data Scientist</div>
+              <p class="hero-card-desc">
+                Background in Mathematics (Brawijaya University), hands-on experience in analytics, data science, and AI training — from social media data to enterprise-level dashboards and machine learning models.
+              </p>
+            </div>
+
+            <div>
+              <div class="hero-card-metrics">
+                <div class="metric">
+                  <div class="metric-label">Professional experience</div>
+                  <div class="metric-value">4+ years</div>
+                  <div class="metric-chip">
+                    <div class="metric-dot"></div>
+                    Analytics & Data Science
+                  </div>
+                </div>
+                <div class="metric">
+                  <div class="metric-label">Recent roles</div>
+                  <div class="metric-value">DA & Reporting · AI Trainer</div>
+                  <div class="metric-chip">
+                    <div class="metric-dot"></div>
+                    Pos Logistik · Outlier
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="hero-card-footer">
+            <div>Scholarships: LPDP · BI · KSE</div>
+            <div class="hero-card-tech">
+              <span class="tech-chip">Python</span>
+              <span class="tech-chip">R</span>
+              <span class="tech-chip">SQL</span>
+              <span class="tech-chip">Power BI</span>
+              <span class="tech-chip">Tableau</span>
+            </div>
+          </div>
+        </aside>
+      </section>
+
+      <!-- ABOUT -->
+      <section id="about">
+        <h2 class="section-heading">About Me</h2>
+        <p class="section-subtitle">
+          A data practitioner with a solid foundation in mathematics, analytics, and modern data tools.
+        </p>
+        <div class="about-card">
+          <p>
+            I’m a passionate data practitioner with a strong background in mathematics and experience across data analytics, data science, and AI training. I enjoy working end-to-end with data: collecting, cleaning, analyzing, visualizing, and communicating data-driven insights for both technical and non-technical stakeholders.
+          </p>
+          <p>
+            I’m comfortable working with Python, R, SQL, and Elasticsearch, and I use tools like Microsoft Office, Google Workspace, Tableau, Power BI, and Kibana to transform data into clear and actionable stories.
+          </p>
+          <p>
+            I graduated with a Bachelor’s degree in Mathematics from Brawijaya University, and I’ve been trusted as an LPDP Scholarship Awardee (2024), Bank Indonesia Scholarship recipient (2019), and KSE Scholarship Awardee (2020). I also have a publication on actuarial modeling for COVID-19 insurance.
+          </p>
+        </div>
+      </section>
+
+      <!-- EDUCATION -->
+      <section id="education">
+        <h2 class="section-heading">Education</h2>
+        <p class="section-subtitle">
+          Formal education and academic highlights.
+        </p>
+
+        <div class="timeline">
+          <div class="timeline-item">
+            <div class="timeline-header">
+              <div>
+                <div class="timeline-title">Bachelor of Mathematics</div>
+                <div class="timeline-meta">University of Brawijaya · Aug 2017 – Jul 2021</div>
+              </div>
+              <div class="timeline-meta">Malang, Indonesia</div>
+            </div>
+            <p class="timeline-body">
+              Graduated in Mathematics with strong focus on statistics, modeling, and analytical thinking. Engaged in competitions and research, including an actuarial modeling study for COVID-19 insurance.
+            </p>
+            <div class="timeline-tags">
+              <span class="timeline-tag">LPDP Awardee 2024</span>
+              <span class="timeline-tag">Bank Indonesia Scholarship 2019</span>
+              <span class="timeline-tag">KSE Scholarship 2020</span>
+              <span class="timeline-tag">OLMASTER Finalist 2017 & 2018</span>
+              <span class="timeline-tag">Actuarial Modeling of COVID-19 Insurance</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SKILLS -->
+      <section id="skills">
+        <h2 class="section-heading">Skills</h2>
+        <p class="section-subtitle">
+          Tools and domains I work with most frequently.
+        </p>
+
+        <div class="skills-grid">
+          <div class="skill-card">
+            <div class="skill-title">Core Domains</div>
+            <div class="skill-tags">
+              <span class="skill-tag">Data Science</span>
+              <span class="skill-tag">Data Analysis</span>
+              <span class="skill-tag">Generative AI</span>
+              <span class="skill-tag">Mathematical Statistics</span>
+              <span class="skill-tag">Data Collection</span>
+            </div>
+          </div>
+
+          <div class="skill-card">
+            <div class="skill-title">Programming & Modeling</div>
+            <div class="skill-tags">
+              <span class="skill-tag">Python</span>
+              <span class="skill-tag">R</span>
+              <span class="skill-tag">MATLAB</span>
+              <span class="skill-tag">SQL</span>
+              <span class="skill-tag">TensorFlow</span>
+              <span class="skill-tag">PyTorch</span>
+              <span class="skill-tag">PyCaret</span>
+              <span class="skill-tag">Jupyter</span>
+            </div>
+          </div>
+
+          <div class="skill-card">
+            <div class="skill-title">Data Platforms & Tools</div>
+            <div class="skill-tags">
+              <span class="skill-tag">Power BI</span>
+              <span class="skill-tag">Tableau</span>
+              <span class="skill-tag">Excel</span>
+              <span class="skill-tag">Elasticsearch</span>
+              <span class="skill-tag">NoSQL</span>
+              <span class="skill-tag">Kibana</span>
+              <span class="skill-tag">Plotly Dash</span>
+              <span class="skill-tag">SQL Databases</span>
+            </div>
+          </div>
+
+          <div class="skill-card">
+            <div class="skill-title">Data Engineering & Infra</div>
+            <div class="skill-tags">
+              <span class="skill-tag">API & Simple Web Scraping</span>
+              <span class="skill-tag">PostgreSQL</span>
+              <span class="skill-tag">MySQL</span>
+              <span class="skill-tag">MongoDB</span>
+              <span class="skill-tag">SSH</span>
+              <span class="skill-tag">FastAPI (Model Deployment)</span>
+            </div>
+          </div>
+
+          <div class="skill-card">
+            <div class="skill-title">Languages</div>
+            <div class="skill-tags">
+              <span class="skill-tag">Indonesian (Native)</span>
+              <span class="skill-tag">English (Fluent – TOEFL ITP 517)</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- EXPERIENCE -->
+      <section id="experience">
+        <h2 class="section-heading">Professional Experience</h2>
+        <p class="section-subtitle">
+          Roles where I applied data, analytics, and AI in real-world settings.
+        </p>
+
+        <div class="timeline">
+          <div class="timeline-item">
+            <div class="timeline-header">
+              <div>
+                <div class="timeline-title">Data Analytics and Reporting Specialist (Full-time)</div>
+                <div class="timeline-meta">PT Pos Logistik Indonesia · Jul 2025 – Present</div>
+              </div>
+              <div class="timeline-meta">Central Jakarta, Indonesia</div>
+            </div>
+            <p class="timeline-body">
+              Overseeing contract and customer data, producing daily–monthly revenue reports, and developing sales performance dashboards for national stakeholders. I support decision-making for the Board of Directors and management through data-driven insights.
+            </p>
+            <div class="timeline-tags">
+              <span class="timeline-tag">Revenue Reporting</span>
+              <span class="timeline-tag">Sales Performance Analytics</span>
+              <span class="timeline-tag">Power BI Dashboards</span>
+              <span class="timeline-tag">KPI & Incentives</span>
+              <span class="timeline-tag">Risk & Pipeline Analysis</span>
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-header">
+              <div>
+                <div class="timeline-title">Artificial Intelligence Trainer (Freelance)</div>
+                <div class="timeline-meta">Outlier · Jan 2025 – Present</div>
+              </div>
+              <div class="timeline-meta">South Jakarta, Indonesia</div>
+            </div>
+            <p class="timeline-body">
+              Develop and review technical content to train large-scale AI language models, evaluate and rank AI-generated responses and code, and provide detailed feedback to improve quality, relevance, coherence, and factual accuracy.
+            </p>
+            <div class="timeline-tags">
+              <span class="timeline-tag">Generative AI</span>
+              <span class="timeline-tag">LLM Evaluation</span>
+              <span class="timeline-tag">Python · R · JavaScript</span>
+              <span class="timeline-tag">Prompt & Code Review</span>
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-header">
+              <div>
+                <div class="timeline-title">Data Scientist (Full-time)</div>
+                <div class="timeline-meta">PT eBdesk Teknologi · Jul 2022 – Dec 2024</div>
+              </div>
+              <div class="timeline-meta">South Tangerang, Indonesia</div>
+            </div>
+            <p class="timeline-body">
+              Collected and integrated data from open sources into systems like Elasticsearch, PostgreSQL, MySQL, and MongoDB. Performed data wrangling, EDA, and modeling using Python and R, built predictive models with TensorFlow and PyTorch, and deployed them via FastAPI for production use.
+            </p>
+            <div class="timeline-tags">
+              <span class="timeline-tag">Elasticsearch</span>
+              <span class="timeline-tag">Python · R</span>
+              <span class="timeline-tag">TensorFlow & PyTorch</span>
+              <span class="timeline-tag">EDA & Visualization</span>
+              <span class="timeline-tag">FastAPI Deployment</span>
+              <span class="timeline-tag">Client-facing Insights</span>
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-header">
+              <div>
+                <div class="timeline-title">Social Media Analyst (Freelance)</div>
+                <div class="timeline-meta">Appen · Aug 2021 – Jul 2022</div>
+              </div>
+              <div class="timeline-meta">South Jakarta, Indonesia</div>
+            </div>
+            <p class="timeline-body">
+              Evaluated social media and web content against client standards, identified behavior patterns and trends, and helped ensure safe and high-quality online experiences for users.
+            </p>
+            <div class="timeline-tags">
+              <span class="timeline-tag">Content Evaluation</span>
+              <span class="timeline-tag">User Behaviour Analysis</span>
+              <span class="timeline-tag">Quality & Compliance</span>
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-header">
+              <div>
+                <div class="timeline-title">Data Analyst (Internship)</div>
+                <div class="timeline-meta">BPJS Ketenagakerjaan · Apr 2020 – Oct 2020</div>
+              </div>
+              <div class="timeline-meta">Malang, Indonesia</div>
+            </div>
+            <p class="timeline-body">
+              Collected and verified participant claims data, supported claims processing, and analyzed participant data to surface trends and insights for operational decision-making.
+            </p>
+            <div class="timeline-tags">
+              <span class="timeline-tag">Claims Data</span>
+              <span class="timeline-tag">Data Quality</span>
+              <span class="timeline-tag">Reporting</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- PROJECT / HIGHLIGHTS -->
+      <section id="projects">
+        <h2 class="section-heading">Selected Highlights</h2>
+        <p class="section-subtitle">
+          A few academic and professional highlights from my journey.
+        </p>
+
+        <div class="timeline">
+          <div class="timeline-item">
+            <div class="timeline-header">
+              <div>
+                <div class="timeline-title">Actuarial Modeling of COVID-19 Insurance</div>
+                <div class="timeline-meta">Publication · 2022</div>
+              </div>
+              <div class="timeline-meta">CAUCHY – Jurnal Matematika Murni dan Aplikasi</div>
+            </div>
+            <p class="timeline-body">
+              Published research on actuarial modeling for COVID-19 insurance, combining mathematical modeling, risk analysis, and real-world application in an insurance context.
+            </p>
+            <div class="timeline-tags">
+              <span class="timeline-tag">Actuarial Modeling</span>
+              <span class="timeline-tag">Mathematics</span>
+              <span class="timeline-tag">Risk Analysis</span>
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-header">
+              <div>
+                <div class="timeline-title">Analytics Dashboards & Reports</div>
+                <div class="timeline-meta">Industry Projects</div>
+              </div>
+              <div class="timeline-meta">Pos Logistik & eBdesk</div>
+            </div>
+            <p class="timeline-body">
+              Designed and maintained dashboards in Power BI, Tableau, and custom visualization tools to monitor revenue, pipeline, and various business metrics for internal teams and clients.
+            </p>
+            <div class="timeline-tags">
+              <span class="timeline-tag">Power BI</span>
+              <span class="timeline-tag">Tableau</span>
+              <span class="timeline-tag">Kibana</span>
+              <span class="timeline-tag">Business Metrics</span>
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-header">
+              <div>
+                <div class="timeline-title">AI & LLM Evaluation Work</div>
+                <div class="timeline-meta">Freelance · Ongoing</div>
+              </div>
+              <div class="timeline-meta">Outlier</div>
+            </div>
+            <p class="timeline-body">
+              Contributing to the training and evaluation of large language models by reviewing technical content, checking factual accuracy, and scoring AI-generated outputs and code.
+            </p>
+            <div class="timeline-tags">
+              <span class="timeline-tag">LLMs</span>
+              <span class="timeline-tag">Generative AI</span>
+              <span class="timeline-tag">Model Evaluation</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ORGANIZATIONS -->
+      <section id="organizations">
+        <h2 class="section-heading">Community & Leadership</h2>
+        <p class="section-subtitle">
+          Organizational experiences that shaped how I collaborate and lead.
+        </p>
+
+        <div class="list-grid">
+          <div class="list-card">
+            <div class="list-card-title">Paguyuban Karya Salemba Empat (KSE)</div>
+            <ul>
+              <li>Staff of Social and Environmental Affairs · Universitas Brawijaya.</li>
+              <li>Organized social teaching, disaster relief, and environmental webinars.</li>
+              <li>Involved in community empowerment and environmental programs.</li>
+            </ul>
+          </div>
+
+          <div class="list-card">
+            <div class="list-card-title">GenBI (Generasi Baru Indonesia)</div>
+            <ul>
+              <li>Staff at Koordinator Komisariat Malang.</li>
+              <li>Acted as an ambassador for Bank Indonesia in community empowerment initiatives.</li>
+              <li>Coordinated charity and education-related programs.</li>
+            </ul>
+          </div>
+
+          <div class="list-card">
+            <div class="list-card-title">Student Executive Board · FMIPA UB</div>
+            <ul>
+              <li>Staff of PJMO Bureau.</li>
+              <li>Supervised and evaluated divisional work programs.</li>
+              <li>Supported internal quality audits and reporting activities.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- CERTIFICATIONS -->
+      <section id="certifications">
+        <h2 class="section-heading">Certifications</h2>
+        <p class="section-subtitle">
+          Selected certifications and courses that strengthened my technical foundation.
+        </p>
+
+        <div class="list-grid">
+          <div class="list-card">
+            <div class="list-card-title">Data Science & Analytics</div>
+            <ul>
+              <li>IBM – Data Science Specialization</li>
+              <li>IBM – Data Analyst Professional Certificate</li>
+              <li>Google – Advanced Data Analytics Certificate</li>
+              <li>Google – Project Management</li>
+              <li>DeepLearning.AI – Machine Learning Specialization</li>
+            </ul>
+          </div>
+
+          <div class="list-card">
+            <div class="list-card-title">Machine Learning & Statistics</div>
+            <ul>
+              <li>New York University – Machine Learning and Reinforcement Learning in Finance</li>
+              <li>Imperial College London – Mathematics for Machine Learning: Linear Algebra</li>
+              <li>Queen Mary University of London – The Classical Linear Regression Model</li>
+              <li>SAS – Introduction to Statistical Analysis: Hypothesis Testing and ANOVA</li>
+              <li>O.P. Jindal Global University – Supervised Learning and Its Applications in Marketing</li>
+            </ul>
+          </div>
+
+          <div class="list-card">
+            <div class="list-card-title">Other Programs</div>
+            <ul>
+              <li>Digital Talent Scholarship 2022 – Professional Academy: Data Engineer</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- CONTACT -->
+      <section id="contact">
+        <h2 class="section-heading">Contact</h2>
+        <p class="section-subtitle">
+          Feel free to reach out for collaboration, opportunities, or just to talk about data and AI.
+        </p>
+
+        <div class="contact-grid">
+          <div class="contact-card">
+            <div class="contact-label">Phone & Email</div>
+            <div class="contact-value">
+              📱 <a href="https://wa.me/6281237519775" target="_blank" rel="noreferrer">+62 812 3751 9775</a>
+            </div>
+            <div class="contact-value">
+              ✉️ <a href="mailto:bagusawan23@gmail.com">bagusawan23@gmail.com</a>
+            </div>
+            <p>
+              I’m open to roles in data analytics, data science, and AI-related work — as well as collaborations on projects and research.
+            </p>
+          </div>
+
+          <div class="contact-card">
+            <div class="contact-label">Online Profiles</div>
+            <div class="social-links">
+              <a class="social-pill" href="http://www.linkedin.com/in/bagusawan23" target="_blank" rel="noreferrer">
+                LinkedIn
+              </a>
+              <!-- Tambahkan link GitHub / Portfolio kalau sudah ada -->
+              <!-- <a class="social-pill" href="https://your-portfolio-link.com" target="_blank" rel="noreferrer">Portfolio</a> -->
+            </div>
+            <p style="margin-top:8px; font-size:12px;">
+              You can also request my full CV or portfolio via email or LinkedIn.
+            </p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+      © <span>Bagus Kurniawan</span> · Built with HTML & CSS · Hosted on GitHub Pages
+    </footer>
+  </div>
+</body>
+</html>
