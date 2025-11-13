@@ -59,6 +59,35 @@
       }
     }
 
+
+    /* === FIX HORIZONTAL SCROLL ON MOBILE === */
+html, body {
+  overflow-x: hidden !important;
+  max-width: 100% !important;
+  width: 100% !important;
+}
+
+* {
+  box-sizing: border-box !important;
+}
+
+/* Pastikan semua container tidak meluber */
+section, div, nav, header, footer {
+  max-width: 100% !important;
+  overflow-x: hidden !important;
+}
+
+/* Bagian hero dan foto profil */
+.hero, .hero-container, .profile-img, .profile-circle {
+  max-width: 100% !important;
+  overflow-x: hidden !important;
+}
+
+/* Badge / skill tags (penyebab paling umum overflow) */
+.badge, .tag {
+  white-space: normal !important;
+}
+
     /* Navbar */
     .nav {
       display: flex;
