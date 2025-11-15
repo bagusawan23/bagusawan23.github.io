@@ -645,6 +645,67 @@ section, div, nav, header, footer {
     .footer span {
       color: var(--accent);
     }
+
+        /* Blog / Writing */
+    .blog-grid {
+      display: grid;
+      gap: 10px;
+    }
+
+    @media (min-width: 768px) {
+      .blog-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    .blog-card {
+      border-radius: var(--radius-lg);
+      padding: 10px 12px;
+      border: 1px solid var(--border-soft);
+      background: rgba(15, 23, 42, 0.9);
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    .blog-meta {
+      font-size: 11px;
+      color: var(--text-muted);
+      margin-bottom: 4px;
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .blog-title {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 4px;
+    }
+
+    .blog-excerpt {
+      font-size: 12px;
+      margin-bottom: 6px;
+    }
+
+    .blog-tag {
+      padding: 2px 8px;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.5);
+      font-size: 10px;
+    }
+
+    .blog-link {
+      font-size: 11px;
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    .blog-link:hover {
+      text-decoration: underline;
+    }
+
+    
   </style>
 </head>
 <body>
@@ -1188,6 +1249,63 @@ section, div, nav, header, footer {
         </div>
       </section>
 
+
+
+            <!-- WRITING / BLOG -->
+      <section id="writing">
+        <h2 class="section-heading">Writing &amp; Blog</h2>
+        <p class="section-subtitle">
+          Short notes and reflections about data, analytics, AI, and my personal journey.
+        </p>
+
+        <div class="blog-grid">
+          <!-- Post 1 -->
+          <article class="blog-card">
+            <div class="blog-meta">
+              <span>📅 10 November 2025</span>
+              <span>💭 Data Career</span>
+            </div>
+            <h3 class="blog-title">
+              Belajar Menerima Progres Pelan tapi Konsisten
+            </h3>
+            <p class="blog-excerpt">
+              Kadang kita merasa tertinggal ketika lihat orang lain sudah jauh duluan.
+              Di tulisan ini, aku cerita soal gimana aku mencoba fokus ke 1% improvement setiap hari,
+              terutama lewat proyek kecil seperti dashboard dan eksperimen AI pribadi.
+            </p>
+            <div class="blog-meta">
+              <span class="blog-tag">Mindset</span>
+              <span class="blog-tag">Data Journey</span>
+            </div>
+            <!-- Kalau mau detail page, ganti # dengan link .html lain -->
+            <a href="#" class="blog-link">Read more →</a>
+          </article>
+
+          <!-- Post 2 -->
+          <article class="blog-card">
+            <div class="blog-meta">
+              <span>📅 3 November 2025</span>
+              <span>📊 Tools &amp; Workflow</span>
+            </div>
+            <h3 class="blog-title">
+              Kenapa Aku Suka Menggabungkan Power BI, Tableau, dan Python
+            </h3>
+            <p class="blog-excerpt">
+              Bukan soal mana yang paling canggih, tapi mana yang paling realistis kupakai
+              di dunia kerja dan proyek sampingan. Di sini aku tulis pola pikirku memilih tools
+              untuk reporting, eksplorasi data, dan prototipe cepat.
+            </p>
+            <div class="blog-meta">
+              <span class="blog-tag">Data Tools</span>
+              <span class="blog-tag">Productivity</span>
+            </div>
+            <a href="#" class="blog-link">Read more →</a>
+          </article>
+        </div>
+      </section>
+
+      
+      
       <!-- CONTACT -->
       <section id="contact">
         <h2 class="section-heading">Contact</h2>
