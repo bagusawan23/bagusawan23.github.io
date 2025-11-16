@@ -221,6 +221,61 @@ section, div, nav, header, footer {
       gap: 10px;
     }
 
+        .featured-post {
+      margin-top: 24px;
+      padding: 16px 16px 18px;
+      border-radius: 18px;
+      border: 1px solid rgba(148, 163, 184, 0.5);
+      background:
+        radial-gradient(circle at top left, rgba(56, 189, 248, 0.16), transparent 55%),
+        rgba(15, 23, 42, 0.95);
+      box-shadow: 0 18px 40px rgba(15, 23, 42, 0.75);
+    }
+
+    .featured-label {
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 4px;
+    }
+
+    .featured-title {
+      font-size: 17px;
+      font-weight: 600;
+      color: var(--text);
+      text-decoration: none;
+      display: inline-block;
+      margin-bottom: 6px;
+    }
+
+    .featured-title:hover {
+      color: var(--accent);
+    }
+
+    .featured-meta {
+      font-size: 12px;
+      color: var(--text-muted);
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 8px;
+    }
+
+    .featured-excerpt {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-bottom: 12px;
+    }
+
+    .featured-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      align-items: center;
+    }
+
+
     .btn-primary,
     .btn-ghost {
       font-size: 13px;
@@ -735,38 +790,51 @@ section, div, nav, header, footer {
     <!-- HERO -->
     <main>
       <section class="hero">
-        <div>
+                <div>
           <div class="pill">
             <div class="pill-dot"></div>
-            <span>Data Science · Analytics · Generative AI</span>
+            <span>Writing · Data · Scholarships · Tools</span>
           </div>
 
           <h1 class="hero-title">
-            Hi, I'm <span>Bagus Kurniawan</span> — Data Practitioner with a strong mathematics background.
+            Bukan cuma portofolio, tapi catatan perjalanan <span>belajar data sambil kerja</span>.
           </h1>
 
           <p class="hero-subtitle">
-            Passionate about turning complex data into clear, data-driven narratives. I work with Python, R, SQL, BI tools, and Elasticsearch to build analysis, dashboards, and models that support real business decisions.
+            Di halaman ini aku lebih fokus berbagi tulisan tentang data, beasiswa, dan tools
+            seperti Power BI, Tableau, dan Python yang kupakai sehari-hari — bukan sekadar
+            memajang CV.
           </p>
 
-          <div class="hero-tags">
-            <div class="hero-tag">Data Science</div>
-            <div class="hero-tag">Data Analytics</div>
-            <div class="hero-tag">Python · R · SQL</div>
-            <div class="hero-tag">Power BI & Tableau</div>
-            <div class="hero-tag">Elasticsearch</div>
-            <div class="hero-tag">Generative AI (LLM)</div>
-          </div>
+          <!-- Featured Post -->
+          <div class="featured-post">
+            <div class="featured-label">Featured post</div>
 
-          <div class="hero-actions">
-            <a href="#experience" class="btn-primary">
-              View professional experience →
+            <a href="post-asean-online-education.html" class="featured-title">
+              Belajar Data Science Gratis Melalui ASEAN Online Education Platform
+              (Free Coursera Certificate)
             </a>
-            <a href="#contact" class="btn-ghost">
-              Contact & links
-            </a>
+
+            <div class="featured-meta">
+              <span>🗓 17 Januari 2025</span>
+              <span>🎓 Pelatihan Gratis · Coursera</span>
+            </div>
+
+            <p class="featured-excerpt">
+              Ingin meningkatkan skill di bidang data tanpa keluar biaya? Di artikel ini aku
+              merangkum program ASEAN Online Education Platform yang memberi akses
+              Coursera Professional Certificate gratis untuk warga ASEAN, termasuk track
+              Data &amp; Analytics.
+            </p>
+
+            <div class="featured-actions">
+              <a href="post-asean-online-education.html" class="btn-primary">
+                Baca artikelnya →
+              </a>
+            </div>
           </div>
         </div>
+
 
         <!-- Hero side card -->
         <aside class="hero-card">
