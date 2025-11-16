@@ -9,7 +9,7 @@
   <meta name="description" content="Portfolio of Bagus Kurniawan - Data Practitioner, Data Scientist, and Data Analyst." />
 
   <!-- Google Font -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="sheet" />
 
   <style>
     :root {
@@ -277,7 +277,55 @@ section, div, nav, header, footer {
       align-items: center;
     }
 
+/* === FEATURED CAROUSEL FIX === */
+.featured-carousel {
+  display: flex;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  padding: 1rem 0;
+  gap: 1rem;
+  scroll-behavior: smooth;
+}
 
+.featured-carousel::-webkit-scrollbar {
+  display: none; /* hilangkan scrollbar */
+}
+
+.featured-card {
+  min-width: 280px;
+  max-width: 300px;
+  flex: 0 0 auto;
+  background: #ffffff;
+  border-radius: 14px;
+  padding: 1.2rem;
+  scroll-snap-align: start;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+  border: 1px solid #eee;
+}
+
+/* Panah Navigasi */
+.carousel-nav {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+}
+
+.carousel-btn {
+  background: #000;
+  color: white;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: 0.2s ease;
+}
+
+.carousel-btn:hover {
+  background: #333;
+}
+
+    
     .btn-primary,
     .btn-ghost {
       font-size: 13px;
@@ -880,9 +928,35 @@ section, div, nav, header, footer {
 
           <!-- Featured Post -->
           <!-- === FEATURED POSTS CAROUSEL === -->
-<div class="featured-carousel">
+<!-- === FEATURED POSTS SECTION === -->
+<div class="carousel-nav">
+  <button class="carousel-btn" onclick="scrollCarousel(-1)">← Prev</button>
+  <button class="carousel-btn" onclick="scrollCarousel(1)">Next →</button>
+</div>
 
-  <!-- POST 1: ASEAN -->
+<div class="featured-carousel" id="featured-carousel">
+
+  <!-- SLIDE 1: DATACAMP -->
+  <div class="featured-card">
+    <div class="featured-label">Featured</div>
+
+    <a href="post-datacamp-scholarship.html" class="featured-card-title">
+      Beasiswa Gratis DataCamp: Akses Semua Kursus &amp; Sertifikat
+    </a>
+
+    <div class="featured-card-meta">
+      🗓 16 November 2025 · 🎓 Data Science Scholarship
+    </div>
+
+    <p class="featured-card-excerpt">
+      Beasiswa full akses ke seluruh kursus premium DataCamp: Python, SQL, Machine Learning,
+      AI, dan sertifikat resmi tanpa biaya.
+    </p>
+
+    <a href="post-datacamp-scholarship.html" class="btn-primary">Baca →</a>
+  </div>
+
+  <!-- SLIDE 2: ASEAN -->
   <div class="featured-card">
     <div class="featured-label">Featured</div>
 
@@ -895,33 +969,15 @@ section, div, nav, header, footer {
     </div>
 
     <p class="featured-card-excerpt">
-      Ringkasan lengkap program Coursera gratis untuk warga ASEAN. Cocok untuk Data Analyst pemula.
+      Program lisensi Coursera gratis untuk warga ASEAN — cocok untuk pondasi
+      Data Science &amp; Analytics dari universitas top.
     </p>
 
     <a href="post-asean-online-education.html" class="btn-primary">Baca →</a>
   </div>
 
-  <!-- POST 2: DataCamp Scholarship -->
-  <div class="featured-card">
-    <div class="featured-label">Featured</div>
-
-    <a href="post-datacamp-scholarship.html" class="featured-card-title">
-      Beasiswa Gratis DataCamp: Akses Semua Kursus & Sertifikat
-    </a>
-
-    <div class="featured-card-meta">
-      🗓 16 November 2025 · 🎓 Data Science Scholarship
-    </div>
-
-    <p class="featured-card-excerpt">
-      Beasiswa full akses ke seluruh kursus premium DataCamp: Python, SQL, ML, dan  sertifikasi resmi.
-    </p>
-
-    <a href="post-datacamp-scholarship.html" class="btn-primary">Baca →</a>
-  </div>
-
-  <!-- Tambah postingan lain tinggal duplikasi blok ini -->
 </div>
+
         </div>
 
 
@@ -1515,5 +1571,13 @@ section, div, nav, header, footer {
       © <span>Bagus Kurniawan</span> · Built with HTML & CSS · Hosted on GitHub Pages
     </footer>
   </div>
+<script>
+function scrollCarousel(direction) {
+  const c = document.getElementById("featured-carousel");
+  const cardWidth = c.querySelector(".featured-card").offsetWidth + 16; 
+  c.scrollBy({ left: direction * cardWidth, behavior: "smooth" });
+}
+</script>
+  
 </body>
 </html>
