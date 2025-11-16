@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <title>Beasiswa Gratis DataCamp: Akses Semua Kursus & Sertifikat Tanpa Biaya!</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Beasiswa gratis DataCamp yang memberikan akses semua kursus premium & sertifikat resmi tanpa biaya, cocok untuk belajar Data Science, Machine Learning, Python, SQL, dan AI.">
+
+  <!-- Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --bg: #050816;
+      --bg-alt: #020617;
+      --accent: #22d3ee;
+      --accent-soft: rgba(34, 211, 238, 0.18);
+      --text: #e5e7eb;
+      --text-muted: #9ca3af;
+      --border-soft: rgba(148, 163, 184, 0.35);
+      --radius-lg: 18px;
+      --radius-xl: 24px;
+      --shadow-soft: 0 18px 45px rgba(15, 23, 42, 0.8);
+      --content-width: 780px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      max-width: 100%;
+      overflow-x: hidden;
+      background: radial-gradient(circle at top, #020617, #020617 45%, #020617 100%);
+      font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--text);
+    }
+
+    a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    .page {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      padding: 16px 16px 40px;
+    }
+
+    /* NAVBAR SEDERHANA */
+    .nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: var(--content-width);
+      margin: 0 auto 18px;
+      padding: 10px 14px;
+      border-radius: 999px;
+      background: linear-gradient(120deg, rgba(15,23,42,0.95), rgba(15,23,42,0.95));
+      border: 1px solid rgba(148, 163, 184, 0.35);
+      box-shadow: 0 16px 40px rgba(15, 23, 42, 0.8);
+      position: sticky;
+      top: 10px;
+      z-index: 20;
+      backdrop-filter: blur(16px);
+    }
+
+    .nav-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .logo-circle {
+      width: 32px;
+      height: 32px;
+      border-radius: 999px;
+      border: 2px solid var(--accent);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 16px;
+      color: var(--accent);
+      box-shadow: 0 0 20px rgba(56, 189, 248, 0.4);
+      background: #020617;
+    }
+
+    .nav-title {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--text-muted);
+    }
+
+    .nav-title span {
+      color: var(--text);
+      font-weight: 600;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 14px;
+      font-size: 13px;
+    }
+
+    .nav-links a {
+      padding: 4px 10px;
+      border-radius: 999px;
+      border: 1px solid transparent;
+      color: var(--text-muted);
+      text-decoration: none;
+    }
+
+    .nav-links a:hover {
+      border-color: rgba(148, 163, 184, 0.6);
+      color: var(--text);
+      background: rgba(15, 23, 42, 0.9);
+    }
+
+    .nav-links .pill-link {
+      border-color: rgba(148, 163, 184, 0.7);
+      background: rgba(15, 23, 42, 0.95);
+      color: var(--text);
+    }
+
+    @media (max-width: 640px) {
+      .nav {
+        border-radius: 16px;
+        padding-inline: 10px;
+      }
+      .nav-title {
+        font-size: 12px;
+      }
+      .nav-links {
+        display: none;
+      }
+    }
+
+    /* ARTICLE LAYOUT */
+    .article-page {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      padding-top: 22px;
+    }
+
+    .article-shell {
+      width: 100%;
+      max-width: var(--content-width);
+    }
+
+    .article-card {
+      background: radial-gradient(circle at top, #0b1220, #020617);
+      border-radius: var(--radius-xl);
+      border: 1px solid var(--border-soft);
+      box-shadow: var(--shadow-soft);
+      padding: 20px 18px 26px;
+    }
+
+    @media (min-width: 768px) {
+      .article-card {
+        padding: 26px 28px 32px;
+      }
+    }
+
+    .article-kicker {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--accent);
+      margin-bottom: 6px;
+    }
+
+    .article-title {
+      font-size: 22px;
+      line-height: 1.25;
+      margin: 0 0 10px;
+    }
+
+    @media (min-width: 768px) {
+      .article-title {
+        font-size: 26px;
+      }
+    }
+
+    .article-meta {
+      font-size: 12px;
+      color: var(--text-muted);
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+      margin-bottom: 16px;
+    }
+
+    .article-meta span {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .article-tags {
+      margin-top: 4px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .article-tag {
+      font-size: 10px;
+      padding: 2px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.6);
+      color: var(--text-muted);
+    }
+
+    .article-cover {
+      margin: 16px 0 20px;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      border: 1px solid rgba(148, 163, 184, 0.4);
+      background: #020617;
+    }
+
+    .article-cover img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
+    .article-cover figcaption {
+      font-size: 11px;
+      color: var(--text-muted);
+      padding: 6px 10px 8px;
+      border-top: 1px solid rgba(148, 163, 184, 0.3);
+      background: rgba(15,23,42,0.9);
+    }
+
+    .article-body {
+      font-size: 14px;
+      line-height: 1.7;
+      color: var(--text);
+    }
+
+    .article-body p {
+      margin: 0 0 12px;
+    }
+
+    .article-body h4 {
+      font-size: 15px;
+      margin: 18px 0 8px;
+    }
+
+    .article-body strong {
+      font-weight: 600;
+    }
+
+    .article-body ul,
+    .article-body ol {
+      padding-left: 20px;
+      margin: 0 0 14px;
+    }
+
+    .article-body li {
+      margin-bottom: 6px;
+    }
+
+    .article-body hr {
+      border: none;
+      border-top: 1px dashed rgba(148, 163, 184, 0.5);
+      margin: 18px 0 14px;
+    }
+
+    /* Styling sederhana untuk gambar di dalam konten */
+    .article-body table {
+      max-width: 100%;
+      margin: 12px auto;
+      border-collapse: collapse;
+    }
+
+    .article-body img {
+      max-width: 100%;
+      height: auto;
+    }
+
+    .article-body .tr-caption {
+      font-size: 11px;
+      color: var(--text-muted);
+      padding-top: 4px;
+    }
+
+    /* FOOTER BAR */
+    .article-footer {
+      margin-top: 20px;
+      font-size: 12px;
+      color: var(--text-muted);
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 12px;
+    }
+
+    .back-link span {
+      font-size: 14px;
+    }
+
+    @media (max-width: 480px) {
+      .article-card {
+        border-radius: 18px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <!-- NAV -->
+    <header class="nav">
+      <div class="nav-left">
+        <div class="logo-circle">B</div>
+        <div class="nav-title">
+          <span>Bagus Kurniawan</span> · Data Practitioner
+        </div>
+      </div>
+      <nav class="nav-links">
+        <a href="index.html" class="pill-link">← Back to Portfolio</a>
+      </nav>
+    </header>
+
+    <!-- ARTICLE -->
+    <main class="article-page">
+      <div class="article-shell">
+        <article class="article-card">
+          <header>
+            <div class="article-kicker">Writing · Data &amp; Learning Resources</div>
+
+            <h1 class="article-title">
+              Beasiswa Gratis DataCamp: Akses Semua Kursus &amp; Sertifikat Tanpa Biaya!
+            </h1>
+
+            <div class="article-meta">
+              <span>📅 November 16, 2025</span>
+              <span>✍️ Admin</span>
+              <span>📚 DataCamp · Scholarship</span>
+            </div>
+
+            <div class="article-tags">
+              <span class="article-tag">Data Science</span>
+              <span class="article-tag">DataCamp</span>
+              <span class="article-tag">Beasiswa / Pelatihan Gratis</span>
+            </div>
+
+            <figure class="article-cover">
+              <img
+                src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiH1211I8zHb0tIjDw7TXVvVoZoCbpE1DN2gsPW7lUpc8XGk__1u_k8tk_nWstDJQGU8xVRau3JAr7FsU8R8eveRV_Z1sezj6CS3DHSB_7IS7fZA8k0KndeoAIP9NTKT29dNmi6DyGrzooUL5wywSG2BmpcNbZXrHNTGZuGFQ-jcl-y5vjGMA82d2YMGdr2/s1080/560464016_787207770862700_4019964276957687263_n.jpg"
+                alt="Poster beasiswa gratis DataCamp dari GDGoC Damanhour"
+              />
+              <figcaption>Beasiswa gratis DataCamp: akses semua kursus &amp; sertifikat premium</figcaption>
+            </figure>
+          </header>
+
+          <div class="article-body">
+            <!-- KONTEN DIAMBIL DARI BLOGGER DATACAMP -->
+            <p><strong>🎓 Beasiswa Gratis DataCamp: Akses Semua Kursus &amp; Sertifikat Tanpa Biaya!</strong></p>
+            <p>
+              Sebuah <em>beasiswa luar biasa</em> kini tersedia untuk semua orang! Program ini membuka akses
+              <strong>seluruh kursus dan sertifikat di platform DataCamp secara GRATIS</strong>
+              tanpa biaya sepeser pun. Kesempatan emas ini sangat cocok bagi siapa pun yang ingin belajar
+              <strong>Data Science, Machine Learning, Python, SQL, AI, dan teknologi lainnya</strong>.
+            </p>
+
+            <p>
+              Beasiswa ini diberikan oleh <strong>GDGoC Universitas Damanhour</strong>, dan dipantau langsung oleh
+              <strong>Engineer Mohamed Elyamany</strong>. Terima kasih kepada mereka yang telah menyediakan kesempatan
+              belajar yang luar biasa ini.
+            </p>
+
+            <hr>
+
+            <h4><strong>🌟 Apa Saja Keuntungan Beasiswa Ini?</strong></h4>
+
+            <div class="separator" style="clear: both; text-align: center;">
+              <a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiH1211I8zHb0tIjDw7TXVvVoZoCbpE1DN2gsPW7lUpc8XGk__1u_k8tk_nWstDJQGU8xVRau3JAr7FsU8R8eveRV_Z1sezj6CS3DHSB_7IS7fZA8k0KndeoAIP9NTKT29dNmi6DyGrzooUL5wywSG2BmpcNbZXrHNTGZuGFQ-jcl-y5vjGMA82d2YMGdr2/s1080/560464016_787207770862700_4019964276957687263_n.jpg" style="margin-left: 1em; margin-right: 1em;">
+                <img
+                  border="0"
+                  src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiH1211I8zHb0tIjDw7TXVvVoZoCbpE1DN2gsPW7lUpc8XGk__1u_k8tk_nWstDJQGU8xVRau3JAr7FsU8R8eveRV_Z1sezj6CS3DHSB_7IS7fZA8k0KndeoAIP9NTKT29dNmi6DyGrzooUL5wywSG2BmpcNbZXrHNTGZuGFQ-jcl-y5vjGMA82d2YMGdr2/s320/560464016_787207770862700_4019964276957687263_n.jpg"
+                  width="320"
+                  height="320"
+                  alt="Poster utama beasiswa DataCamp"
+                />
+              </a>
+            </div>
+            <div class="separator" style="clear: both; text-align: center;"><br></div>
+
+            <p>Dengan mengikuti program ini, kamu akan mendapatkan:</p>
+            <ul>
+              <li><p>Akses penuh ke <strong>semua kursus premium DataCamp</strong></p></li>
+              <li><p>Sertifikat resmi setelah menyelesaikan kursus</p></li>
+              <li><p>Belajar mandiri dari mana saja</p></li>
+              <li><p>Cocok untuk pemula maupun level lanjut</p></li>
+            </ul>
+
+            <hr>
+
+            <h4><strong>📌 Syarat &amp; Ketentuan Beasiswa</strong></h4>
+            <p>
+              Meskipun gratis penuh, beasiswa ini memiliki dua syarat sederhana agar memastikan bahwa program ini
+              diberikan kepada orang yang benar-benar serius belajar:
+            </p>
+
+            <h4><strong>1. Aktivitas Belajar Minimal 1 Kali per Bulan</strong></h4>
+            <p>Dalam waktu satu bulan, peserta harus:</p>
+            <ul>
+              <li><p>Menyelesaikan satu pelajaran, atau</p></li>
+              <li><p>Mengerjakan latihan di platform</p></li>
+              <li><p>Mengikuti course secara aktif</p></li>
+            </ul>
+
+            <p>Jika <strong>tidak ada aktivitas selama 1 bulan</strong>, maka:</p>
+            <blockquote>
+              <p>Akun beasiswa akan dicabut dan diberikan kepada peserta lain yang lebih aktif.</p>
+            </blockquote>
+
+            <h4><strong>2. Wajib Memulai Satu Kursus Setelah Diterima</strong></h4>
+            <p>
+              Setelah kamu resmi dimasukkan ke dalam program beasiswa, kamu harus segera memulai salah satu kursus
+              yang tersedia.
+            </p>
+            <p>
+              ✔ Tidak ada syarat lain<br>
+              ✔ Tidak perlu tes<br>
+              ✔ Tidak memerlukan pengalaman teknis
+            </p>
+            <p>
+              Tujuannya hanya satu: memberi kesempatan kepada mereka yang benar-benar ingin belajar dan
+              memanfaatkan fasilitas secara maksimal.
+            </p>
+
+            <hr>
+
+            <h4><strong>🗓 Status Beasiswa</strong></h4>
+            <p>
+              Beasiswa ini <strong>baru saja dibuka kemarin</strong>, jadi kesempatan untuk mendapatkan slot masih
+              sangat terbuka.
+            </p>
+
+            <hr>
+
+            <h4><strong>📥 Link Pendaftaran Beasiswa</strong></h4>
+            <p>
+              👉 <strong>
+                Daftar
+                <a href="https://docs.google.com/forms/d/e/1FAIpQLSfTWxqqh2jB7mW4BId_13E4wsPBqkbYDQ58mZUauLtp8MQIGw/viewform?fbclid=IwY2xjawOGXNZleHRuA2FlbQIxMABicmlkETFYZnhiYVpwY2t5UlBFU3Q5c3J0YwZhcHBfaWQQMjIyMDM5MTc4ODIwMDg5MghjYWxsc2l0ZQEyAAEe87c1tJUOfTNRPtjZ5KKQI5102UWoh4cC5fbja6S97tB4IFPXz-X4QKHdSgs_aem_k6M7hgR0r744tfmCGZ99Pg"
+                   target="_blank">di sini</a>
+              </strong>
+            </p>
+
+            <p style="text-align:center;">
+              <a
+                href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiLWSvDcli-Mk-1URwBH5eMX5BYW9gDtJOTvP66lAkzfbjJI6QFNqgEI0c0E_UQH4JuyFNQCvLHrUfowIopS3jXaJi666FqdFFRsq0qNHpueCq4S52XDS5u18PB1NUWWEzE0oQg9EV0zveU0I2fpu9yPY5FEshsHMC5QeupIZO6NDldS0W5r-0Q1c1islQj/s1919/Screenshot%202025-11-16%20151315.png"
+                style="margin-left: 1em; margin-right: 1em; text-align: center;"
+              >
+                <img
+                  border="0"
+                  src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiLWSvDcli-Mk-1URwBH5eMX5BYW9gDtJOTvP66lAkzfbjJI6QFNqgEI0c0E_UQH4JuyFNQCvLHrUfowIopS3jXaJi666FqdFFRsq0qNHpueCq4S52XDS5u18PB1NUWWEzE0oQg9EV0zveU0I2fpu9yPY5FEshsHMC5QeupIZO6NDldS0W5r-0Q1c1islQj/w644-h274/Screenshot%202025-11-16%20151315.png"
+                  width="644"
+                  height="274"
+                  alt="Tampilan form pendaftaran beasiswa DataCamp"
+                />
+              </a>
+            </p>
+
+            <p><em>(Jika link tidak terbuka, salin-tempel secara manual ke browser.)</em></p>
+
+            <hr>
+
+            <h4><strong>💡 Kenapa Kamu Harus Daftar Sekarang?</strong></h4>
+            <ul>
+              <li><p>Persaingan dunia kerja semakin ketat</p></li>
+              <li><p>Skill data, AI, dan programming sangat dibutuhkan</p></li>
+              <li><p>Semua kursus berbayar DataCamp bisa kamu akses GRATIS</p></li>
+              <li><p>Program ini jarang dibuka</p></li>
+              <li><p>Cocok untuk mahasiswa, pencari kerja, dan profesional</p></li>
+            </ul>
+
+            <p>Kesempatan seperti ini mungkin tidak datang dua kali.</p>
+
+            <hr>
+
+            <h4><strong>🤲 Penutup</strong></h4>
+            <p>
+              Semoga beasiswa ini dapat membantu banyak orang meningkatkan pengetahuan dan keterampilan di dunia data.
+              Jangan lupa bagikan informasi ini kepada teman, saudara, atau siapa pun yang membutuhkan.
+              Berikut adalah hasil tampilan jika sukses diterima beasiswanya:
+            </p>
+
+            <div class="separator" style="clear: both; text-align: center;">
+              <a href="https://blogger.googleusercontent.com/img/a/AVvXsEhSTc6ZD2aV5mOeWcsDJiAq8K248MHniGKjx8MlDSI5ssyj-v0oZLnEhMmb4TsNE4UFJtULTKjOEpU7HhoZqzT2Z2TztzPoJiIBuzdiED1I7p-L3_84WR9Pi33Ve8L2rUE_81FbnpBnJxAruj5f41D-bkw5p-mlW45yWWxqV7tZQ2GeRXKlmSpsXj-y53Yd" style="margin-left: 1em; margin-right: 1em;">
+                <img
+                  alt="Contoh tampilan akses DataCamp aktif"
+                  src="https://blogger.googleusercontent.com/img/a/AVvXsEhSTc6ZD2aV5mOeWcsDJiAq8K248MHniGKjx8MlDSI5ssyj-v0oZLnEhMmb4TsNE4UFJtULTKjOEpU7HhoZqzT2Z2TztzPoJiIBuzdiED1I7p-L3_84WR9Pi33Ve8L2rUE_81FbnpBnJxAruj5f41D-bkw5p-mlW45yWWxqV7tZQ2GeRXKlmSpsXj-y53Yd=w657-h286"
+                  width="657"
+                  height="286"
+                />
+              </a>
+            </div>
+            <br>
+
+            <div class="separator" style="clear: both; text-align: center;">
+              <a href="https://blogger.googleusercontent.com/img/a/AVvXsEi0QekksBbPuoyT9flQEso_NeIQhDjxhabPdnP37HDi_f15Q97VymIRedlyzhovdiJabDtTfCfBAh3amYtqzHreOPQV8IItAAQ5-I32HS83VM_8IN0bO8DhXQpxStGAfbskLaNJhXyzx1JfyX6ssyUxa0iOmOSnHaQzGkBv8Ui24rmA56uPCtucYLg4MHlY" style="margin-left: 1em; margin-right: 1em;">
+                <img
+                  alt="Contoh dashboard atau progress learning DataCamp"
+                  src="https://blogger.googleusercontent.com/img/a/AVvXsEi0QekksBbPuoyT9flQEso_NeIQhDjxhabPdnP37HDi_f15Q97VymIRedlyzhovdiJabDtTfCfBAh3amYtqzHreOPQV8IItAAQ5-I32HS83VM_8IN0bO8DhXQpxStGAfbskLaNJhXyzx1JfyX6ssyUxa0iOmOSnHaQzGkBv8Ui24rmA56uPCtucYLg4MHlY=w664-h260"
+                  width="664"
+                  height="260"
+                />
+              </a>
+            </div>
+            <br>
+
+            <p>🌹 <strong>Semoga Allah memberikan kesuksesan kepada semua peserta.</strong></p>
+          </div>
+
+          <div class="article-footer">
+            <a href="index.html#writing" class="back-link">
+              <span>←</span> <span>Kembali ke daftar tulisan</span>
+            </a>
+            <div>
+              Ditulis untuk: <strong>Journey Into Data Science</strong>
+            </div>
+          </div>
+        </article>
+      </div>
+    </main>
+  </div>
+</body>
+</html>
