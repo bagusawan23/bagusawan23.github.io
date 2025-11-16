@@ -317,6 +317,76 @@ section, div, nav, header, footer {
       transform: translateY(-1px);
     }
 
+    /* === FEATURED POSTS CAROUSEL === */
+.featured-carousel {
+  margin-top: 24px;
+  display: flex;
+  overflow-x: auto;
+  gap: 16px;
+  padding-bottom: 6px;
+  scroll-behavior: smooth;
+}
+
+.featured-carousel::-webkit-scrollbar {
+  height: 6px;
+}
+.featured-carousel::-webkit-scrollbar-thumb {
+  background: rgba(148, 163, 184, 0.3);
+  border-radius: 4px;
+}
+
+.featured-card {
+  min-width: 280px;
+  max-width: 280px;
+  flex: 0 0 auto;
+  border-radius: 18px;
+  padding: 16px;
+  border: 1px solid rgba(148, 163, 184, 0.5);
+  background: 
+    radial-gradient(circle at top left, rgba(56, 189, 248, 0.16), transparent 55%),
+    rgba(15, 23, 42, 0.95);
+  box-shadow: 0 20px 45px rgba(15, 23, 42, 0.8);
+}
+
+.featured-label {
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 6px;
+}
+
+.featured-card-title {
+  font-size: 16px;
+  color: var(--text);
+  font-weight: 600;
+  margin: 4px 0 8px;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.featured-card-title:hover {
+  color: var(--accent);
+}
+
+.featured-card-meta {
+  font-size: 12px;
+  color: var(--text-muted);
+  margin-bottom: 10px;
+}
+
+.featured-card-excerpt {
+  font-size: 13px;
+  color: var(--text-muted);
+  margin-bottom: 10px;
+}
+
+.featured-card a.btn-primary {
+  font-size: 13px;
+  padding: 6px 10px;
+}
+
+
     /* Hero right card */
     .hero-card {
       background: radial-gradient(circle at top left, #1f2937, #020617);
@@ -809,32 +879,49 @@ section, div, nav, header, footer {
           </p>
 
           <!-- Featured Post -->
-          <div class="featured-post">
-            <div class="featured-label">Featured post</div>
+          <!-- === FEATURED POSTS CAROUSEL === -->
+<div class="featured-carousel">
 
-            <a href="post-asean-online-education.html" class="featured-title">
-              Belajar Data Science Gratis Melalui ASEAN Online Education Platform
-              (Free Coursera Certificate)
-            </a>
+  <!-- POST 1: ASEAN -->
+  <div class="featured-card">
+    <div class="featured-label">Featured</div>
 
-            <div class="featured-meta">
-              <span>🗓 17 Januari 2025</span>
-              <span>🎓 Pelatihan Gratis · Coursera</span>
-            </div>
+    <a href="post-asean-online-education.html" class="featured-card-title">
+      Belajar Data Science Gratis dari ASEAN Online Education Platform
+    </a>
 
-            <p class="featured-excerpt">
-              Ingin meningkatkan skill di bidang data tanpa keluar biaya? Di artikel ini aku
-              merangkum program ASEAN Online Education Platform yang memberi akses
-              Coursera Professional Certificate gratis untuk warga ASEAN, termasuk track
-              Data &amp; Analytics.
-            </p>
+    <div class="featured-card-meta">
+      🗓 17 Januari 2025 · 🎓 Coursera Certificate
+    </div>
 
-            <div class="featured-actions">
-              <a href="post-asean-online-education.html" class="btn-primary">
-                Baca artikelnya →
-              </a>
-            </div>
-          </div>
+    <p class="featured-card-excerpt">
+      Ringkasan lengkap program Coursera gratis untuk warga ASEAN. Cocok untuk Data Analyst pemula.
+    </p>
+
+    <a href="post-asean-online-education.html" class="btn-primary">Baca →</a>
+  </div>
+
+  <!-- POST 2: DataCamp Scholarship -->
+  <div class="featured-card">
+    <div class="featured-label">Featured</div>
+
+    <a href="post-datacamp-scholarship.html" class="featured-card-title">
+      Beasiswa Gratis DataCamp: Akses Semua Kursus & Sertifikat
+    </a>
+
+    <div class="featured-card-meta">
+      🗓 16 November 2025 · 🎓 Data Science Scholarship
+    </div>
+
+    <p class="featured-card-excerpt">
+      Beasiswa full akses ke seluruh kursus premium DataCamp: Python, SQL, ML, dan  sertifikasi resmi.
+    </p>
+
+    <a href="post-datacamp-scholarship.html" class="btn-primary">Baca →</a>
+  </div>
+
+  <!-- Tambah postingan lain tinggal duplikasi blok ini -->
+</div>
         </div>
 
 
