@@ -876,6 +876,19 @@ section, div, nav, header, footer {
       text-decoration: none;
     }
 
+    .powerbi-container {
+  width: 100%;
+  height: 700px;
+  border-radius: 18px;
+  overflow: hidden;
+  border: 1px solid rgba(148,163,184,.3);
+}
+
+.powerbi-container iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
     .blog-link:hover {
       text-decoration: underline;
     }
@@ -896,7 +909,7 @@ section, div, nav, header, footer {
         <a href="#skills">Skills</a>
         <a href="#experience">Experience</a>
         <a href="#projects">Highlights</a>
-        <a href="#powerbi">Tableau</a>
+        <a href="#powerbi">Tableau</a> <a href="#powerbi-report">Power BI</a>
         <a href="#certifications">Certifications</a>
         <a href="#contact">Contact</a>
         <nav class="nav-links">
@@ -1387,6 +1400,22 @@ section, div, nav, header, footer {
   // Resize when screen changes
   window.addEventListener('resize', resizeViz);
 </script>
+</section>
+<!-- POWER BI DASHBOARD -->
+<section id="powerbi-report">
+  <h2 class="section-heading">Power BI Dashboard</h2>
+
+  <p class="section-subtitle">
+    Interactive dashboard built using Microsoft Power BI.
+  </p>
+
+  <div class="powerbi-container">
+    <iframe
+      title="Power BI Dashboard"
+      src="https://app.powerbi.com/view?r=eyJrIjoiNDE0MDcxNzctNzQwZS00N2MwLWI3N2EtM2IyNWQyNGUzYjM4IiwidCI6IjU5ZGYwZWVlLWExMGMtNDMwMC05NmEzLTdhNGZiMjY1MmI1NyIsImMiOjEwfQ%3D%3D"
+      allowfullscreen>
+    </iframe>
+  </div>
 </section>
 
 
