@@ -235,6 +235,28 @@
     .timeline-tag { font-size: 12px; }
     .badge-now { display: inline-block; font-size: 11px; padding: 1px 8px; margin-left: 6px; border-radius: 999px; background: rgba(34, 197, 94, 0.15); color: #4ade80; vertical-align: middle; }
 
+
+    /* ===== EDUCATION ===== */
+    .edu-head { display: flex; gap: 14px; align-items: flex-start; margin-bottom: 10px; }
+    .edu-logo {
+      flex: 0 0 auto; width: 56px; height: 56px; border-radius: 14px; position: relative; overflow: hidden;
+      background: #fff; border: 1px solid rgba(148, 163, 184, 0.4);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .edu-logo::before {
+      content: attr(data-initials); position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
+      font-weight: 700; font-size: 17px; color: #0f172a; background: linear-gradient(135deg, #e2e8f0, #bae6fd);
+    }
+    .edu-logo img { position: relative; width: 100%; height: 100%; object-fit: contain; padding: 4px; background: #fff; }
+    .edu-main { flex: 1 1 auto; min-width: 0; }
+    .edu-main .timeline-header { margin-bottom: 0; }
+    .edu-degree { font-size: 14.5px; color: var(--text); margin-top: 2px; }
+    .edu-list { list-style: none; margin: 4px 0 12px; }
+    .edu-list li { font-size: 14px; color: var(--text-muted); margin-bottom: 6px; padding-left: 14px; position: relative; }
+    .edu-list li::before { content: ""; position: absolute; left: 0; top: 10px; width: 5px; height: 5px; border-radius: 50%; background: var(--accent); }
+    .edu-list strong { color: var(--text); font-weight: 600; }
+    .edu-label { font-size: 12px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-muted); margin: 12px 0 6px; }
+
     /* ===== DASHBOARDS ===== */
     .embed-card {
       border-radius: var(--radius-lg); border: 1px solid var(--border-soft);
@@ -316,6 +338,38 @@
     .footer { margin-top: 40px; font-size: 13px; color: var(--text-muted); text-align: center; }
     .footer span { color: var(--accent); }
 
+
+    .cv-hint { margin-top: 10px; font-size: 12.5px; color: var(--text-muted); }
+
+    /* ===== CV (dibuat otomatis dari isi halaman, hanya tampil saat dicetak / Save as PDF) ===== */
+    #cv-print { display: none; }
+    @media print {
+      @page { size: A4; margin: 14mm; }
+      html, body { background: #fff !important; color: #111 !important; overflow: visible !important; }
+      body > *:not(#cv-print) { display: none !important; }
+      #cv-print { display: block; font-family: "Inter", Arial, Helvetica, sans-serif; font-size: 9.5pt; line-height: 1.4; color: #111; }
+      #cv-print a { color: #111; text-decoration: none; }
+      .cv-name { font-size: 21pt; font-weight: 700; letter-spacing: -0.01em; line-height: 1.1; }
+      .cv-role { font-size: 11pt; color: #0b5d83; margin-top: 2px; }
+      .cv-contact { font-size: 9pt; color: #333; margin-top: 4px; }
+      .cv-head { border-bottom: 2px solid #0b5d83; padding-bottom: 8px; margin-bottom: 4px; }
+      .cv-sec { margin-top: 11px; }
+      .cv-sec > h2 { font-size: 10.5pt; text-transform: uppercase; letter-spacing: 0.08em; color: #0b5d83; border-bottom: 1px solid #c8d3dc; padding-bottom: 2px; margin-bottom: 6px; }
+      .cv-entry { margin-bottom: 7px; break-inside: avoid; }
+      .cv-row { display: flex; justify-content: space-between; gap: 12px; }
+      .cv-row strong { font-weight: 600; }
+      .cv-row span { color: #444; white-space: nowrap; font-size: 9pt; }
+      .cv-sub { font-style: italic; color: #333; }
+      .cv-meta { color: #444; font-size: 9pt; }
+      .cv-entry p { margin-top: 2px; }
+      .cv-entry ul, .cv-sec > ul { margin: 2px 0 0 15px; }
+      .cv-entry li, .cv-sec > ul li { margin-bottom: 1px; }
+      .cv-kw { margin-top: 2px; font-size: 9pt; color: #333; }
+      .cv-skill { margin-bottom: 2px; }
+      .cv-cols { columns: 2; column-gap: 18px; }
+      .cv-cols .cv-entry { break-inside: avoid; }
+    }
+
     /* ===== Scroll reveal ===== */
     .reveal { opacity: 0; transform: translateY(18px); transition: opacity .6s ease, transform .6s ease; }
     .reveal.in { opacity: 1; transform: none; }
@@ -382,11 +436,12 @@
           </div>
 
           <div class="hero-actions">
-            <!-- Taruh file CV di folder yang sama dengan nama cv.pdf -->
-            <a class="btn-primary" href="cv.pdf" download>⬇ Download CV</a>
+            <!-- CV dibuat otomatis dari isi halaman ini (lihat script "Auto CV" di bawah) -->
+            <button class="btn-primary" type="button" data-cv>⬇ Download CV</button>
             <a class="btn-ghost" href="#contact">✉ Contact me</a>
             <a class="btn-ghost" href="http://www.linkedin.com/in/bagusawan23" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a>
           </div>
+          <p class="cv-hint">Tip: in the print dialog, choose “Save as PDF” to download your CV.</p>
         </div>
 
         <!-- Hero side card -->
@@ -455,23 +510,70 @@
       <section id="education" class="reveal">
         <h2 class="section-heading">Education</h2>
         <p class="section-subtitle">Formal education and academic highlights.</p>
+
+        <!-- LOGO: simpan file logo di folder yang sama: logo-edinburgh.png dan logo-ub.png.
+             Kalau file belum ada, otomatis tampil inisial (UoE / UB). -->
         <div class="timeline">
           <div class="timeline-item">
-            <div class="timeline-header">
-              <div>
-                <div class="timeline-title">Bachelor of Mathematics</div>
-                <div class="timeline-meta">University of Brawijaya · Aug 2017 – Jul 2021</div>
+            <div class="edu-head">
+              <div class="edu-logo" data-initials="UoE">
+                <img src="logo-edinburgh.png" alt="Logo The University of Edinburgh" width="56" height="56" loading="lazy" onerror="this.style.display='none'" />
               </div>
-              <div class="timeline-meta">Malang, Indonesia</div>
+              <div class="edu-main">
+                <div class="timeline-header">
+                  <div>
+                    <div class="timeline-title">The University of Edinburgh <span class="badge-now">Current</span></div>
+                    <div class="edu-degree">Master of Science, Statistics with Data Science</div>
+                    <div class="timeline-meta">2026 – 2027</div>
+                  </div>
+                  <div class="timeline-meta">Edinburgh, United Kingdom</div>
+                </div>
+              </div>
             </div>
-            <p class="timeline-body">
-              Graduated in Mathematics with a strong focus on statistics, modeling, and analytical thinking. Engaged in competitions and research, including an actuarial modeling study for COVID-19 insurance.
-            </p>
+            <ul class="edu-list">
+              <li><strong>Research interest:</strong> Data Science, Artificial Intelligence, and Statistical Modelling.</li>
+            </ul>
+            <div class="edu-label">Courses</div>
             <div class="timeline-tags">
-              <span class="timeline-tag">LPDP Awardee 2024</span>
-              <span class="timeline-tag">Bank Indonesia Scholarship 2019</span>
-              <span class="timeline-tag">KSE Scholarship 2020</span>
-              <span class="timeline-tag">OLMASTER Finalist 2017 &amp; 2018</span>
+              <span class="timeline-tag">Bayesian Theory</span>
+              <span class="timeline-tag">Generalized Linear Models</span>
+              <span class="timeline-tag">Bayesian Data Analysis</span>
+              <span class="timeline-tag">Statistical Research Skills</span>
+              <span class="timeline-tag">Design &amp; Computing for Data Science</span>
+              <span class="timeline-tag">Machine Learning</span>
+              <span class="timeline-tag">Multivariate Data Analysis</span>
+              <span class="timeline-tag">Time Series</span>
+              <span class="timeline-tag">Python for Programming</span>
+              <span class="timeline-tag">Extended Statistical Programming</span>
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="edu-head">
+              <div class="edu-logo" data-initials="UB">
+                <img src="logo-ub.png" alt="Logo Universitas Brawijaya" width="56" height="56" loading="lazy" onerror="this.style.display='none'" />
+              </div>
+              <div class="edu-main">
+                <div class="timeline-header">
+                  <div>
+                    <div class="timeline-title">Universitas Brawijaya</div>
+                    <div class="edu-degree">S.Mat, Mathematics and Computer Science</div>
+                    <div class="timeline-meta">2017 – 2021</div>
+                  </div>
+                  <div class="timeline-meta">Malang, Indonesia</div>
+                </div>
+              </div>
+            </div>
+            <ul class="edu-list">
+              <li><strong>GPA:</strong> 3.67 / 4.00.</li>
+              <li>Graduated in 3 years 11 months.</li>
+              <li>Actively participated in academic and non-academic activities.</li>
+              <li>Awardee of Bank Indonesia Scholarship 2019 and Karya Salemba Empat Scholarship 2020.</li>
+              <li>Top 5 Finalist OLMASTER (Olimpiade Matematika &amp; Statistika Terbuka UB) 2017.</li>
+            </ul>
+            <div class="timeline-tags">
+              <span class="timeline-tag">Ilmu Data</span>
+              <span class="timeline-tag">Mathematical Statistics</span>
               <span class="timeline-tag">Actuarial Modeling of COVID-19 Insurance</span>
             </div>
           </div>
@@ -921,7 +1023,7 @@
               <a class="social-pill" href="http://www.linkedin.com/in/bagusawan23" target="_blank" rel="noopener noreferrer">LinkedIn</a>
               <!-- Aktifkan kalau sudah punya GitHub:
               <a class="social-pill" href="https://github.com/USERNAME" target="_blank" rel="noopener noreferrer">GitHub</a> -->
-              <a class="social-pill" href="cv.pdf" download>Download CV</a>
+              <button class="social-pill" type="button" data-cv style="font:inherit;cursor:pointer">Download CV</button>
             </div>
             <p style="font-size:13.5px;">You can also request my full portfolio via email or LinkedIn.</p>
           </div>
@@ -933,6 +1035,137 @@
       © <span id="year">2026</span> <span>Bagus Kurniawan</span> · Built with HTML &amp; CSS · Hosted on GitHub Pages
     </footer>
   </div>
+
+<div id="cv-print" aria-hidden="true"></div>
+
+<script>
+  /* ===== Auto CV: menyusun CV dari data di halaman ini ===== */
+  (function () {
+    var root = document.getElementById('cv-print');
+
+    function txt(el) { return el ? el.textContent.replace(/\s+/g, ' ').trim() : ''; }
+    function titleOf(el) {
+      var c = el.cloneNode(true);
+      c.querySelectorAll('.badge-now').forEach(function (n) { n.remove(); });
+      return txt(c);
+    }
+    function h(tag, cls, text) {
+      var e = document.createElement(tag);
+      if (cls) e.className = cls;
+      if (text != null) e.textContent = text;
+      return e;
+    }
+    function all(sel, ctx) { return Array.prototype.slice.call((ctx || document).querySelectorAll(sel)); }
+    function section(title) { var s = h('section', 'cv-sec'); s.appendChild(h('h2', null, title)); root.appendChild(s); return s; }
+
+    function entry(item) {
+      var e = h('div', 'cv-entry');
+      var header = item.querySelector('.timeline-header');
+      var row = h('div', 'cv-row');
+      row.appendChild(h('strong', null, titleOf(item.querySelector('.timeline-title'))));
+      var loc = header && header.querySelector(':scope > .timeline-meta');
+      if (loc) row.appendChild(h('span', null, txt(loc)));
+      e.appendChild(row);
+
+      var sub = item.querySelector('.edu-degree');
+      if (sub) e.appendChild(h('div', 'cv-sub', txt(sub)));
+      var meta = header && header.querySelector(':scope > div .timeline-meta');
+      if (meta) e.appendChild(h('div', 'cv-meta', txt(meta)));
+
+      var body = item.querySelector('.timeline-body');
+      if (body) e.appendChild(h('p', null, txt(body)));
+
+      var lis = all('.edu-list li', item);
+      if (lis.length) {
+        var ul = h('ul');
+        lis.forEach(function (li) { ul.appendChild(h('li', null, txt(li))); });
+        e.appendChild(ul);
+      }
+      var tags = all('.timeline-tag', item).map(txt);
+      if (tags.length) {
+        var lab = item.querySelector('.edu-label');
+        e.appendChild(h('div', 'cv-kw', (lab ? txt(lab) : 'Keywords') + ': ' + tags.join(' · ')));
+      }
+      return e;
+    }
+
+    function buildCV() {
+      root.textContent = '';
+
+      /* Header */
+      var head = h('div', 'cv-head');
+      head.appendChild(h('div', 'cv-name', txt(document.querySelector('.hero-card-name'))));
+      head.appendChild(h('div', 'cv-role', txt(document.querySelector('.hero-card-role'))));
+      var parts = [];
+      var mail = document.querySelector('a[href^="mailto:"]');
+      var li = document.querySelector('a[href*="linkedin.com"]');
+      var ig = document.querySelector('a[href*="instagram.com"]');
+      if (mail) parts.push(mail.getAttribute('href').replace('mailto:', ''));
+      if (li) parts.push(li.href.replace(/^https?:\/\/(www\.)?/, ''));
+      if (ig) parts.push('instagram.com/' + txt(ig).replace('@', ''));
+      head.appendChild(h('div', 'cv-contact', parts.join('  |  ')));
+      root.appendChild(head);
+
+      /* Summary: paragraf pertama About */
+      var about = document.querySelector('#about .about-card p');
+      if (about) { var sm = section('Summary'); sm.appendChild(h('p', null, txt(about))); }
+
+      /* Education */
+      var edu = all('#education .timeline-item');
+      if (edu.length) { var se = section('Education'); edu.forEach(function (i) { se.appendChild(entry(i)); }); }
+
+      /* Experience */
+      var exp = all('#experience .timeline-item');
+      if (exp.length) { var sx = section('Professional Experience'); exp.forEach(function (i) { sx.appendChild(entry(i)); }); }
+
+      /* Skills */
+      var sk = all('#skills .skill-card');
+      if (sk.length) {
+        var ss = section('Skills');
+        sk.forEach(function (c) {
+          var d = h('div', 'cv-skill');
+          d.appendChild(h('strong', null, txt(c.querySelector('.skill-title')) + ': '));
+          d.appendChild(document.createTextNode(all('.skill-tag', c).map(txt).join(', ')));
+          ss.appendChild(d);
+        });
+      }
+
+      /* Highlights */
+      var hl = all('#projects .timeline-item');
+      if (hl.length) { var sh = section('Selected Highlights'); hl.forEach(function (i) { sh.appendChild(entry(i)); }); }
+
+      /* Community & Certifications */
+      [['organizations', 'Community & Leadership'], ['certifications', 'Certifications']].forEach(function (pair) {
+        var cards = all('#' + pair[0] + ' .list-card');
+        if (!cards.length) return;
+        var sc = section(pair[1]);
+        var wrap = h('div', 'cv-cols');
+        cards.forEach(function (c) {
+          var e = h('div', 'cv-entry');
+          e.appendChild(h('strong', null, txt(c.querySelector('.list-card-title'))));
+          var ul = h('ul');
+          all('li', c).forEach(function (l) { ul.appendChild(h('li', null, txt(l))); });
+          e.appendChild(ul);
+          wrap.appendChild(e);
+        });
+        sc.appendChild(wrap);
+      });
+    }
+
+    /* Bangun saat dicetak (juga saat Ctrl+P), bersihkan sesudahnya */
+    window.addEventListener('beforeprint', buildCV);
+    window.addEventListener('afterprint', function () { root.textContent = ''; document.title = originalTitle; });
+
+    var originalTitle = document.title;
+    all('[data-cv]').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        buildCV();
+        document.title = 'Bagus Kurniawan - CV'; /* nama file PDF default */
+        window.print();
+      });
+    });
+  })();
+</script>
 
 <script>
   /* Footer year */
