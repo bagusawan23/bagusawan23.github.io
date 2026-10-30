@@ -1,13 +1,13 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark" data-lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <title>Bagus Kurniawan | Data Practitioner & Data Scientist</title>
   <meta name="description" content="Portfolio of Bagus Kurniawan - Data Analyst, Data Scientist, and AI Trainer. Python, SQL, Power BI, Tableau." />
-  <meta name="theme-color" content="#050816" />
+  <meta name="theme-color" content="#050816" id="meta-theme" />
 
-  <!-- Open Graph / Twitter (ganti URL & gambar dengan milikmu) -->
+  <!-- Open Graph / Twitter (replace URL & image with yours) -->
   <meta property="og:type" content="website" />
   <meta property="og:title" content="Bagus Kurniawan | Data Practitioner & Data Scientist" />
   <meta property="og:description" content="Data analytics, data science, and AI training. Dashboards, models, and notes on learning data." />
@@ -20,233 +20,325 @@
   <!-- Favicon -->
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='32' fill='%23050816'/%3E%3Ccircle cx='32' cy='32' r='28' fill='none' stroke='%2338bdf8' stroke-width='4'/%3E%3Ctext x='32' y='43' font-family='Arial' font-size='32' font-weight='700' fill='%2338bdf8' text-anchor='middle'%3EB%3C/text%3E%3C/svg%3E" />
 
-  <!-- Google Font (FIX: rel="stylesheet") -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
 
-  <!--
-    AdSense dinonaktifkan di halaman portofolio agar terlihat profesional dan cepat.
-    Aktifkan lagi hanya di halaman blog (post-*.html) dengan menyalin baris ini:
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5790400660892447" crossorigin="anonymous"></script>
-  -->
+  <!-- Apply saved theme/language before first paint (no flash) -->
+  <script>
+    (function () {
+      var d = document.documentElement;
+      try {
+        var t = localStorage.getItem('theme') || 'dark';
+        var l = localStorage.getItem('lang') || 'en';
+        d.setAttribute('data-theme', t);
+        d.setAttribute('data-lang', l);
+        d.lang = l;
+      } catch (e) {}
+    })();
+  </script>
 
   <style>
-    :root {
+    /* ===== THEME TOKENS ===== */
+    :root, :root[data-theme="dark"] {
       --bg: #050816;
+      --bg-grad: radial-gradient(circle at top, #1e293b 0, #020617 40%, #000 80%);
       --card: rgba(15, 23, 42, 0.9);
+      --surface: rgba(15, 23, 42, 0.85);
+      --surface-2: rgba(31, 41, 55, 0.9);
+      --nav-bg: rgba(5, 8, 22, 0.78);
+      --nav-drop: rgba(5, 8, 22, 0.97);
       --accent: #38bdf8;
       --accent-2: #22c55e;
       --accent-soft: rgba(56, 189, 248, 0.15);
       --text: #e5e7eb;
+      --text-strong: #f8fafc;
       --text-muted: #a3acba;
       --border-soft: rgba(148, 163, 184, 0.3);
+      --border-mid: rgba(148, 163, 184, 0.45);
+      --ok: #4ade80;
+      --ok-bg: rgba(34, 197, 94, 0.12);
+      --hc1: #1f2937;
+      --hc2: #020617;
+      --glow: rgba(56, 189, 248, 0.4);
+      --orb-a: rgba(56, 189, 248, 0.20);
+      --orb-b: rgba(34, 197, 94, 0.14);
       --radius-lg: 18px;
       --shadow-soft: 0 18px 40px rgba(15, 23, 42, 0.75);
       --nav-h: 64px;
+      color-scheme: dark;
+    }
+    :root[data-theme="light"] {
+      --bg: #f4f7fb;
+      --bg-grad: linear-gradient(180deg, #f8fafc 0%, #e9f0f8 100%);
+      --card: rgba(255, 255, 255, 0.92);
+      --surface: rgba(255, 255, 255, 0.85);
+      --surface-2: rgba(226, 232, 240, 0.9);
+      --nav-bg: rgba(248, 250, 252, 0.82);
+      --nav-drop: rgba(248, 250, 252, 0.98);
+      --accent: #0284c7;
+      --accent-2: #16a34a;
+      --accent-soft: rgba(2, 132, 199, 0.12);
+      --text: #1e293b;
+      --text-strong: #0f172a;
+      --text-muted: #566377;
+      --border-soft: rgba(100, 116, 139, 0.28);
+      --border-mid: rgba(100, 116, 139, 0.4);
+      --ok: #15803d;
+      --ok-bg: rgba(22, 163, 74, 0.12);
+      --hc1: #ffffff;
+      --hc2: #e6eef8;
+      --glow: rgba(2, 132, 199, 0.25);
+      --orb-a: rgba(14, 165, 233, 0.22);
+      --orb-b: rgba(34, 197, 94, 0.16);
+      --shadow-soft: 0 18px 40px rgba(15, 23, 42, 0.12);
+      color-scheme: light;
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
+    [hidden] { display: none !important; }
 
-    html { scroll-behavior: smooth; scroll-padding-top: calc(var(--nav-h) + 16px); }
-
+    html, body { height: 100%; }
     body {
       font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      background: radial-gradient(circle at top, #1e293b 0, #020617 40%, #000 80%) fixed;
+      background: var(--bg-grad) fixed;
+      background-color: var(--bg);
       color: var(--text);
       font-size: 15px;
       line-height: 1.65;
-      min-height: 100vh;
-      overflow-x: clip; /* aman: tidak memotong bayangan seperti overflow hidden pada semua div */
+      height: 100vh; height: 100dvh;
+      display: flex; flex-direction: column;
+      overflow: hidden;
+      transition: background-color .35s ease, color .35s ease;
     }
 
     a { color: inherit; text-decoration: none; }
     img { max-width: 100%; display: block; }
     :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 6px; }
 
-    .page { max-width: 1080px; margin: 0 auto; padding: 0 16px 64px; }
-    @media (min-width: 768px) { .page { padding: 0 24px 72px; } }
+    /* ===== Ambient background orbs (move with scroll progress) ===== */
+    .orb { position: fixed; z-index: 0; border-radius: 50%; filter: blur(70px); pointer-events: none; will-change: transform; }
+    .orb-a { width: 46vw; height: 46vw; max-width: 560px; max-height: 560px; top: -12%; left: -8%; background: var(--orb-a); }
+    .orb-b { width: 40vw; height: 40vw; max-width: 480px; max-height: 480px; bottom: -14%; right: -6%; background: var(--orb-b); }
 
-    /* ===== NAVBAR (sticky) ===== */
+    /* ===== NAVBAR ===== */
     .nav-wrap {
-      position: sticky; top: 0; z-index: 50;
-      background: rgba(5, 8, 22, 0.78);
-      backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
-      border-bottom: 1px solid rgba(148, 163, 184, 0.15);
+      position: relative; z-index: 50; flex: 0 0 auto;
+      background: var(--nav-bg);
+      backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border-soft);
     }
     .nav {
-      max-width: 1080px; margin: 0 auto;
-      height: var(--nav-h);
-      padding: 0 16px;
-      display: flex; align-items: center; justify-content: space-between;
+      max-width: 1240px; margin: 0 auto; height: var(--nav-h);
+      padding: 0 16px; display: flex; align-items: center; justify-content: space-between; gap: 12px;
     }
     @media (min-width: 768px) { .nav { padding: 0 24px; } }
 
-    .nav-left { display: flex; align-items: center; gap: 10px; }
+    .nav-left { display: flex; align-items: center; gap: 10px; flex: 0 0 auto; }
     .logo-circle {
-      width: 34px; height: 34px; border-radius: 999px;
-      border: 2px solid var(--accent);
+      width: 34px; height: 34px; border-radius: 999px; border: 2px solid var(--accent);
       display: flex; align-items: center; justify-content: center;
-      font-weight: 700; font-size: 16px; color: var(--accent);
-      box-shadow: 0 0 20px rgba(56, 189, 248, 0.4);
+      font-weight: 700; font-size: 16px; color: var(--accent); box-shadow: 0 0 20px var(--glow);
     }
-    .nav-title { font-size: 14px; font-weight: 500; color: var(--text-muted); }
+    .nav-title { font-size: 14px; font-weight: 500; color: var(--text-muted); white-space: nowrap; }
 
-    .nav-links { display: none; gap: 4px; font-size: 14px; list-style: none; align-items: center; }
-    .nav-links a {
-      display: block; padding: 8px 12px; border-radius: 999px;
-      color: var(--text-muted);
-      transition: color .2s ease, background .2s ease;
-    }
+    .nav-links { display: none; gap: 2px; font-size: 14px; list-style: none; align-items: center; }
+    .nav-links a { display: block; padding: 8px 11px; border-radius: 999px; color: var(--text-muted); transition: color .2s ease, background .2s ease; white-space: nowrap; }
     .nav-links a:hover { color: var(--accent); }
     .nav-links a.active { color: var(--accent); background: var(--accent-soft); }
+    @media (min-width: 1000px) { .nav-links { display: flex; } }
 
-    @media (min-width: 900px) { .nav-links { display: flex; } }
+    .nav-right { display: flex; align-items: center; gap: 8px; flex: 0 0 auto; }
 
-    .menu-btn {
-      display: inline-flex; flex-direction: column; justify-content: center; gap: 5px;
-      width: 42px; height: 42px; padding: 11px;
-      background: rgba(15, 23, 42, 0.8); border: 1px solid var(--border-soft);
-      border-radius: 12px; cursor: pointer;
+    .icon-btn {
+      width: 38px; height: 38px; border-radius: 999px; cursor: pointer;
+      display: inline-flex; align-items: center; justify-content: center;
+      background: var(--surface); color: var(--text); border: 1px solid var(--border-soft);
+      transition: border-color .2s ease, color .2s ease, transform .2s ease;
     }
+    .icon-btn:hover { border-color: var(--accent); color: var(--accent); }
+    .icon-btn svg { width: 18px; height: 18px; }
+
+    .theme-btn .i-sun { display: block; }
+    .theme-btn .i-moon { display: none; }
+    :root[data-theme="light"] .theme-btn .i-sun { display: none; }
+    :root[data-theme="light"] .theme-btn .i-moon { display: block; }
+    .theme-btn svg { transition: transform .5s cubic-bezier(.2,.7,.2,1); }
+    .theme-btn:active svg { transform: rotate(90deg) scale(.85); }
+
+    .lang-btn {
+      display: inline-flex; padding: 3px; border-radius: 999px; cursor: pointer; font: inherit; font-size: 12px; font-weight: 600;
+      background: var(--surface); color: var(--text-muted); border: 1px solid var(--border-soft);
+      transition: border-color .2s ease;
+    }
+    .lang-btn:hover { border-color: var(--accent); }
+    .lang-btn span { padding: 5px 9px; border-radius: 999px; transition: background .2s ease, color .2s ease; }
+    html[data-lang="en"] .lang-btn [data-l="en"],
+    html[data-lang="id"] .lang-btn [data-l="id"] { background: var(--accent); color: #04101f; }
+
+    .menu-btn { display: inline-flex; flex-direction: column; justify-content: center; gap: 5px; padding: 11px; }
     .menu-btn span { display: block; height: 2px; background: var(--text); border-radius: 2px; transition: transform .25s ease, opacity .2s ease; }
     .menu-btn[aria-expanded="true"] span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
     .menu-btn[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
     .menu-btn[aria-expanded="true"] span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
-    @media (min-width: 900px) { .menu-btn { display: none; } }
+    @media (min-width: 1000px) { .menu-btn { display: none; } }
 
-    /* Mobile dropdown */
     .nav-links.open {
       display: flex; flex-direction: column; align-items: stretch;
-      position: absolute; top: var(--nav-h); left: 0; right: 0;
-      padding: 10px 16px 16px;
-      background: rgba(5, 8, 22, 0.97);
-      border-bottom: 1px solid var(--border-soft);
-      gap: 2px;
+      position: absolute; top: var(--nav-h); left: 0; right: 0; max-height: calc(100dvh - var(--nav-h)); overflow-y: auto;
+      padding: 10px 16px 16px; background: var(--nav-drop); border-bottom: 1px solid var(--border-soft); gap: 2px;
     }
     .nav-links.open a { padding: 12px 14px; font-size: 15px; }
+    @media (max-width: 420px) { .nav-title { display: none; } }
+
+    /* progress bar */
+    .progress { position: absolute; left: 0; bottom: -1px; height: 2px; width: 100%; pointer-events: none; }
+    .progress i { display: block; height: 100%; width: 0; background: linear-gradient(90deg, var(--accent), var(--accent-2)); transition: width .15s linear; }
+
+    /* ===== HORIZONTAL TRACK ===== */
+    .track {
+      position: relative; z-index: 1; flex: 1 1 auto; min-height: 0;
+      display: flex; overflow-x: auto; overflow-y: hidden;
+      scroll-snap-type: x mandatory; overscroll-behavior-x: contain;
+      perspective: 1500px; scrollbar-width: none;
+    }
+    .track::-webkit-scrollbar { display: none; }
+    .track.nosnap { scroll-snap-type: none; }
+
+    .panel {
+      flex: 0 0 100%; width: 100%; min-width: 0; height: 100%;
+      scroll-snap-align: start; scroll-snap-stop: always;
+      overflow-y: auto; overflow-x: hidden; outline: none;
+      scrollbar-width: thin; scrollbar-color: rgba(148,163,184,.35) transparent;
+    }
+    .panel::-webkit-scrollbar { width: 8px; }
+    .panel::-webkit-scrollbar-thumb { background: rgba(148,163,184,.35); border-radius: 8px; }
+
+    .panel-inner {
+      max-width: 1080px; margin: 0 auto; min-height: 100%;
+      padding: 32px 16px 92px;
+      display: flex; flex-direction: column; justify-content: center;
+      will-change: transform, opacity;
+    }
+    @media (min-width: 768px) { .panel-inner { padding: 40px 24px 96px; } }
+
+    /* entrance animation (first visit of each panel) */
+    @keyframes rise { from { opacity: 0; transform: translateY(22px); } to { opacity: 1; transform: none; } }
+    .panel:not(.seen) .content > * { opacity: 0; }
+    .panel.seen .content > * { animation: rise .75s cubic-bezier(.2,.7,.2,1) both; }
+    .panel.seen .content > *:nth-child(2) { animation-delay: .08s; }
+    .panel.seen .content > *:nth-child(3) { animation-delay: .16s; }
+    .panel.seen .content > *:nth-child(4) { animation-delay: .24s; }
+    .panel.seen .content > *:nth-child(5) { animation-delay: .32s; }
+
+    /* ===== Side arrows + dots ===== */
+    .side-arrow {
+      position: fixed; top: 50%; transform: translateY(-50%); z-index: 40; width: 46px; height: 46px;
+      backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+      transition: opacity .25s ease, border-color .2s ease, color .2s ease;
+    }
+    .side-arrow.prev { left: 14px; }
+    .side-arrow.next { right: 14px; }
+    .side-arrow[disabled] { opacity: 0; pointer-events: none; }
+    @media (max-width: 900px) { .side-arrow { display: none; } }
+
+    .dots {
+      position: fixed; left: 50%; bottom: calc(14px + env(safe-area-inset-bottom)); transform: translateX(-50%); z-index: 40;
+      display: flex; gap: 4px; padding: 6px 10px; border-radius: 999px; max-width: calc(100vw - 24px);
+      background: var(--nav-bg); border: 1px solid var(--border-soft);
+      backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+    }
+    .dot { position: relative; width: 18px; height: 18px; border: 0; background: transparent; cursor: pointer; display: flex; align-items: center; justify-content: center; }
+    .dot::before { content: ""; width: 7px; height: 7px; border-radius: 999px; background: var(--text-muted); opacity: .55; transition: width .3s ease, background .3s ease, opacity .3s ease; }
+    .dot:hover::before { opacity: 1; }
+    .dot.active::before { width: 22px; background: var(--accent); opacity: 1; }
+    .dot .tip {
+      position: absolute; bottom: 26px; left: 50%; transform: translateX(-50%) translateY(4px); white-space: nowrap;
+      padding: 3px 10px; border-radius: 8px; font-size: 12px; color: var(--text-strong);
+      background: var(--card); border: 1px solid var(--border-soft); opacity: 0; pointer-events: none; transition: opacity .2s ease, transform .2s ease;
+    }
+    .dot:hover .tip, .dot:focus-visible .tip { opacity: 1; transform: translateX(-50%); }
+    @media (max-width: 520px) { .dot { width: 14px; } .dot.active::before { width: 16px; } .dots { gap: 2px; padding: 6px 8px; } }
 
     /* ===== HERO ===== */
-    .hero {
-      display: grid; grid-template-columns: 1.3fr 1fr; gap: 32px;
-      align-items: center; padding: 48px 0 40px;
-    }
-    @media (max-width: 800px) { .hero { grid-template-columns: 1fr; padding-top: 32px; } }
+    .hero { display: grid; grid-template-columns: 1.3fr 1fr; gap: 32px; align-items: center; }
+    @media (max-width: 800px) { .hero { grid-template-columns: 1fr; } }
 
     .pill {
-      display: inline-flex; align-items: center; gap: 8px;
-      padding: 5px 12px 5px 5px; border-radius: 999px;
-      background: rgba(15, 23, 42, 0.85); border: 1px solid var(--border-soft);
-      font-size: 12px; color: var(--text-muted); margin-bottom: 18px;
+      display: inline-flex; align-items: center; gap: 8px; padding: 5px 12px 5px 5px; border-radius: 999px;
+      background: var(--surface); border: 1px solid var(--border-soft); font-size: 12px; color: var(--text-muted); margin-bottom: 18px;
     }
-    .pill-dot {
-      width: 18px; height: 18px; border-radius: 999px;
-      background: radial-gradient(circle at 30% 30%, #f9fafb, #22c55e);
-      box-shadow: 0 0 14px rgba(34, 197, 94, 0.8);
-    }
+    .pill-dot { width: 18px; height: 18px; border-radius: 999px; background: radial-gradient(circle at 30% 30%, #f9fafb, #22c55e); box-shadow: 0 0 14px rgba(34, 197, 94, 0.8); flex: 0 0 auto; }
 
-    .hero-title { font-size: clamp(32px, 5vw, 46px); font-weight: 700; line-height: 1.15; margin-bottom: 14px; letter-spacing: -0.02em; }
+    .hero-title { font-size: clamp(30px, 5vw, 46px); font-weight: 700; line-height: 1.15; margin-bottom: 14px; letter-spacing: -0.02em; color: var(--text-strong); }
     .hero-title span { color: var(--accent); }
     .hero-subtitle { font-size: 16.5px; color: var(--text-muted); margin-bottom: 22px; max-width: 560px; }
 
     .hero-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 26px; }
-    .hero-tag {
-      font-size: 13px; padding: 5px 12px; border-radius: 999px;
-      border: 1px solid rgba(148, 163, 184, 0.35);
-      background: rgba(15, 23, 42, 0.75); color: var(--text-muted);
-    }
+    .hero-tag { font-size: 13px; padding: 5px 12px; border-radius: 999px; border: 1px solid var(--border-mid); background: var(--surface); color: var(--text-muted); }
 
     .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; }
     .btn-primary, .btn-ghost {
-      font: inherit; font-size: 14.5px; padding: 11px 20px; border-radius: 999px;
-      border: 1px solid transparent; cursor: pointer;
+      font: inherit; font-size: 14.5px; padding: 11px 20px; border-radius: 999px; border: 1px solid transparent; cursor: pointer;
       display: inline-flex; align-items: center; gap: 8px;
       transition: transform .2s ease, box-shadow .2s ease, background .2s ease, border-color .2s ease, color .2s ease;
     }
-    .btn-primary {
-      background: linear-gradient(135deg, #0ea5e9, #22c55e); color: #04101f; font-weight: 600;
-      box-shadow: 0 14px 35px rgba(56, 189, 248, 0.35);
-    }
-    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 18px 40px rgba(56, 189, 248, 0.55); }
-    .btn-ghost { border-color: var(--border-soft); background: rgba(15, 23, 42, 0.7); color: var(--text); }
+    .btn-primary { background: linear-gradient(135deg, #0ea5e9, #22c55e); color: #04101f; font-weight: 600; box-shadow: 0 14px 35px var(--glow); }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 18px 40px var(--glow); }
+    .btn-ghost { border-color: var(--border-soft); background: var(--surface); color: var(--text); }
     .btn-ghost:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-2px); }
 
-    /* Hero side card */
-    .hero-card {
-      background: radial-gradient(circle at top left, #1f2937, #020617);
-      border-radius: 24px; border: 1px solid rgba(148, 163, 184, 0.4);
-      padding: 22px; box-shadow: var(--shadow-soft);
-    }
+    .cv-hint { margin-top: 10px; font-size: 12.5px; color: var(--text-muted); }
+    .swipe-hint { margin-top: 18px; font-size: 12.5px; color: var(--text-muted); display: flex; align-items: center; gap: 8px; }
+    .swipe-hint b { color: var(--accent); font-weight: 600; animation: nudge 1.8s ease-in-out infinite; }
+    @keyframes nudge { 0%, 100% { transform: translateX(0); } 50% { transform: translateX(6px); } }
+
+    .hero-card { background: radial-gradient(circle at top left, var(--hc1), var(--hc2)); border-radius: 24px; border: 1px solid var(--border-mid); padding: 22px; box-shadow: var(--shadow-soft); }
     .hero-card-header { display: flex; justify-content: space-between; align-items: center; gap: 8px; margin-bottom: 18px; font-size: 12px; color: var(--text-muted); }
-    .hero-card-badge {
-      padding: 4px 10px; border-radius: 999px;
-      border: 1px solid rgba(34, 197, 94, 0.45); background: rgba(34, 197, 94, 0.1);
-      color: #4ade80; font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em; white-space: nowrap;
-    }
+    .hero-card-badge { padding: 4px 10px; border-radius: 999px; border: 1px solid rgba(34, 197, 94, 0.45); background: var(--ok-bg); color: var(--ok); font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em; white-space: nowrap; }
     .profile-row { display: flex; gap: 16px; align-items: center; margin-bottom: 16px; }
-    .profile-circle {
-      flex: 0 0 auto; width: 120px; height: 120px; border-radius: 999px;
-      border: 2px solid rgba(56, 189, 248, 0.5); overflow: hidden;
-      background: #020617; box-shadow: 0 0 0 6px rgba(56, 189, 248, 0.08), 0 20px 50px rgba(15, 23, 42, 0.9);
-    }
+    .profile-circle { flex: 0 0 auto; width: 120px; height: 120px; border-radius: 999px; border: 2px solid rgba(56, 189, 248, 0.5); overflow: hidden; background: var(--hc2); box-shadow: 0 0 0 6px var(--accent-soft), 0 20px 50px rgba(15, 23, 42, 0.35); }
     .profile-img { width: 100%; height: 100%; object-fit: cover; }
-    .hero-card-name { font-size: 19px; font-weight: 600; }
+    .hero-card-name { font-size: 19px; font-weight: 600; color: var(--text-strong); }
     .hero-card-role { font-size: 13.5px; color: var(--accent); }
     .hero-card-desc { font-size: 13.5px; color: var(--text-muted); margin-bottom: 16px; }
-
     .hero-card-metrics { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
-    .metric { border-radius: 14px; border: 1px solid rgba(148, 163, 184, 0.35); padding: 10px 12px; background: rgba(15, 23, 42, 0.9); }
+    .metric { border-radius: 14px; border: 1px solid var(--border-soft); padding: 10px 12px; background: var(--surface); }
     .metric-label { font-size: 12px; color: var(--text-muted); margin-bottom: 2px; }
-    .metric-value { font-size: 15px; font-weight: 600; }
-
+    .metric-value { font-size: 15px; font-weight: 600; color: var(--text-strong); }
     .hero-card-footer { margin-top: 16px; display: grid; gap: 10px; font-size: 12.5px; color: var(--text-muted); }
     .hero-card-tech { display: flex; gap: 6px; flex-wrap: wrap; }
-    .tech-chip { padding: 3px 10px; border-radius: 999px; border: 1px solid rgba(148, 163, 184, 0.5); font-size: 12px; background: rgba(15, 23, 42, 0.9); }
+    .tech-chip { padding: 3px 10px; border-radius: 999px; border: 1px solid var(--border-mid); font-size: 12px; background: var(--surface); }
 
-    /* ===== SECTIONS ===== */
-    section { margin-bottom: 44px; }
-    .section-heading { font-size: 22px; font-weight: 600; margin-bottom: 6px; letter-spacing: -0.01em; }
+    /* ===== SECTION CONTENT ===== */
+    .section-heading { font-size: 24px; font-weight: 600; margin-bottom: 6px; letter-spacing: -0.01em; color: var(--text-strong); }
     .section-subtitle { font-size: 14.5px; color: var(--text-muted); margin-bottom: 18px; max-width: 720px; }
 
-    .about-card, .skill-card, .timeline-item, .list-card, .contact-card, .blog-card {
-      border-radius: var(--radius-lg); border: 1px solid var(--border-soft); background: var(--card);
-    }
+    .about-card, .skill-card, .timeline-item, .list-card, .contact-card, .blog-card { border-radius: var(--radius-lg); border: 1px solid var(--border-soft); background: var(--card); }
     .about-card { padding: 18px 20px; }
     .about-card p { font-size: 14.5px; color: var(--text-muted); margin-bottom: 10px; }
     .about-card p:last-child { margin-bottom: 0; }
 
     .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px; }
     .skill-card { padding: 14px 16px; }
-    .skill-title { font-weight: 600; margin-bottom: 10px; font-size: 14px; }
+    .skill-title { font-weight: 600; margin-bottom: 10px; font-size: 14px; color: var(--text-strong); }
     .skill-tags, .timeline-tags { display: flex; flex-wrap: wrap; gap: 6px; }
-    .skill-tag, .timeline-tag {
-      padding: 3px 10px; border-radius: 999px; background: rgba(31, 41, 55, 0.9);
-      font-size: 12.5px; color: var(--text-muted);
-    }
+    .skill-tag, .timeline-tag { padding: 3px 10px; border-radius: 999px; background: var(--surface-2); font-size: 12.5px; color: var(--text-muted); }
 
     .timeline { display: grid; gap: 12px; }
     .timeline-item { padding: 16px 18px; transition: border-color .2s ease, transform .2s ease; }
     .timeline-item:hover { border-color: rgba(56, 189, 248, 0.5); transform: translateY(-2px); }
     .timeline-header { display: flex; justify-content: space-between; gap: 12px; margin-bottom: 8px; flex-wrap: wrap; }
-    .timeline-title { font-weight: 600; font-size: 15.5px; }
+    .timeline-title { font-weight: 600; font-size: 15.5px; color: var(--text-strong); }
     .timeline-meta { font-size: 13px; color: var(--text-muted); }
     .timeline-body { font-size: 14px; color: var(--text-muted); margin-bottom: 10px; }
     .timeline-tag { font-size: 12px; }
-    .badge-now { display: inline-block; font-size: 11px; padding: 1px 8px; margin-left: 6px; border-radius: 999px; background: rgba(34, 197, 94, 0.15); color: #4ade80; vertical-align: middle; }
+    .badge-now { display: inline-block; font-size: 11px; padding: 1px 8px; margin-left: 6px; border-radius: 999px; background: var(--ok-bg); color: var(--ok); vertical-align: middle; }
 
-
-    /* ===== EDUCATION ===== */
+    /* education */
     .edu-head { display: flex; gap: 14px; align-items: flex-start; margin-bottom: 10px; }
-    .edu-logo {
-      flex: 0 0 auto; width: 56px; height: 56px; border-radius: 14px; position: relative; overflow: hidden;
-      background: #fff; border: 1px solid rgba(148, 163, 184, 0.4);
-      display: flex; align-items: center; justify-content: center;
-    }
-    .edu-logo::before {
-      content: attr(data-initials); position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
-      font-weight: 700; font-size: 17px; color: #0f172a; background: linear-gradient(135deg, #e2e8f0, #bae6fd);
-    }
+    .edu-logo { flex: 0 0 auto; width: 56px; height: 56px; border-radius: 14px; position: relative; overflow: hidden; background: #fff; border: 1px solid var(--border-mid); display: flex; align-items: center; justify-content: center; }
+    .edu-logo::before { content: attr(data-initials); position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 17px; color: #0f172a; background: linear-gradient(135deg, #e2e8f0, #bae6fd); }
     .edu-logo img { position: relative; width: 100%; height: 100%; object-fit: contain; padding: 4px; background: #fff; }
     .edu-main { flex: 1 1 auto; min-width: 0; }
     .edu-main .timeline-header { margin-bottom: 0; }
@@ -257,53 +349,32 @@
     .edu-list strong { color: var(--text); font-weight: 600; }
     .edu-label { font-size: 12px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-muted); margin: 12px 0 6px; }
 
-    /* ===== DASHBOARDS ===== */
-    .embed-card {
-      border-radius: var(--radius-lg); border: 1px solid var(--border-soft);
-      background: var(--card); padding: 12px; overflow: hidden;
-    }
-    .embed-placeholder {
-      display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 14px;
-      min-height: 260px; text-align: center; color: var(--text-muted); padding: 24px;
-    }
+    /* dashboards */
+    .embed-card { border-radius: var(--radius-lg); border: 1px solid var(--border-soft); background: var(--card); padding: 12px; overflow: hidden; }
+    .embed-placeholder { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 14px; min-height: 260px; text-align: center; color: var(--text-muted); padding: 24px; }
     .tableauPlaceholder { position: relative; width: 100%; overflow: hidden; }
-    .powerbi-container { width: 100%; height: 640px; border-radius: 12px; overflow: hidden; }
+    .powerbi-container { width: 100%; height: 640px; max-height: calc(100dvh - 260px); min-height: 380px; border-radius: 12px; overflow: hidden; }
     @media (max-width: 600px) { .powerbi-container { height: 480px; } }
     .powerbi-container iframe { width: 100%; height: 100%; border: 0; }
 
-    /* ===== LISTS ===== */
+    /* lists */
     .list-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 12px; }
     .list-card { padding: 14px 16px; font-size: 14px; color: var(--text-muted); }
-    .list-card-title { font-weight: 600; font-size: 14.5px; margin-bottom: 8px; color: var(--text); }
+    .list-card-title { font-weight: 600; font-size: 14.5px; margin-bottom: 8px; color: var(--text-strong); }
     .list-card ul { list-style: none; }
     .list-card li { font-size: 13.5px; margin-bottom: 6px; padding-left: 14px; position: relative; }
     .list-card li::before { content: ""; position: absolute; left: 0; top: 10px; width: 5px; height: 5px; border-radius: 50%; background: var(--accent); }
 
-    /* ===== WRITING ===== */
+    /* writing */
     .carousel-nav { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
     .carousel-nav span { font-size: 13px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.08em; }
     .carousel-btns { display: flex; gap: 8px; }
-    .carousel-btn {
-      font: inherit; font-size: 14px; width: 38px; height: 38px; border-radius: 999px; cursor: pointer;
-      background: rgba(15, 23, 42, 0.9); color: var(--text); border: 1px solid var(--border-soft);
-      transition: border-color .2s ease, color .2s ease;
-    }
-    .carousel-btn:hover { border-color: var(--accent); color: var(--accent); }
-
-    .featured-carousel {
-      display: flex; overflow-x: auto; gap: 16px; padding: 4px 2px 12px;
-      scroll-snap-type: x mandatory; scroll-behavior: smooth; margin-bottom: 20px;
-    }
+    .featured-carousel { display: flex; overflow-x: auto; gap: 16px; padding: 4px 2px 12px; scroll-snap-type: x mandatory; scroll-behavior: smooth; margin-bottom: 20px; overscroll-behavior-x: contain; }
     .featured-carousel::-webkit-scrollbar { height: 6px; }
     .featured-carousel::-webkit-scrollbar-thumb { background: rgba(148, 163, 184, 0.3); border-radius: 4px; }
-    .featured-card {
-      flex: 0 0 min(320px, 85%); scroll-snap-align: start;
-      border-radius: 18px; padding: 18px; border: 1px solid rgba(148, 163, 184, 0.5);
-      background: radial-gradient(circle at top left, rgba(56, 189, 248, 0.16), transparent 55%), rgba(15, 23, 42, 0.95);
-      box-shadow: 0 20px 45px rgba(15, 23, 42, 0.6);
-    }
+    .featured-card { flex: 0 0 min(320px, 85%); scroll-snap-align: start; border-radius: 18px; padding: 18px; border: 1px solid var(--border-mid); background: radial-gradient(circle at top left, var(--accent-soft), transparent 55%), var(--card); box-shadow: 0 20px 45px rgba(15, 23, 42, 0.25); }
     .featured-label { font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); margin-bottom: 6px; }
-    .featured-card-title { font-size: 16.5px; color: var(--text); font-weight: 600; margin: 4px 0 8px; display: block; }
+    .featured-card-title { font-size: 16.5px; color: var(--text-strong); font-weight: 600; margin: 4px 0 8px; display: block; }
     .featured-card-title:hover { color: var(--accent); }
     .featured-card-meta { font-size: 13px; color: var(--text-muted); margin-bottom: 10px; }
     .featured-card-excerpt { font-size: 14px; color: var(--text-muted); margin-bottom: 14px; }
@@ -313,206 +384,234 @@
     @media (min-width: 768px) { .blog-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
     .blog-card { padding: 16px 18px; font-size: 14px; color: var(--text-muted); }
     .blog-meta { font-size: 13px; color: var(--text-muted); margin-bottom: 8px; display: flex; gap: 10px; flex-wrap: wrap; }
-    .blog-title { font-size: 16px; font-weight: 600; color: var(--text); margin-bottom: 6px; line-height: 1.4; }
+    .blog-title { font-size: 16px; font-weight: 600; color: var(--text-strong); margin-bottom: 6px; line-height: 1.4; }
     .blog-excerpt { font-size: 14px; margin-bottom: 10px; }
-    .blog-tag { padding: 2px 10px; border-radius: 999px; border: 1px solid rgba(148, 163, 184, 0.5); font-size: 12px; }
+    .blog-tag { padding: 2px 10px; border-radius: 999px; border: 1px solid var(--border-mid); font-size: 12px; }
     .blog-link { font-size: 13.5px; color: var(--accent); display: inline-block; margin-top: 4px; }
     .blog-link:hover { text-decoration: underline; }
     .blog-soon { font-size: 13px; color: var(--text-muted); font-style: italic; margin-top: 4px; display: inline-block; }
 
-    /* ===== CONTACT ===== */
+    /* contact */
     .contact-grid { display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr); gap: 14px; }
     @media (max-width: 768px) { .contact-grid { grid-template-columns: 1fr; } }
     .contact-card { padding: 18px 20px; font-size: 14.5px; color: var(--text-muted); }
     .contact-label { font-size: 12px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-muted); margin-bottom: 8px; }
-    .contact-value { font-size: 15.5px; font-weight: 500; color: var(--text); margin-bottom: 8px; word-break: break-word; }
+    .contact-value { font-size: 15.5px; font-weight: 500; color: var(--text-strong); margin-bottom: 8px; word-break: break-word; }
     .contact-value a:hover { color: var(--accent); }
     .social-links { display: flex; flex-wrap: wrap; gap: 8px; margin: 4px 0 12px; }
-    .social-pill {
-      padding: 7px 14px; border-radius: 999px; border: 1px solid var(--border-soft);
-      font-size: 13.5px; color: var(--text-muted); background: var(--card);
-      transition: border-color .2s ease, color .2s ease, transform .2s ease;
-    }
+    .social-pill { padding: 7px 14px; border-radius: 999px; border: 1px solid var(--border-soft); font-size: 13.5px; color: var(--text-muted); background: var(--card); transition: border-color .2s ease, color .2s ease, transform .2s ease; }
     .social-pill:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-1px); }
 
     .footer { margin-top: 40px; font-size: 13px; color: var(--text-muted); text-align: center; }
     .footer span { color: var(--accent); }
 
-
-    .cv-hint { margin-top: 10px; font-size: 12.5px; color: var(--text-muted); }
-
-    /* ===== CV (dibuat otomatis dari isi halaman, hanya tampil saat dicetak / Save as PDF) ===== */
+    /* ===== CV (printed / Save as PDF only). Layout follows DA_CV_BagusKurniawan_latesth.pdf ===== */
     #cv-print { display: none; }
     @media print {
-      @page { size: A4; margin: 14mm; }
-      html, body { background: #fff !important; color: #111 !important; overflow: visible !important; }
+      @page { size: A4; margin: 12mm 9.5mm 12mm 12.5mm; background: #fff; }
+      :root { color-scheme: light; }
+      html, body { background: #fff !important; color: #000 !important; overflow: visible !important; height: auto !important; display: block !important; }
       body > *:not(#cv-print) { display: none !important; }
-      #cv-print { display: block; font-family: "Inter", Arial, Helvetica, sans-serif; font-size: 9.5pt; line-height: 1.4; color: #111; }
-      #cv-print a { color: #111; text-decoration: none; }
-      .cv-name { font-size: 21pt; font-weight: 700; letter-spacing: -0.01em; line-height: 1.1; }
-      .cv-role { font-size: 11pt; color: #0b5d83; margin-top: 2px; }
-      .cv-contact { font-size: 9pt; color: #333; margin-top: 4px; }
-      .cv-head { border-bottom: 2px solid #0b5d83; padding-bottom: 8px; margin-bottom: 4px; }
+      #cv-print {
+        display: block; color: #000; font-family: Arial, "Liberation Sans", Helvetica, sans-serif;
+        font-size: 9.4pt; line-height: 1.3; text-align: left;
+        -webkit-print-color-adjust: exact; print-color-adjust: exact;
+      }
+      #cv-print a { color: #000; text-decoration: none; }
+      #cv-print .ext { width: 0.8em; height: 0.8em; margin-left: 3px; vertical-align: -0.05em; display: inline-block; }
+
+      .cv-name { text-align: center; font-size: 13pt; font-weight: 700; margin-bottom: 7px; }
+      .cv-contact { display: flex; justify-content: center; align-items: center; margin-bottom: 8px; }
+      .cv-contact > * { padding: 0 15px; line-height: 1.5; white-space: nowrap; }
+      .cv-contact > * + * { border-left: 1.2px solid #000; }
+
       .cv-sec { margin-top: 11px; }
-      .cv-sec > h2 { font-size: 10.5pt; text-transform: uppercase; letter-spacing: 0.08em; color: #0b5d83; border-bottom: 1px solid #c8d3dc; padding-bottom: 2px; margin-bottom: 6px; }
-      .cv-entry { margin-bottom: 7px; break-inside: avoid; }
-      .cv-row { display: flex; justify-content: space-between; gap: 12px; }
-      .cv-row strong { font-weight: 600; }
-      .cv-row span { color: #444; white-space: nowrap; font-size: 9pt; }
-      .cv-sub { font-style: italic; color: #333; }
-      .cv-meta { color: #444; font-size: 9pt; }
-      .cv-entry p { margin-top: 2px; }
-      .cv-entry ul, .cv-sec > ul { margin: 2px 0 0 15px; }
-      .cv-entry li, .cv-sec > ul li { margin-bottom: 1px; }
-      .cv-kw { margin-top: 2px; font-size: 9pt; color: #333; }
-      .cv-skill { margin-bottom: 2px; }
-      .cv-cols { columns: 2; column-gap: 18px; }
-      .cv-cols .cv-entry { break-inside: avoid; }
+      .cv-sec > h2 { font-size: 11pt; font-weight: 700; text-transform: uppercase; border-bottom: 1px solid #000; padding-bottom: 1px; margin-bottom: 3px; line-height: 1.25; }
+
+      .cv-entry { margin-bottom: 1px; }
+      .cv-row, .cv-org { break-after: avoid; }
+      .cv-list li { break-inside: avoid; }
+      .cv-row { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; }
+      .cv-row .t { font-weight: 700; }
+      .cv-row .d { white-space: nowrap; }
+      .cv-org { font-weight: 700; }
+      .cv-entry i, .cv-sec i { font-style: italic; }
+
+      .cv-list { list-style: none; margin: 0; padding: 0; }
+      .cv-list li { position: relative; padding-left: 20px; text-align: justify; }
+      .cv-list li::before { content: "\25CF"; position: absolute; left: 3px; top: 0; font-size: 7.5pt; line-height: 1.75; }
+
+      .cv-skills { display: grid; grid-template-columns: 28mm 3mm 1fr; font-size: 8.8pt; row-gap: 3px; margin-top: 3px; }
+      .cv-skills > .k { grid-column: 1; }
+      .cv-skills > .c { grid-column: 2; }
+      .cv-skills > .v { grid-column: 3; }
+
+      .cv-certs { list-style: none; margin: 2px 0 0; padding: 0; }
+      .cv-certs li { position: relative; padding-left: 30px; font-weight: 700; font-size: 8.8pt; line-height: 1.55; }
+      .cv-certs li::before { content: "\25CF"; position: absolute; left: 2px; top: 0; font-size: 7.5pt; line-height: 1.55; }
     }
 
-    /* ===== Scroll reveal ===== */
-    .reveal { opacity: 0; transform: translateY(18px); transition: opacity .6s ease, transform .6s ease; }
-    .reveal.in { opacity: 1; transform: none; }
     @media (prefers-reduced-motion: reduce) {
-      html { scroll-behavior: auto; }
-      .reveal { opacity: 1; transform: none; transition: none; }
-      * { transition: none !important; animation: none !important; }
+      .panel:not(.seen) .content > * { opacity: 1; }
+      .panel.seen .content > * { animation: none; }
+      .swipe-hint b { animation: none; }
+      * { transition: none !important; }
     }
   </style>
 </head>
 <body>
 
+  <!-- ambient background -->
+  <div class="orb orb-a" id="orb-a" aria-hidden="true"></div>
+  <div class="orb orb-b" id="orb-b" aria-hidden="true"></div>
+
   <!-- NAVBAR -->
   <div class="nav-wrap">
     <header class="nav">
-      <a href="#top" class="nav-left" aria-label="Back to top">
+      <a href="#top" class="nav-left" aria-label="Back to start">
         <div class="logo-circle">B</div>
         <div class="nav-title">Bagus Kurniawan</div>
       </a>
 
       <nav aria-label="Main">
         <ul class="nav-links" id="nav-links">
-          <li><a href="#about">About</a></li>
-          <li><a href="#skills">Skills</a></li>
-          <li><a href="#experience">Experience</a></li>
-          <li><a href="#projects">Highlights</a></li>
-          <li><a href="#tableau">Dashboards</a></li>
-          <li><a href="#writing">Writing</a></li>
-          <li><a href="#contact">Contact</a></li>
+          <li><a href="#about" data-i18n="nav.about">About</a></li>
+          <li><a href="#education" data-i18n="nav.education">Education</a></li>
+          <li><a href="#skills" data-i18n="nav.skills">Skills</a></li>
+          <li><a href="#experience" data-i18n="nav.experience">Experience</a></li>
+          <li><a href="#projects" data-i18n="nav.highlights">Highlights</a></li>
+          <li><a href="#tableau" data-i18n="nav.dashboards">Dashboards</a></li>
+          <li><a href="#writing" data-i18n="nav.writing">Writing</a></li>
+          <li><a href="#contact" data-i18n="nav.contact">Contact</a></li>
         </ul>
       </nav>
 
-      <button class="menu-btn" id="menu-btn" aria-label="Open menu" aria-expanded="false" aria-controls="nav-links">
-        <span></span><span></span><span></span>
-      </button>
+      <div class="nav-right">
+        <button class="lang-btn" id="lang-btn" type="button" aria-label="Switch language">
+          <span data-l="en">EN</span><span data-l="id">ID</span>
+        </button>
+        <button class="icon-btn theme-btn" id="theme-btn" type="button" aria-label="Switch to light theme">
+          <svg class="i-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+          <svg class="i-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+        </button>
+        <button class="icon-btn menu-btn" id="menu-btn" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="nav-links">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
     </header>
+    <div class="progress" aria-hidden="true"><i id="progress-bar"></i></div>
   </div>
 
-  <div class="page" id="top">
-    <main>
+  <!-- HORIZONTAL PANELS -->
+  <main class="track" id="track">
 
-      <!-- HERO -->
-      <section class="hero">
-        <div class="reveal">
-          <div class="pill">
-            <div class="pill-dot"></div>
-            <span>Open to data analytics &amp; data science roles</span>
+    <!-- HERO -->
+    <section class="panel seen" id="top" tabindex="-1">
+      <div class="panel-inner">
+        <div class="hero content">
+          <div>
+            <div class="pill">
+              <div class="pill-dot"></div>
+              <span data-i18n="hero.pill">Open to data analytics &amp; data science roles</span>
+            </div>
+
+            <h1 class="hero-title" data-i18n="hero.title">
+              I turn messy data into <span>decisions people can act on</span>.
+            </h1>
+
+            <p class="hero-subtitle" data-i18n="hero.sub">
+              Data practitioner with 4+ years across analytics, reporting, data science, and AI training.
+              I build dashboards for leadership, predictive models for production, and share what I learn along the way.
+            </p>
+
+            <div class="hero-tags">
+              <span class="hero-tag">Python · R · SQL</span>
+              <span class="hero-tag">Power BI · Tableau</span>
+              <span class="hero-tag">Machine Learning</span>
+              <span class="hero-tag">Generative AI</span>
+            </div>
+
+            <div class="hero-actions">
+              <button class="btn-primary" type="button" data-cv data-i18n="hero.dl">⬇ Download CV</button>
+              <a class="btn-ghost" href="#contact" data-i18n="hero.contact">✉ Contact me</a>
+              <a class="btn-ghost" href="http://www.linkedin.com/in/bagusawan23" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a>
+              <a class="btn-ghost" href="https://www.threads.com/@bagos2" target="_blank" rel="noopener noreferrer">Threads ↗</a>
+            </div>
+            <p class="cv-hint" data-i18n="hero.hint">Tip: in the print dialog, choose “Save as PDF” to download your CV.</p>
+            <p class="swipe-hint"><b>→</b> <span data-i18n="hero.swipe">Swipe, scroll, or use the ← → keys to explore</span></p>
           </div>
 
-          <h1 class="hero-title">
-            I turn messy data into <span>decisions people can act on</span>.
-          </h1>
+          <aside class="hero-card">
+            <div class="hero-card-header">
+              <div data-i18n="card.snapshot">Snapshot · 2026</div>
+              <div class="hero-card-badge" data-i18n="card.badge">Open to Opportunities</div>
+            </div>
 
-          <p class="hero-subtitle">
-            Data practitioner with 4+ years across analytics, reporting, data science, and AI training.
-            I build dashboards for leadership, predictive models for production, and share what I learn along the way.
-          </p>
+            <div class="profile-row">
+              <div class="profile-circle">
+                <img src="profile.jpeg" alt="Bagus Kurniawan" class="profile-img" width="120" height="120" />
+              </div>
+              <div>
+                <div class="hero-card-name">Bagus Kurniawan</div>
+                <div class="hero-card-role">Data Analytics &amp; Reporting · Data Scientist</div>
+              </div>
+            </div>
 
-          <div class="hero-tags">
-            <span class="hero-tag">Python · R · SQL</span>
-            <span class="hero-tag">Power BI · Tableau</span>
-            <span class="hero-tag">Machine Learning</span>
-            <span class="hero-tag">Generative AI</span>
-          </div>
+            <p class="hero-card-desc" data-i18n="card.desc">
+              Mathematics graduate (Brawijaya University) with hands-on experience from social media data to enterprise dashboards and machine learning models.
+            </p>
 
-          <div class="hero-actions">
-            <!-- CV dibuat otomatis dari isi halaman ini (lihat script "Auto CV" di bawah) -->
-            <button class="btn-primary" type="button" data-cv>⬇ Download CV</button>
-            <a class="btn-ghost" href="#contact">✉ Contact me</a>
-            <a class="btn-ghost" href="http://www.linkedin.com/in/bagusawan23" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a>
-          </div>
-          <p class="cv-hint">Tip: in the print dialog, choose “Save as PDF” to download your CV.</p>
+            <div class="hero-card-metrics">
+              <div class="metric">
+                <div class="metric-label" data-i18n="card.exp">Experience</div>
+                <div class="metric-value" data-i18n="card.expv">4+ years</div>
+              </div>
+              <div class="metric">
+                <div class="metric-label" data-i18n="card.cur">Current</div>
+                <div class="metric-value">AI Trainer · Outlier</div>
+              </div>
+            </div>
+
+            <div class="hero-card-footer">
+              <div data-i18n="card.schol">Scholarships: LPDP · Bank Indonesia · KSE</div>
+              <div class="hero-card-tech">
+                <span class="tech-chip">Python</span>
+                <span class="tech-chip">R</span>
+                <span class="tech-chip">SQL</span>
+                <span class="tech-chip">Power BI</span>
+                <span class="tech-chip">Tableau</span>
+              </div>
+            </div>
+          </aside>
         </div>
+      </div>
+    </section>
 
-        <!-- Hero side card -->
-        <aside class="hero-card reveal">
-          <div class="hero-card-header">
-            <div>Snapshot · 2026</div>
-            <div class="hero-card-badge">Open to Opportunities</div>
-          </div>
-
-          <div class="profile-row">
-            <div class="profile-circle">
-              <img src="profile.jpeg" alt="Bagus Kurniawan" class="profile-img" width="120" height="120" />
-            </div>
-            <div>
-              <div class="hero-card-name">Bagus Kurniawan</div>
-              <div class="hero-card-role">Data Analytics &amp; Reporting · Data Scientist</div>
-            </div>
-          </div>
-
-          <p class="hero-card-desc">
-            Mathematics graduate (Brawijaya University) with hands-on experience from social media data to enterprise dashboards and machine learning models.
-          </p>
-
-          <div class="hero-card-metrics">
-            <div class="metric">
-              <div class="metric-label">Experience</div>
-              <div class="metric-value">4+ years</div>
-            </div>
-            <div class="metric">
-              <div class="metric-label">Current</div>
-              <div class="metric-value">AI Trainer · Outlier</div>
-            </div>
-          </div>
-
-          <div class="hero-card-footer">
-            <div>Scholarships: LPDP · Bank Indonesia · KSE</div>
-            <div class="hero-card-tech">
-              <span class="tech-chip">Python</span>
-              <span class="tech-chip">R</span>
-              <span class="tech-chip">SQL</span>
-              <span class="tech-chip">Power BI</span>
-              <span class="tech-chip">Tableau</span>
-            </div>
-          </div>
-        </aside>
-      </section>
-
-      <!-- ABOUT -->
-      <section id="about" class="reveal">
-        <h2 class="section-heading">About Me</h2>
-        <p class="section-subtitle">A data practitioner with a solid foundation in mathematics, analytics, and modern data tools.</p>
+    <!-- ABOUT -->
+    <section class="panel" id="about" tabindex="-1">
+      <div class="panel-inner"><div class="content">
+        <h2 class="section-heading" data-i18n="about.h">About Me</h2>
+        <p class="section-subtitle" data-i18n="about.s">A data practitioner with a solid foundation in mathematics, analytics, and modern data tools.</p>
         <div class="about-card">
-          <p>
+          <p data-i18n="about.p1">
             I’m a passionate data practitioner with a strong background in mathematics and experience across data analytics, data science, and AI training. I enjoy working end-to-end with data: collecting, cleaning, analyzing, visualizing, and communicating insights to both technical and non-technical stakeholders.
           </p>
-          <p>
+          <p data-i18n="about.p2">
             I’m comfortable working with Python, R, SQL, and Elasticsearch, and I use tools like Microsoft Office, Google Workspace, Tableau, Power BI, and Kibana to turn data into clear and actionable stories.
           </p>
-          <p>
+          <p data-i18n="about.p3">
             I hold a Bachelor’s degree in Mathematics from Brawijaya University, and I’m an LPDP Scholarship Awardee (2024), Bank Indonesia Scholarship recipient (2019), and KSE Scholarship Awardee (2020). I also have a publication on actuarial modeling for COVID-19 insurance.
           </p>
         </div>
-      </section>
+      </div></div>
+    </section>
 
-      <!-- EDUCATION -->
-      <section id="education" class="reveal">
-        <h2 class="section-heading">Education</h2>
-        <p class="section-subtitle">Formal education and academic highlights.</p>
+    <!-- EDUCATION -->
+    <section class="panel" id="education" tabindex="-1">
+      <div class="panel-inner"><div class="content">
+        <h2 class="section-heading" data-i18n="edu.h">Education</h2>
+        <p class="section-subtitle" data-i18n="edu.s">Formal education and academic highlights.</p>
 
-        <!-- LOGO: simpan file logo di folder yang sama: logo-edinburgh.png dan logo-ub.png.
-             Kalau file belum ada, otomatis tampil inisial (UoE / UB). -->
         <div class="timeline">
           <div class="timeline-item">
             <div class="edu-head">
@@ -522,18 +621,18 @@
               <div class="edu-main">
                 <div class="timeline-header">
                   <div>
-                    <div class="timeline-title">The University of Edinburgh <span class="badge-now">Current</span></div>
+                    <div class="timeline-title">The University of Edinburgh <span class="badge-now" data-i18n="badge.current">Current</span></div>
                     <div class="edu-degree">Master of Science, Statistics with Data Science</div>
                     <div class="timeline-meta">2026 – 2027</div>
                   </div>
-                  <div class="timeline-meta">Edinburgh, United Kingdom</div>
+                  <div class="timeline-meta" data-i18n="edu.uoe.loc">Edinburgh, United Kingdom</div>
                 </div>
               </div>
             </div>
             <ul class="edu-list">
-              <li><strong>Research interest:</strong> Data Science, Artificial Intelligence, and Statistical Modelling.</li>
+              <li data-i18n="edu.uoe.li1"><strong>Research interest:</strong> Data Science, Artificial Intelligence, and Statistical Modelling.</li>
             </ul>
-            <div class="edu-label">Courses</div>
+            <div class="edu-label" data-i18n="edu.courses">Courses</div>
             <div class="timeline-tags">
               <span class="timeline-tag">Bayesian Theory</span>
               <span class="timeline-tag">Generalized Linear Models</span>
@@ -565,28 +664,30 @@
               </div>
             </div>
             <ul class="edu-list">
-              <li><strong>GPA:</strong> 3.67 / 4.00.</li>
-              <li>Graduated in 3 years 11 months.</li>
-              <li>Actively participated in academic and non-academic activities.</li>
-              <li>Awardee of Bank Indonesia Scholarship 2019 and Karya Salemba Empat Scholarship 2020.</li>
-              <li>Top 5 Finalist OLMASTER (Olimpiade Matematika &amp; Statistika Terbuka UB) 2017.</li>
+              <li data-i18n="edu.ub.li1"><strong>GPA:</strong> 3.67 / 4.00.</li>
+              <li data-i18n="edu.ub.li2">Graduated in 3 years 11 months.</li>
+              <li data-i18n="edu.ub.li3">Actively participated in academic and non-academic activities.</li>
+              <li data-i18n="edu.ub.li4">Awardee of Bank Indonesia Scholarship 2019 and Karya Salemba Empat Scholarship 2020.</li>
+              <li data-i18n="edu.ub.li5">Top 5 Finalist OLMASTER (Olimpiade Matematika &amp; Statistika Terbuka UB) 2017.</li>
             </ul>
             <div class="timeline-tags">
-              <span class="timeline-tag">Ilmu Data</span>
+              <span class="timeline-tag" data-i18n="edu.ub.t1">Data Science</span>
               <span class="timeline-tag">Mathematical Statistics</span>
               <span class="timeline-tag">Actuarial Modeling of COVID-19 Insurance</span>
             </div>
           </div>
         </div>
-      </section>
+      </div></div>
+    </section>
 
-      <!-- SKILLS -->
-      <section id="skills" class="reveal">
-        <h2 class="section-heading">Skills</h2>
-        <p class="section-subtitle">Tools and domains I work with most frequently.</p>
+    <!-- SKILLS -->
+    <section class="panel" id="skills" tabindex="-1">
+      <div class="panel-inner"><div class="content">
+        <h2 class="section-heading" data-i18n="skills.h">Skills</h2>
+        <p class="section-subtitle" data-i18n="skills.s">Tools and domains I work with most frequently.</p>
         <div class="skills-grid">
           <div class="skill-card">
-            <div class="skill-title">Core Domains</div>
+            <div class="skill-title" data-i18n="skills.core">Core Domains</div>
             <div class="skill-tags">
               <span class="skill-tag">Data Science</span>
               <span class="skill-tag">Data Analysis</span>
@@ -596,7 +697,7 @@
             </div>
           </div>
           <div class="skill-card">
-            <div class="skill-title">Programming &amp; Modeling</div>
+            <div class="skill-title" data-i18n="skills.prog">Programming &amp; Modeling</div>
             <div class="skill-tags">
               <span class="skill-tag">Python</span>
               <span class="skill-tag">R</span>
@@ -609,7 +710,7 @@
             </div>
           </div>
           <div class="skill-card">
-            <div class="skill-title">Data Platforms &amp; Tools</div>
+            <div class="skill-title" data-i18n="skills.plat">Data Platforms &amp; Tools</div>
             <div class="skill-tags">
               <span class="skill-tag">Power BI</span>
               <span class="skill-tag">Tableau</span>
@@ -622,7 +723,7 @@
             </div>
           </div>
           <div class="skill-card">
-            <div class="skill-title">Data Engineering &amp; Infra</div>
+            <div class="skill-title" data-i18n="skills.eng">Data Engineering &amp; Infra</div>
             <div class="skill-tags">
               <span class="skill-tag">API &amp; Simple Web Scraping</span>
               <span class="skill-tag">PostgreSQL</span>
@@ -633,31 +734,32 @@
             </div>
           </div>
           <div class="skill-card">
-            <div class="skill-title">Languages</div>
+            <div class="skill-title" data-i18n="skills.lang">Languages</div>
             <div class="skill-tags">
-              <span class="skill-tag">Indonesian (Native)</span>
-              <span class="skill-tag">English (Fluent – TOEFL ITP 517)</span>
+              <span class="skill-tag" data-i18n="skills.l1">Indonesian (Native)</span>
+              <span class="skill-tag" data-i18n="skills.l2">English (Fluent – TOEFL ITP 517)</span>
             </div>
           </div>
         </div>
-      </section>
+      </div></div>
+    </section>
 
-      <!-- EXPERIENCE -->
-      <section id="experience" class="reveal">
-        <h2 class="section-heading">Professional Experience</h2>
-        <p class="section-subtitle">Roles where I applied data, analytics, and AI in real-world settings.</p>
+    <!-- EXPERIENCE -->
+    <section class="panel" id="experience" tabindex="-1">
+      <div class="panel-inner"><div class="content">
+        <h2 class="section-heading" data-i18n="exp.h">Professional Experience</h2>
+        <p class="section-subtitle" data-i18n="exp.s">Roles where I applied data, analytics, and AI in real-world settings.</p>
 
-        <!-- TIP: tambahkan angka dampak di tiap peran (jumlah pengguna dashboard, waktu yang dihemat, ukuran data, dst.) -->
         <div class="timeline">
           <div class="timeline-item">
             <div class="timeline-header">
               <div>
-                <div class="timeline-title">Artificial Intelligence Trainer (Freelance) <span class="badge-now">Current</span></div>
-                <div class="timeline-meta">Outlier · Jan 2025 – Present</div>
+                <div class="timeline-title">Artificial Intelligence Trainer (Freelance) <span class="badge-now" data-i18n="badge.current">Current</span></div>
+                <div class="timeline-meta" data-i18n="exp1.meta">Outlier · Jan 2025 – Present</div>
               </div>
-              <div class="timeline-meta">South Jakarta, Indonesia</div>
+              <div class="timeline-meta" data-i18n="loc.sjkt">South Jakarta, Indonesia</div>
             </div>
-            <p class="timeline-body">
+            <p class="timeline-body" data-i18n="exp1.body">
               Develop and review technical content to train large-scale AI language models, evaluate and rank AI-generated responses and code, and give detailed feedback to improve quality, relevance, coherence, and factual accuracy.
             </p>
             <div class="timeline-tags">
@@ -674,9 +776,9 @@
                 <div class="timeline-title">Data Analytics and Reporting Specialist (Full-time)</div>
                 <div class="timeline-meta">PT Pos Logistik Indonesia · Jun 2025 – Jul 2026</div>
               </div>
-              <div class="timeline-meta">Central Jakarta, Indonesia</div>
+              <div class="timeline-meta" data-i18n="loc.cjkt">Central Jakarta, Indonesia</div>
             </div>
-            <p class="timeline-body">
+            <p class="timeline-body" data-i18n="exp2.body">
               Oversaw contract and customer data, produced daily-to-monthly revenue reports, and developed sales performance dashboards for national stakeholders. Supported decision-making for the Board of Directors and management through data-driven insights.
             </p>
             <div class="timeline-tags">
@@ -694,9 +796,9 @@
                 <div class="timeline-title">Data Scientist (Full-time)</div>
                 <div class="timeline-meta">PT eBdesk Teknologi · Apr 2022 – Jan 2025</div>
               </div>
-              <div class="timeline-meta">South Tangerang, Indonesia</div>
+              <div class="timeline-meta" data-i18n="loc.stang">South Tangerang, Indonesia</div>
             </div>
-            <p class="timeline-body">
+            <p class="timeline-body" data-i18n="exp3.body">
               Collected and integrated data from open sources into Elasticsearch, PostgreSQL, MySQL, and MongoDB. Performed data wrangling, EDA, and modeling with Python and R, built predictive models with TensorFlow and PyTorch, and deployed them via FastAPI for production use.
             </p>
             <div class="timeline-tags">
@@ -713,11 +815,11 @@
             <div class="timeline-header">
               <div>
                 <div class="timeline-title">Social Media Analyst (Freelance)</div>
-                <div class="timeline-meta">Appen · Aug 2021 – Jul 2022</div>
+                <div class="timeline-meta" data-i18n="exp4.meta">Appen · Aug 2021 – Jul 2022</div>
               </div>
-              <div class="timeline-meta">South Jakarta, Indonesia</div>
+              <div class="timeline-meta" data-i18n="loc.sjkt">South Jakarta, Indonesia</div>
             </div>
-            <p class="timeline-body">
+            <p class="timeline-body" data-i18n="exp4.body">
               Evaluated social media and web content against client standards, identified behavior patterns and trends, and helped ensure safe and high-quality online experiences for users.
             </p>
             <div class="timeline-tags">
@@ -731,11 +833,11 @@
             <div class="timeline-header">
               <div>
                 <div class="timeline-title">Data Analyst (Internship)</div>
-                <div class="timeline-meta">BPJS Ketenagakerjaan · Apr 2020 – Oct 2020</div>
+                <div class="timeline-meta" data-i18n="exp5.meta">BPJS Ketenagakerjaan · Apr 2020 – Oct 2020</div>
               </div>
               <div class="timeline-meta">Malang, Indonesia</div>
             </div>
-            <p class="timeline-body">
+            <p class="timeline-body" data-i18n="exp5.body">
               Collected and verified participant claims data, supported claims processing, and analyzed participant data to surface trends and insights for operational decision-making.
             </p>
             <div class="timeline-tags">
@@ -745,24 +847,25 @@
             </div>
           </div>
         </div>
-      </section>
+      </div></div>
+    </section>
 
-      <!-- HIGHLIGHTS -->
-      <section id="projects" class="reveal">
-        <h2 class="section-heading">Selected Highlights</h2>
-        <p class="section-subtitle">A few academic and professional highlights from my journey.</p>
+    <!-- HIGHLIGHTS -->
+    <section class="panel" id="projects" tabindex="-1">
+      <div class="panel-inner"><div class="content">
+        <h2 class="section-heading" data-i18n="hl.h">Selected Highlights</h2>
+        <p class="section-subtitle" data-i18n="hl.s">A few academic and professional highlights from my journey.</p>
 
-        <!-- TIP: ubah jadi case study: masalah → pendekatan → tools → hasil, lengkap dengan screenshot & link GitHub -->
         <div class="timeline">
           <div class="timeline-item">
             <div class="timeline-header">
               <div>
-                <div class="timeline-title">Actuarial Modeling of COVID-19 Insurance</div>
-                <div class="timeline-meta">Publication · 2022</div>
+                <div class="timeline-title" data-i18n="hl1.t">Actuarial Modeling of COVID-19 Insurance</div>
+                <div class="timeline-meta" data-i18n="hl1.meta">Publication · 2022</div>
               </div>
               <div class="timeline-meta">CAUCHY – Jurnal Matematika Murni dan Aplikasi</div>
             </div>
-            <p class="timeline-body">
+            <p class="timeline-body" data-i18n="hl1.body">
               Published research on actuarial modeling for COVID-19 insurance, combining mathematical modeling, risk analysis, and real-world application in an insurance context.
             </p>
             <div class="timeline-tags">
@@ -775,12 +878,12 @@
           <div class="timeline-item">
             <div class="timeline-header">
               <div>
-                <div class="timeline-title">Analytics Dashboards &amp; Reports</div>
-                <div class="timeline-meta">Industry Projects</div>
+                <div class="timeline-title" data-i18n="hl2.t">Analytics Dashboards &amp; Reports</div>
+                <div class="timeline-meta" data-i18n="hl2.meta">Industry Projects</div>
               </div>
               <div class="timeline-meta">Pos Logistik &amp; eBdesk</div>
             </div>
-            <p class="timeline-body">
+            <p class="timeline-body" data-i18n="hl2.body">
               Designed and maintained dashboards in Power BI, Tableau, and custom visualization tools to monitor revenue, pipeline, and business metrics for internal teams and clients.
             </p>
             <div class="timeline-tags">
@@ -794,12 +897,12 @@
           <div class="timeline-item">
             <div class="timeline-header">
               <div>
-                <div class="timeline-title">AI &amp; LLM Evaluation Work</div>
-                <div class="timeline-meta">Freelance · Ongoing</div>
+                <div class="timeline-title" data-i18n="hl3.t">AI &amp; LLM Evaluation Work</div>
+                <div class="timeline-meta" data-i18n="hl3.meta">Freelance · Ongoing</div>
               </div>
               <div class="timeline-meta">Outlier</div>
             </div>
-            <p class="timeline-body">
+            <p class="timeline-body" data-i18n="hl3.body">
               Contributing to the training and evaluation of large language models by reviewing technical content, checking factual accuracy, and scoring AI-generated outputs and code.
             </p>
             <div class="timeline-tags">
@@ -809,17 +912,89 @@
             </div>
           </div>
         </div>
-      </section>
+      </div></div>
+    </section>
 
-      <!-- TABLEAU DASHBOARD (lazy-load) -->
-      <section id="tableau" class="reveal">
+    <!-- COMMUNITY -->
+    <section class="panel" id="organizations" tabindex="-1">
+      <div class="panel-inner"><div class="content">
+        <h2 class="section-heading" data-i18n="org.h">Community &amp; Leadership</h2>
+        <p class="section-subtitle" data-i18n="org.s">Organizational experiences that shaped how I collaborate and lead.</p>
+        <div class="list-grid">
+          <div class="list-card">
+            <div class="list-card-title">Paguyuban Karya Salemba Empat (KSE)</div>
+            <ul>
+              <li data-i18n="org1.l1">Staff of Social and Environmental Affairs · Universitas Brawijaya.</li>
+              <li data-i18n="org1.l2">Organized social teaching, disaster relief, and environmental webinars.</li>
+              <li data-i18n="org1.l3">Involved in community empowerment and environmental programs.</li>
+            </ul>
+          </div>
+          <div class="list-card">
+            <div class="list-card-title">GenBI (Generasi Baru Indonesia)</div>
+            <ul>
+              <li data-i18n="org2.l1">Staff at Koordinator Komisariat Malang.</li>
+              <li data-i18n="org2.l2">Acted as an ambassador for Bank Indonesia in community empowerment initiatives.</li>
+              <li data-i18n="org2.l3">Coordinated charity and education-related programs.</li>
+            </ul>
+          </div>
+          <div class="list-card">
+            <div class="list-card-title" data-i18n="org3.t">Student Executive Board · FMIPA UB</div>
+            <ul>
+              <li data-i18n="org3.l1">Staff of PJMO Bureau.</li>
+              <li data-i18n="org3.l2">Supervised and evaluated divisional work programs.</li>
+              <li data-i18n="org3.l3">Supported internal quality audits and reporting activities.</li>
+            </ul>
+          </div>
+        </div>
+      </div></div>
+    </section>
+
+    <!-- CERTIFICATIONS -->
+    <section class="panel" id="certifications" tabindex="-1">
+      <div class="panel-inner"><div class="content">
+        <h2 class="section-heading" data-i18n="cert.h">Certifications</h2>
+        <p class="section-subtitle" data-i18n="cert.s">Selected certifications and courses that strengthened my technical foundation.</p>
+        <div class="list-grid">
+          <div class="list-card">
+            <div class="list-card-title" data-i18n="cert.t1">Data Science &amp; Analytics</div>
+            <ul>
+              <li>IBM – Data Science Specialization</li>
+              <li>IBM – Data Analyst Professional Certificate</li>
+              <li>Google – Advanced Data Analytics Certificate</li>
+              <li>Google – Project Management</li>
+              <li>DeepLearning.AI – Machine Learning Specialization</li>
+            </ul>
+          </div>
+          <div class="list-card">
+            <div class="list-card-title" data-i18n="cert.t2">Machine Learning &amp; Statistics</div>
+            <ul>
+              <li>New York University – Machine Learning and Reinforcement Learning in Finance</li>
+              <li>Imperial College London – Mathematics for Machine Learning: Linear Algebra</li>
+              <li>Queen Mary University of London – The Classical Linear Regression Model</li>
+              <li>SAS – Introduction to Statistical Analysis: Hypothesis Testing and ANOVA</li>
+              <li>O.P. Jindal Global University – Supervised Learning and Its Applications in Marketing</li>
+            </ul>
+          </div>
+          <div class="list-card">
+            <div class="list-card-title" data-i18n="cert.t3">Other Programs</div>
+            <ul>
+              <li>Digital Talent Scholarship 2022 – Professional Academy: Data Engineer</li>
+            </ul>
+          </div>
+        </div>
+      </div></div>
+    </section>
+
+    <!-- TABLEAU DASHBOARD (lazy-load) -->
+    <section class="panel" id="tableau" tabindex="-1">
+      <div class="panel-inner"><div class="content">
         <h2 class="section-heading">Tableau Dashboard</h2>
-        <p class="section-subtitle">An interactive dashboard built with Tableau Public, showcasing analytics on Netflix content.</p>
+        <p class="section-subtitle" data-i18n="tab.s">An interactive dashboard built with Tableau Public, showcasing analytics on Netflix content.</p>
 
         <div class="embed-card">
           <div class="embed-placeholder" id="tableau-placeholder">
-            <p>The dashboard loads when you open it, to keep this page fast.</p>
-            <button class="btn-primary" id="tableau-load" type="button">▶ Open Tableau dashboard</button>
+            <p data-i18n="embed.note">The dashboard loads when you open it, to keep this page fast.</p>
+            <button class="btn-primary" id="tableau-load" type="button" data-i18n="tab.btn">▶ Open Tableau dashboard</button>
           </div>
           <div class="tableauPlaceholder" id="viz1763044688609" hidden>
             <noscript>
@@ -844,323 +1019,285 @@
             </object>
           </div>
         </div>
-      </section>
+      </div></div>
+    </section>
 
-      <!-- POWER BI DASHBOARD (lazy-load) -->
-      <section id="powerbi" class="reveal">
+    <!-- POWER BI DASHBOARD (lazy-load) -->
+    <section class="panel" id="powerbi" tabindex="-1">
+      <div class="panel-inner"><div class="content">
         <h2 class="section-heading">Power BI Dashboard</h2>
-        <p class="section-subtitle">Interactive dashboard built with Microsoft Power BI.</p>
+        <p class="section-subtitle" data-i18n="pbi.s">Interactive dashboard built with Microsoft Power BI.</p>
 
         <div class="embed-card">
           <div class="embed-placeholder" id="powerbi-placeholder">
-            <p>The dashboard loads when you open it, to keep this page fast.</p>
-            <button class="btn-primary" id="powerbi-load" type="button">▶ Open Power BI dashboard</button>
+            <p data-i18n="embed.note">The dashboard loads when you open it, to keep this page fast.</p>
+            <button class="btn-primary" id="powerbi-load" type="button" data-i18n="pbi.btn">▶ Open Power BI dashboard</button>
           </div>
           <div class="powerbi-container" id="powerbi-frame" hidden></div>
         </div>
-      </section>
+      </div></div>
+    </section>
 
-      <!-- COMMUNITY -->
-      <section id="organizations" class="reveal">
-        <h2 class="section-heading">Community &amp; Leadership</h2>
-        <p class="section-subtitle">Organizational experiences that shaped how I collaborate and lead.</p>
-        <div class="list-grid">
-          <div class="list-card">
-            <div class="list-card-title">Paguyuban Karya Salemba Empat (KSE)</div>
-            <ul>
-              <li>Staff of Social and Environmental Affairs · Universitas Brawijaya.</li>
-              <li>Organized social teaching, disaster relief, and environmental webinars.</li>
-              <li>Involved in community empowerment and environmental programs.</li>
-            </ul>
-          </div>
-          <div class="list-card">
-            <div class="list-card-title">GenBI (Generasi Baru Indonesia)</div>
-            <ul>
-              <li>Staff at Koordinator Komisariat Malang.</li>
-              <li>Acted as an ambassador for Bank Indonesia in community empowerment initiatives.</li>
-              <li>Coordinated charity and education-related programs.</li>
-            </ul>
-          </div>
-          <div class="list-card">
-            <div class="list-card-title">Student Executive Board · FMIPA UB</div>
-            <ul>
-              <li>Staff of PJMO Bureau.</li>
-              <li>Supervised and evaluated divisional work programs.</li>
-              <li>Supported internal quality audits and reporting activities.</li>
-            </ul>
-          </div>
-        </div>
-      </section>
-
-      <!-- CERTIFICATIONS -->
-      <section id="certifications" class="reveal">
-        <h2 class="section-heading">Certifications</h2>
-        <p class="section-subtitle">Selected certifications and courses that strengthened my technical foundation.</p>
-        <div class="list-grid">
-          <div class="list-card">
-            <div class="list-card-title">Data Science &amp; Analytics</div>
-            <ul>
-              <li>IBM – Data Science Specialization</li>
-              <li>IBM – Data Analyst Professional Certificate</li>
-              <li>Google – Advanced Data Analytics Certificate</li>
-              <li>Google – Project Management</li>
-              <li>DeepLearning.AI – Machine Learning Specialization</li>
-            </ul>
-          </div>
-          <div class="list-card">
-            <div class="list-card-title">Machine Learning &amp; Statistics</div>
-            <ul>
-              <li>New York University – Machine Learning and Reinforcement Learning in Finance</li>
-              <li>Imperial College London – Mathematics for Machine Learning: Linear Algebra</li>
-              <li>Queen Mary University of London – The Classical Linear Regression Model</li>
-              <li>SAS – Introduction to Statistical Analysis: Hypothesis Testing and ANOVA</li>
-              <li>O.P. Jindal Global University – Supervised Learning and Its Applications in Marketing</li>
-            </ul>
-          </div>
-          <div class="list-card">
-            <div class="list-card-title">Other Programs</div>
-            <ul>
-              <li>Digital Talent Scholarship 2022 – Professional Academy: Data Engineer</li>
-            </ul>
-          </div>
-        </div>
-      </section>
-
-      <!-- WRITING / BLOG -->
-      <section id="writing" class="reveal">
-        <h2 class="section-heading">Writing &amp; Blog</h2>
-        <p class="section-subtitle">
-          Catatan tentang data, beasiswa, dan tools yang kupakai sehari-hari (Power BI, Tableau, Python).
+    <!-- WRITING / BLOG -->
+    <section class="panel" id="writing" tabindex="-1">
+      <div class="panel-inner"><div class="content">
+        <h2 class="section-heading" data-i18n="wr.h">Writing &amp; Blog</h2>
+        <p class="section-subtitle" data-i18n="wr.s">
+          Notes on data, scholarships, and the tools I use every day (Power BI, Tableau, Python).
         </p>
 
-        <div class="carousel-nav">
-          <span>Featured</span>
-          <div class="carousel-btns">
-            <button class="carousel-btn" type="button" onclick="scrollCarousel(-1)" aria-label="Previous">←</button>
-            <button class="carousel-btn" type="button" onclick="scrollCarousel(1)" aria-label="Next">→</button>
-          </div>
-        </div>
-
-        <div class="featured-carousel" id="featured-carousel">
-          <div class="featured-card">
-            <div class="featured-label">Featured</div>
-            <a href="post-datacamp-scholarship.html" class="featured-card-title">
-              Beasiswa Gratis DataCamp: Akses Semua Kursus &amp; Sertifikat
-            </a>
-            <div class="featured-card-meta">🗓 16 November 2025 · 🎓 Data Science Scholarship</div>
-            <p class="featured-card-excerpt">
-              Beasiswa full akses ke seluruh kursus premium DataCamp: Python, SQL, Machine Learning, AI, dan sertifikat resmi tanpa biaya.
-            </p>
-            <a href="post-datacamp-scholarship.html" class="btn-primary">Baca →</a>
+        <div>
+          <div class="carousel-nav">
+            <span data-i18n="wr.featured">Featured</span>
+            <div class="carousel-btns">
+              <button class="icon-btn" type="button" onclick="scrollCarousel(-1)" aria-label="Previous">←</button>
+              <button class="icon-btn" type="button" onclick="scrollCarousel(1)" aria-label="Next">→</button>
+            </div>
           </div>
 
-          <div class="featured-card">
-            <div class="featured-label">Featured</div>
-            <a href="post-asean-online-education.html" class="featured-card-title">
-              Belajar Data Science Gratis dari ASEAN Online Education Platform
-            </a>
-            <div class="featured-card-meta">🗓 17 Januari 2025 · 🎓 Coursera Certificate</div>
-            <p class="featured-card-excerpt">
-              Program lisensi Coursera gratis untuk warga ASEAN, cocok untuk pondasi Data Science &amp; Analytics dari universitas top.
-            </p>
-            <a href="post-asean-online-education.html" class="btn-primary">Baca →</a>
+          <div class="featured-carousel" id="featured-carousel">
+            <div class="featured-card">
+              <div class="featured-label" data-i18n="wr.featured">Featured</div>
+              <a href="post-datacamp-scholarship.html" class="featured-card-title" data-i18n="f1.t">
+                Free DataCamp Scholarship: Access to All Courses &amp; Certificates
+              </a>
+              <div class="featured-card-meta" data-i18n="f1.meta">🗓 16 November 2025 · 🎓 Data Science Scholarship</div>
+              <p class="featured-card-excerpt" data-i18n="f1.ex">
+                A scholarship with full access to all DataCamp premium courses: Python, SQL, Machine Learning, AI, and official certificates at no cost.
+              </p>
+              <a href="post-datacamp-scholarship.html" class="btn-primary" data-i18n="wr.read">Read →</a>
+            </div>
+
+            <div class="featured-card">
+              <div class="featured-label" data-i18n="wr.featured">Featured</div>
+              <a href="post-asean-online-education.html" class="featured-card-title" data-i18n="f2.t">
+                Learn Data Science for Free via the ASEAN Online Education Platform
+              </a>
+              <div class="featured-card-meta" data-i18n="f2.meta">🗓 17 January 2025 · 🎓 Coursera Certificate</div>
+              <p class="featured-card-excerpt" data-i18n="f2.ex">
+                A free Coursera licensing programme for ASEAN citizens, ideal for building a Data Science &amp; Analytics foundation from top universities.
+              </p>
+              <a href="post-asean-online-education.html" class="btn-primary" data-i18n="wr.read">Read →</a>
+            </div>
           </div>
         </div>
 
         <div class="blog-grid">
           <article class="blog-card">
             <div class="blog-meta">
-              <span>📅 10 November 2025</span>
-              <span>💭 Data Career</span>
+              <span data-i18n="b1.d">📅 10 November 2025</span>
+              <span data-i18n="b1.c">💭 Data Career</span>
             </div>
-            <h3 class="blog-title">Belajar Menerima Progres Pelan tapi Konsisten</h3>
-            <p class="blog-excerpt">
-              Kadang kita merasa tertinggal ketika melihat orang lain sudah jauh duluan. Di tulisan ini, aku cerita soal gimana aku mencoba fokus ke 1% improvement setiap hari, terutama lewat proyek kecil seperti dashboard dan eksperimen AI pribadi.
+            <h3 class="blog-title" data-i18n="b1.t">Learning to Accept Slow but Consistent Progress</h3>
+            <p class="blog-excerpt" data-i18n="b1.ex">
+              Sometimes we feel left behind when we see others get far ahead. In this post, I share how I try to focus on 1% improvement every day, especially through small projects like dashboards and personal AI experiments.
             </p>
             <div class="blog-meta">
               <span class="blog-tag">Mindset</span>
               <span class="blog-tag">Data Journey</span>
             </div>
-            <!-- Setelah halaman post siap, ganti span ini dengan: <a href="post-xxx.html" class="blog-link">Read more →</a> -->
-            <span class="blog-soon">Segera hadir</span>
+            <span class="blog-soon" data-i18n="b1.soon">Coming soon</span>
           </article>
 
           <article class="blog-card">
             <div class="blog-meta">
-              <span>📅 17 Januari 2025</span>
-              <span>🎓 Free Learning</span>
+              <span data-i18n="b2.d">📅 17 January 2025</span>
+              <span data-i18n="b2.c">🎓 Free Learning</span>
             </div>
-            <h3 class="blog-title">Belajar Data Science Gratis Melalui ASEAN Online Education Platform (Free Coursera Certificate)</h3>
-            <p class="blog-excerpt">
-              Program kolaborasi AS–ASEAN yang menyediakan akses gratis ke ratusan kursus Coursera, termasuk Data Analytics, Cybersecurity, Machine Learning, dan berbagai Professional Certificates.
+            <h3 class="blog-title" data-i18n="b2.t">Learn Data Science for Free Through the ASEAN Online Education Platform (Free Coursera Certificates)</h3>
+            <p class="blog-excerpt" data-i18n="b2.ex">
+              A US–ASEAN collaboration giving free access to hundreds of Coursera courses, including Data Analytics, Cybersecurity, Machine Learning, and many Professional Certificates.
             </p>
             <div class="blog-meta">
               <span class="blog-tag">Data Science</span>
               <span class="blog-tag">Coursera</span>
-              <span class="blog-tag">Free Scholarship</span>
+              <span class="blog-tag" data-i18n="b2.tag">Free Scholarship</span>
             </div>
-            <a href="post-asean-online-education.html" class="blog-link">Read more →</a>
+            <a href="post-asean-online-education.html" class="blog-link" data-i18n="wr.more">Read more →</a>
           </article>
         </div>
-      </section>
+      </div></div>
+    </section>
 
-      <!-- CONTACT -->
-      <section id="contact" class="reveal">
-        <h2 class="section-heading">Contact</h2>
-        <p class="section-subtitle">Feel free to reach out for collaboration, opportunities, or just to talk about data and AI.</p>
+    <!-- CONTACT -->
+    <section class="panel" id="contact" tabindex="-1">
+      <div class="panel-inner"><div class="content">
+        <h2 class="section-heading" data-i18n="ct.h">Contact</h2>
+        <p class="section-subtitle" data-i18n="ct.s">Feel free to reach out for collaboration, opportunities, or just to talk about data and AI.</p>
 
         <div class="contact-grid">
           <div class="contact-card">
-            <div class="contact-label">Instagram &amp; Email</div>
-            <div class="contact-value">📱 <a href="https://instagram.com/bagos2" target="_blank" rel="noopener noreferrer">@bagos2</a></div>
+            <div class="contact-label" data-i18n="ct.label1">Instagram, Threads &amp; Email</div>
+            <div class="contact-value">📱 <a href="https://instagram.com/bagos2" target="_blank" rel="noopener noreferrer">@bagos2</a> <span style="color:var(--text-muted);font-weight:400;font-size:13px">· Instagram</span></div>
+            <div class="contact-value">🧵 <a href="https://www.threads.com/@bagos2" target="_blank" rel="noopener noreferrer">@bagos2</a> <span style="color:var(--text-muted);font-weight:400;font-size:13px">· Threads</span></div>
             <div class="contact-value">✉️ <a href="mailto:bagusawan23@gmail.com">bagusawan23@gmail.com</a></div>
-            <p>I’m open to roles in data analytics, data science, and AI-related work, as well as collaborations on projects and research.</p>
+            <p data-i18n="ct.p1">I’m open to roles in data analytics, data science, and AI-related work, as well as collaborations on projects and research.</p>
           </div>
 
           <div class="contact-card">
-            <div class="contact-label">Online Profiles</div>
+            <div class="contact-label" data-i18n="ct.label2">Online Profiles</div>
             <div class="social-links">
               <a class="social-pill" href="http://www.linkedin.com/in/bagusawan23" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-              <!-- Aktifkan kalau sudah punya GitHub:
+              <a class="social-pill" href="https://www.threads.com/@bagos2" target="_blank" rel="noopener noreferrer">Threads</a>
+              <a class="social-pill" href="https://instagram.com/bagos2" target="_blank" rel="noopener noreferrer">Instagram</a>
+              <!-- Enable once you have GitHub:
               <a class="social-pill" href="https://github.com/USERNAME" target="_blank" rel="noopener noreferrer">GitHub</a> -->
-              <button class="social-pill" type="button" data-cv style="font:inherit;cursor:pointer">Download CV</button>
+              <button class="social-pill" type="button" data-cv style="font:inherit;cursor:pointer" data-i18n="ct.dl">Download CV</button>
             </div>
-            <p style="font-size:13.5px;">You can also request my full portfolio via email or LinkedIn.</p>
+            <p style="font-size:13.5px;" data-i18n="ct.p2">You can also request my full portfolio via email or LinkedIn.</p>
           </div>
         </div>
-      </section>
-    </main>
 
-    <footer class="footer">
-      © <span id="year">2026</span> <span>Bagus Kurniawan</span> · Built with HTML &amp; CSS · Hosted on GitHub Pages
-    </footer>
-  </div>
+        <footer class="footer">
+          © <span id="year">2026</span> <span>Bagus Kurniawan</span> · <span style="color:inherit" data-i18n="footer.t">Built with HTML &amp; CSS · Hosted on GitHub Pages</span>
+        </footer>
+      </div></div>
+    </section>
+  </main>
+
+  <!-- side arrows + section dots -->
+  <button class="icon-btn side-arrow prev" id="arrow-prev" type="button" aria-label="Previous section">←</button>
+  <button class="icon-btn side-arrow next" id="arrow-next" type="button" aria-label="Next section">→</button>
+  <nav class="dots" id="dots" aria-label="Sections"></nav>
 
 <div id="cv-print" aria-hidden="true"></div>
 
 <script>
-  /* ===== Auto CV: menyusun CV dari data di halaman ini ===== */
+  /* ===== CV: fixed content, designed layout (shown only when printing / Save as PDF) ===== */
   (function () {
     var root = document.getElementById('cv-print');
+    var ICON = '<svg class="ext" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12.5 9v4a1 1 0 0 1-1 1h-8a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1H7"/><path d="M10 2h4v4M14 2L7.5 8.5"/></svg>';
 
-    function txt(el) { return el ? el.textContent.replace(/\s+/g, ' ').trim() : ''; }
-    function titleOf(el) {
-      var c = el.cloneNode(true);
-      c.querySelectorAll('.badge-now').forEach(function (n) { n.remove(); });
-      return txt(c);
+    function esc(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;'); }
+    function link(url, inner) { return '<a href="' + esc(url) + '" target="_blank" rel="noopener">' + inner + '</a>'; }
+
+    var CV = {
+      name: 'Bagus Kurniawan',
+      phone: ['+6281237519775', 'https://wa.me/6281237519775'],
+      email: 'bagusawan23@gmail.com',
+      linkedin: ['www.linkedin.com/in/bagusawan23', 'http://www.linkedin.com/in/bagusawan23'],
+      threads: ['Threads', 'https://www.threads.com/@bagos2'],
+      summary: 'Data Analyst and Data Scientist with 4+ years of professional experience in delivering data-driven insights across logistics, technology, and AI-driven environments. Strong background in Mathematics with proven expertise in SQL, Python, R, and Elasticsearch, complemented by hands-on experience in Machine Learning, predictive modeling, and Generative AI. Experienced in building end-to-end analytics solutions from data collection, cleaning, and exploratory analysis to dashboarding and executive-level reporting using Power BI, Tableau, Kibana, and Excel. Adept at collaborating cross-functionally with business, risk, and technical teams to support strategic decision-making, optimize performance, and improve data quality. Fast learner with strong analytical thinking, attention to detail, and the ability to translate complex data into clear, actionable insights.',
+      education: [
+        { title: 'The University of Edinburgh', sub: 'Master’s in Statistics with Data Science', date: 'Sep 2026 - Aug 2027', bullets: [
+          'Awardee of the Indonesian Endowment Fund for Education (LPDP) Scholarship 2024',
+          'Research Interest: <i>Data Science, Machine Learning, and Statistical Modelling</i>' ] },
+        { title: 'Brawijaya University', sub: 'Bachelor of Mathematics', date: 'Aug 2017 -  Jul 2021', bullets: [
+          'Awardee of Bank Indonesia Scholarship 2019 and KSE Scholarship 2020.',
+          'Top 5 Finalist OLMASTER (Olimpiade Matematika &amp; Statistika Terbuka UB) 2017.',
+          { html: 'Publication: ' + link('https://ejournal.uin-malang.ac.id/index.php/Math/article/view/14999', 'Actuarial Modeling of COVID-19 Insurance (<i>CAUCHY –Jurnal Matematika Murni dan Aplikasi (2022)</i>)' + ICON) } ] }
+      ],
+      work: [
+        { title: 'Data Analyst (Contract, Full-time)', date: 'Jun 2025 - Jul 2026', org: 'PT Pos Logistik Indonesia, Central Jakarta, Jakarta Raya, Indonesia', bullets: [
+          'Analyzed and transformed revenue, sales, and pipeline data using SQL and Excel to produce accurate periodic reports.',
+          'Built and maintained interactive Power BI dashboards for revenue, KPI, and pipeline performance monitoring.',
+          'Performed data cleaning, validation, and duplicate analysis to improve data quality and reporting reliability.',
+          'Conducted customer, tender, closed-lost, and pipeline risk analysis using statistical methods and Machine Learning analysis in collaboration with Sales and Risk Management teams.',
+          'Consolidated monthly Sales KPI data and prepared incentive calculation datasets in line with company policy.',
+          'Delivered data-driven insights and performance summaries for management and executive-level decision making.',
+          'Coordinated with Risk Management, Finance, and IT teams to align data, analytics models, and reporting systems.' ] },
+        { title: 'Artificial Intelligence Trainer (Freelance)', date: 'Jan 2025 - Jul 2026', org: 'Outlier, South Jakarta, Jakarta Raya, Indonesia', bullets: [
+          { html: 'Develop and review technical content to train large-scale AI language models.<br>Evaluate and rank AI responses based on quality, relevance, and coherence to improve model performance.' },
+          'Verify the factual accuracy of AI-generated text and provide feedback to enhance the reliability of information.',
+          'Evaluate, rank, and provide detailed feedback on code generated by generative AI language models (LLMs).',
+          'Proficient in programming languages such as Python, R, and JavaScript, with strong attention to detail in grammar, punctuation, and coding standards.' ] },
+        { title: 'Data Scientist (Permanent, Full-time)', date: 'Apr 2022 - Jan 2025', org: 'PT eBdesk Teknologi, South Tangerang, Banten, Indonesia', bullets: [
+          'Gathered various data from open sources for business decision-making, ensuring data quality and relevance.',
+          'Managed data input processes using advanced database systems such as ElasticSearch, PostgreSQL, MySQL, and MongoDB, ensuring seamless data ingestion, storage, and querying. Set up and optimized workflows to enhance data accessibility and reliability.',
+          'Handled data wrangling, preprocessing, and cleansing using Python (NumPy, Pandas, Scikit-Learn), R, and Excel. Transformed raw data into clean, structured formats, ready for in-depth analysis and predictive modeling, significantly improving data quality and usability.',
+          'Conducted thorough EDA to identify patterns, correlations, and outliers in data. Utilized statistical methods and visualization tools such as Tableau, PowerBI, Kibana, and Company Visualization Tool to gain insights and guide further analysis and modeling.',
+          'Conducted thorough data analysis using various statistical methods and machine learning algorithms. Built and validated predictive and descriptive models using TensorFlow, PyTorch, NumPy, and Scikit-Learn to uncover patterns and trends, driving business growth and optimization insights.',
+          'Deployed models into production environments using FastAPI, ensuring seamless integration and model performance monitoring.',
+          'Contributed to research initiatives related to Generative AI (LLM) for generating insights and analysis.',
+          'Effectively communicated data-driven insights and recommendations to clients and stakeholders. Developed and delivered comprehensive reports, dashboards, and presentations using tools like Tableau, PowerBI, Kibana, and Company Visualization Tool to support decision-making processes.',
+          'Collaborating with Back-End Engineers, Mobile Developers, Data Engineers, and AI Engineers to develop applications or projects for the company and clients.' ] },
+        { title: 'Social Media Analyst (Freelance)', date: 'Aug 2021 – Apr 2022', org: 'Appen, South Jakarta, Jakarta Raya, Indonesia', bullets: [
+          'Evaluated social media content for adherence to client standards and provided feedback on the quality of online interactions, ensuring brand reputation integrity.',
+          'Analyzed diverse data sources, including web content and multimedia, to identify user behavior trends and insights, reporting any violations or inappropriate content.',
+          'Utilized tools to measure campaign effectiveness and developed strategies to enhance user engagement and brand awareness while staying abreast of industry trends and best practices to inform decision-making.' ] },
+        { title: 'Data Analyst (Internship, Full-time)', date: 'Apr 2020 – Oct 2020', org: 'BPJS Ketenagakerjaan, Malang, Jawa Timur, Indonesia', bullets: [
+          'Collected daily participant claims data into the company\'s database with a focus on accuracy and reliability.',
+          'Verified and submitted claims submission documents, responding promptly to information requests from authorized members.',
+          'Analyzed participant data to extract insights and trends, presenting findings visually for enhanced understanding and decision-making.' ] }
+      ],
+      orgs: [
+        { title: 'Staff of Social and Environmental Affairs', date: 'Aug 2020 – Jul 2021', org: 'Paguyuban Karya Salemba Empat, Universitas Brawijaya', bullets: [
+          'Conducted programs such as social and educational teaching, donations for disaster victims, and webinars related to environmental issues.',
+          'Participated in community empowerment activities related to organic fertilizer and Bank Sampah in Bunulrejo, Malang.',
+          'Contributed to activities related to environmental preservation and activated in voicing it around Brawijaya University.' ] },
+        { title: 'Staff of GenBI (Generasi Baru Indonesia)', date: 'Apr 2019 – Mar 2020', org: 'Koordinator Komisariat (Komkor) Malang', bullets: [
+          'Initiated various community empowerment activities related to education.',
+          'Become an ambassador for Bank Indonesia and take real action to empower the community around Malang.',
+          'Unified and contributed to community empowerment by raising donations, distributing necessities, etc.' ] },
+        { title: 'Staff of PJMO Bureau, Student Executive Board', date: 'Mar 2019 – Feb 2020', org: 'Faculty of Mathematics and Natural Sciences, Universitas Brawijaya', bullets: [
+          'Supervised and evaluated divisional work programs, ensuring effectiveness and alignment with organizational goals',
+          'Analyzed staff attendance to provide insights and reports for improving attendance rates',
+          'Assisted in implementing work program activities and conducted internal quality audits to enhance organizational work culture and ensure quality assurance' ] }
+      ],
+      skills: [
+        ['Key', 'Data Science, Generative AI, Data Analysis, Mathematical Statistics, Data Collection, Data Engineering.'],
+        ['Technical', 'Python, Excel, MATLAB, R, API &amp; Simple Web Scraping, TensorFlow, PyTorch, Jupyter, PowerBI, Tableau, SQL, Plotly Dash, SSH, NoSQL, Kibana, Google Cloud Platform, Apache Superset, Apache Kafka.'],
+        ['Language', 'English (Fluent, TOEFL ITP official: 517, IELTS Academic Overall Band Score: 6.5), Indonesian (Native)']
+      ],
+      certs: [
+        ['New York University - Machine Learning and Reinforcement Learning in Finance', 'https://www.coursera.org/account/accomplishments/specialization/KQ5NZ7VEH3ST'],
+        ['IBM - Data Science Specialization', 'https://www.coursera.org/account/accomplishments/professional-cert/DCXUTXEQGA6S'],
+        ['IBM - Data Analyst Professional Certificate', 'https://www.coursera.org/account/accomplishments/specialization/XQBSCWXBUFWF'],
+        ['SAS - Introduction to Statistical Analysis: Hypothesis Testing and ANOVA', 'https://www.coursera.org/account/accomplishments/records/3AL8LB9G32SR'],
+        ['O.P. Jindal Global University (JGU) - Supervised Learning and Its Applications in Marketing', 'https://www.coursera.org/account/accomplishments/records/RHY85K7V6PJS'],
+        ['Queen Mary University of London - The Classical Linear Regression Model', 'https://www.coursera.org/account/accomplishments/records/JYMVG59TK2A6'],
+        ['Imperial College London - Mathematics for Machine Learning: Linear Algebra', 'https://www.coursera.org/account/accomplishments/records/KF4HEKH543VJ'],
+        ['Google - Advanced Data Analytics Certificate', 'https://www.coursera.org/account/accomplishments/professional-cert/CFURMZYDKV5R'],
+        ['DeepLearning.AI - Machine Learning Specialization', 'https://www.coursera.org/account/accomplishments/specialization/J5LYP97QD7D3'],
+        ['Ministry of Communications and Informatics - Digital Talent Scholarship 2022: Professional Academy - Data Engineer', 'https://www.linkedin.com/in/bagusawan23/overlay/1710339612144/single-media-viewer/?profileId=ACoAACumFgABeaiF055fodfp-AEqQy6oZD74A-Q']
+      ]
+    };
+
+    function bullets(list) {
+      return '<ul class="cv-list">' + list.map(function (b) {
+        return '<li>' + (typeof b === 'string' ? b : b.html) + '</li>';
+      }).join('') + '</ul>';
     }
-    function h(tag, cls, text) {
-      var e = document.createElement(tag);
-      if (cls) e.className = cls;
-      if (text != null) e.textContent = text;
-      return e;
+    function entry(e, isEdu) {
+      var left = isEdu
+        ? '<span class="t">' + esc(e.title) + '</span><span>, <i>' + esc(e.sub) + '</i></span>'
+        : '<span class="t">' + esc(e.title) + '</span>';
+      return '<div class="cv-entry"><div class="cv-row"><div>' + left + '</div><div class="d">' + esc(e.date) + '</div></div>' +
+        (e.org ? '<div class="cv-org">' + esc(e.org) + '</div>' : '') + bullets(e.bullets) + '</div>';
     }
-    function all(sel, ctx) { return Array.prototype.slice.call((ctx || document).querySelectorAll(sel)); }
-    function section(title) { var s = h('section', 'cv-sec'); s.appendChild(h('h2', null, title)); root.appendChild(s); return s; }
-
-    function entry(item) {
-      var e = h('div', 'cv-entry');
-      var header = item.querySelector('.timeline-header');
-      var row = h('div', 'cv-row');
-      row.appendChild(h('strong', null, titleOf(item.querySelector('.timeline-title'))));
-      var loc = header && header.querySelector(':scope > .timeline-meta');
-      if (loc) row.appendChild(h('span', null, txt(loc)));
-      e.appendChild(row);
-
-      var sub = item.querySelector('.edu-degree');
-      if (sub) e.appendChild(h('div', 'cv-sub', txt(sub)));
-      var meta = header && header.querySelector(':scope > div .timeline-meta');
-      if (meta) e.appendChild(h('div', 'cv-meta', txt(meta)));
-
-      var body = item.querySelector('.timeline-body');
-      if (body) e.appendChild(h('p', null, txt(body)));
-
-      var lis = all('.edu-list li', item);
-      if (lis.length) {
-        var ul = h('ul');
-        lis.forEach(function (li) { ul.appendChild(h('li', null, txt(li))); });
-        e.appendChild(ul);
-      }
-      var tags = all('.timeline-tag', item).map(txt);
-      if (tags.length) {
-        var lab = item.querySelector('.edu-label');
-        e.appendChild(h('div', 'cv-kw', (lab ? txt(lab) : 'Keywords') + ': ' + tags.join(' · ')));
-      }
-      return e;
-    }
+    function sec(title, body) { return '<section class="cv-sec"><h2>' + title + '</h2>' + body + '</section>'; }
 
     function buildCV() {
-      root.textContent = '';
+      var portfolioUrl = location.href.split('#')[0];
+      var contact =
+        '<span>' + link(CV.phone[1], esc(CV.phone[0])) + '</span>' +
+        '<span>' + link('mailto:' + CV.email, esc(CV.email)) + '</span>' +
+        '<span>' + link(CV.linkedin[1], esc(CV.linkedin[0])) + '</span>' +
+        '<span>' + link(portfolioUrl, 'Portfolio' + ICON) + '</span>' +
+        '<span>' + link(CV.threads[1], esc(CV.threads[0]) + ICON) + '</span>';
 
-      /* Header */
-      var head = h('div', 'cv-head');
-      head.appendChild(h('div', 'cv-name', txt(document.querySelector('.hero-card-name'))));
-      head.appendChild(h('div', 'cv-role', txt(document.querySelector('.hero-card-role'))));
-      var parts = [];
-      var mail = document.querySelector('a[href^="mailto:"]');
-      var li = document.querySelector('a[href*="linkedin.com"]');
-      var ig = document.querySelector('a[href*="instagram.com"]');
-      if (mail) parts.push(mail.getAttribute('href').replace('mailto:', ''));
-      if (li) parts.push(li.href.replace(/^https?:\/\/(www\.)?/, ''));
-      if (ig) parts.push('instagram.com/' + txt(ig).replace('@', ''));
-      head.appendChild(h('div', 'cv-contact', parts.join('  |  ')));
-      root.appendChild(head);
-
-      /* Summary: paragraf pertama About */
-      var about = document.querySelector('#about .about-card p');
-      if (about) { var sm = section('Summary'); sm.appendChild(h('p', null, txt(about))); }
-
-      /* Education */
-      var edu = all('#education .timeline-item');
-      if (edu.length) { var se = section('Education'); edu.forEach(function (i) { se.appendChild(entry(i)); }); }
-
-      /* Experience */
-      var exp = all('#experience .timeline-item');
-      if (exp.length) { var sx = section('Professional Experience'); exp.forEach(function (i) { sx.appendChild(entry(i)); }); }
-
-      /* Skills */
-      var sk = all('#skills .skill-card');
-      if (sk.length) {
-        var ss = section('Skills');
-        sk.forEach(function (c) {
-          var d = h('div', 'cv-skill');
-          d.appendChild(h('strong', null, txt(c.querySelector('.skill-title')) + ': '));
-          d.appendChild(document.createTextNode(all('.skill-tag', c).map(txt).join(', ')));
-          ss.appendChild(d);
-        });
-      }
-
-      /* Highlights */
-      var hl = all('#projects .timeline-item');
-      if (hl.length) { var sh = section('Selected Highlights'); hl.forEach(function (i) { sh.appendChild(entry(i)); }); }
-
-      /* Community & Certifications */
-      [['organizations', 'Community & Leadership'], ['certifications', 'Certifications']].forEach(function (pair) {
-        var cards = all('#' + pair[0] + ' .list-card');
-        if (!cards.length) return;
-        var sc = section(pair[1]);
-        var wrap = h('div', 'cv-cols');
-        cards.forEach(function (c) {
-          var e = h('div', 'cv-entry');
-          e.appendChild(h('strong', null, txt(c.querySelector('.list-card-title'))));
-          var ul = h('ul');
-          all('li', c).forEach(function (l) { ul.appendChild(h('li', null, txt(l))); });
-          e.appendChild(ul);
-          wrap.appendChild(e);
-        });
-        sc.appendChild(wrap);
-      });
+      root.innerHTML =
+        '<div class="cv-name">' + esc(CV.name) + '</div>' +
+        '<div class="cv-contact">' + contact + '</div>' +
+        sec('Summary', '<p style="text-align:justify">' + esc(CV.summary) + '</p>') +
+        sec('Education', CV.education.map(function (e) { return entry(e, true); }).join('')) +
+        sec('Work Experience', CV.work.map(function (e) { return entry(e); }).join('')) +
+        sec('Organizational &amp; Committee Experience', CV.orgs.map(function (e) { return entry(e); }).join('')) +
+        sec('Skills', '<div class="cv-skills">' + CV.skills.map(function (s) {
+          return '<div class="k">' + s[0] + '</div><div class="c">:</div><div class="v">' + s[1] + '</div>';
+        }).join('') + '</div>') +
+        sec('Certifications', '<ul class="cv-certs">' + CV.certs.map(function (c) {
+          return '<li>' + link(c[1], esc(c[0]) + ICON) + '</li>';
+        }).join('') + '</ul>');
     }
 
-    /* Bangun saat dicetak (juga saat Ctrl+P), bersihkan sesudahnya */
+    var originalTitle = document.title;
     window.addEventListener('beforeprint', buildCV);
     window.addEventListener('afterprint', function () { root.textContent = ''; document.title = originalTitle; });
-
-    var originalTitle = document.title;
-    all('[data-cv]').forEach(function (btn) {
+    Array.prototype.slice.call(document.querySelectorAll('[data-cv]')).forEach(function (btn) {
       btn.addEventListener('click', function () {
         buildCV();
-        document.title = 'Bagus Kurniawan - CV'; /* nama file PDF default */
+        document.title = 'Bagus Kurniawan - CV';  /* default PDF file name */
         window.print();
       });
     });
@@ -1168,59 +1305,361 @@
 </script>
 
 <script>
+  /* ===== Language (EN default, ID via toggle) ===== */
+  var I18N_ID = {
+    "nav.about": "Tentang", "nav.education": "Pendidikan", "nav.skills": "Keahlian", "nav.experience": "Pengalaman",
+    "nav.highlights": "Sorotan", "nav.dashboards": "Dashboard", "nav.writing": "Tulisan", "nav.contact": "Kontak",
+
+    "hero.pill": "Terbuka untuk peran data analytics &amp; data science",
+    "hero.title": "Saya mengubah data berantakan menjadi <span>keputusan yang bisa ditindaklanjuti</span>.",
+    "hero.sub": "Praktisi data dengan pengalaman 4+ tahun di analytics, pelaporan, data science, dan AI training. Saya membangun dashboard untuk pimpinan, model prediktif untuk produksi, dan membagikan apa yang saya pelajari.",
+    "hero.dl": "⬇ Unduh CV", "hero.contact": "✉ Hubungi saya",
+    "hero.hint": "Tips: di dialog cetak, pilih “Simpan sebagai PDF” untuk mengunduh CV.",
+    "hero.swipe": "Geser, scroll, atau gunakan tombol ← → untuk menjelajah",
+
+    "card.snapshot": "Ringkasan · 2026", "card.badge": "Terbuka untuk Peluang",
+    "card.desc": "Lulusan Matematika (Universitas Brawijaya) dengan pengalaman langsung dari data media sosial hingga dashboard perusahaan dan model machine learning.",
+    "card.exp": "Pengalaman", "card.expv": "4+ tahun", "card.cur": "Saat ini",
+    "card.schol": "Beasiswa: LPDP · Bank Indonesia · KSE",
+
+    "about.h": "Tentang Saya",
+    "about.s": "Praktisi data dengan fondasi matematika yang kuat, analitik, dan tools data modern.",
+    "about.p1": "Saya praktisi data dengan latar belakang matematika yang kuat dan pengalaman di data analytics, data science, dan AI training. Saya menikmati bekerja end-to-end dengan data: mengumpulkan, membersihkan, menganalisis, memvisualisasikan, dan mengomunikasikan insight kepada pemangku kepentingan teknis maupun non-teknis.",
+    "about.p2": "Saya nyaman bekerja dengan Python, R, SQL, dan Elasticsearch, serta memakai Microsoft Office, Google Workspace, Tableau, Power BI, dan Kibana untuk mengubah data menjadi cerita yang jelas dan dapat ditindaklanjuti.",
+    "about.p3": "Saya lulusan S1 Matematika Universitas Brawijaya, Awardee Beasiswa LPDP (2024), penerima Beasiswa Bank Indonesia (2019), dan Awardee Beasiswa KSE (2020). Saya juga memiliki publikasi tentang pemodelan aktuaria asuransi COVID-19.",
+
+    "badge.current": "Saat ini",
+    "edu.h": "Pendidikan", "edu.s": "Pendidikan formal dan capaian akademik.",
+    "edu.uoe.loc": "Edinburgh, Britania Raya",
+    "edu.uoe.li1": "<strong>Minat riset:</strong> Data Science, Kecerdasan Buatan, dan Pemodelan Statistik.",
+    "edu.courses": "Mata kuliah",
+    "edu.ub.li1": "<strong>IPK:</strong> 3,67 / 4,00.",
+    "edu.ub.li2": "Lulus dalam 3 tahun 11 bulan.",
+    "edu.ub.li3": "Aktif dalam kegiatan akademik dan non-akademik.",
+    "edu.ub.li4": "Awardee Beasiswa Bank Indonesia 2019 dan Beasiswa Karya Salemba Empat 2020.",
+    "edu.ub.li5": "Top 5 Finalis OLMASTER (Olimpiade Matematika &amp; Statistika Terbuka UB) 2017.",
+    "edu.ub.t1": "Ilmu Data",
+
+    "skills.h": "Keahlian", "skills.s": "Tools dan bidang yang paling sering saya gunakan.",
+    "skills.core": "Bidang Utama", "skills.prog": "Pemrograman &amp; Pemodelan", "skills.plat": "Platform &amp; Tools Data",
+    "skills.eng": "Data Engineering &amp; Infrastruktur", "skills.lang": "Bahasa",
+    "skills.l1": "Indonesia (Bahasa ibu)", "skills.l2": "Inggris (Fasih – TOEFL ITP 517)",
+
+    "exp.h": "Pengalaman Profesional", "exp.s": "Peran-peran di mana saya menerapkan data, analitik, dan AI di dunia nyata.",
+    "exp1.meta": "Outlier · Jan 2025 – Sekarang",
+    "exp1.body": "Mengembangkan dan me-review konten teknis untuk melatih model bahasa AI skala besar, mengevaluasi dan meranking respons serta kode hasil AI, dan memberi umpan balik detail untuk meningkatkan kualitas, relevansi, koherensi, dan akurasi faktual.",
+    "exp2.body": "Mengelola data kontrak dan pelanggan, menyusun laporan pendapatan harian hingga bulanan, dan mengembangkan dashboard kinerja penjualan untuk pemangku kepentingan nasional. Mendukung pengambilan keputusan Direksi dan manajemen melalui insight berbasis data.",
+    "exp3.body": "Mengumpulkan dan mengintegrasikan data dari sumber terbuka ke Elasticsearch, PostgreSQL, MySQL, dan MongoDB. Melakukan data wrangling, EDA, dan pemodelan dengan Python dan R, membangun model prediktif dengan TensorFlow dan PyTorch, serta men-deploy-nya lewat FastAPI untuk produksi.",
+    "exp4.meta": "Appen · Agu 2021 – Jul 2022",
+    "exp4.body": "Mengevaluasi konten media sosial dan web berdasarkan standar klien, mengidentifikasi pola perilaku dan tren, serta membantu memastikan pengalaman online yang aman dan berkualitas bagi pengguna.",
+    "exp5.meta": "BPJS Ketenagakerjaan · Apr 2020 – Okt 2020",
+    "exp5.body": "Mengumpulkan dan memverifikasi data klaim peserta, mendukung proses klaim, dan menganalisis data peserta untuk menemukan tren dan insight bagi keputusan operasional.",
+    "loc.sjkt": "Jakarta Selatan, Indonesia", "loc.cjkt": "Jakarta Pusat, Indonesia", "loc.stang": "Tangerang Selatan, Indonesia",
+
+    "hl.h": "Sorotan Pilihan", "hl.s": "Beberapa sorotan akademik dan profesional dari perjalanan saya.",
+    "hl1.t": "Pemodelan Aktuaria Asuransi COVID-19", "hl1.meta": "Publikasi · 2022",
+    "hl1.body": "Riset terpublikasi tentang pemodelan aktuaria untuk asuransi COVID-19, menggabungkan pemodelan matematis, analisis risiko, dan penerapan nyata di konteks asuransi.",
+    "hl2.t": "Dashboard &amp; Laporan Analitik", "hl2.meta": "Proyek Industri",
+    "hl2.body": "Merancang dan memelihara dashboard di Power BI, Tableau, dan alat visualisasi kustom untuk memantau pendapatan, pipeline, dan metrik bisnis bagi tim internal dan klien.",
+    "hl3.t": "Evaluasi AI &amp; LLM", "hl3.meta": "Freelance · Berjalan",
+    "hl3.body": "Berkontribusi pada pelatihan dan evaluasi model bahasa besar dengan me-review konten teknis, memeriksa akurasi faktual, dan menilai output serta kode hasil AI.",
+
+    "org.h": "Komunitas &amp; Kepemimpinan", "org.s": "Pengalaman berorganisasi yang membentuk cara saya berkolaborasi dan memimpin.",
+    "org1.l1": "Staf Bidang Sosial dan Lingkungan · Universitas Brawijaya.",
+    "org1.l2": "Menyelenggarakan kegiatan mengajar sosial, bantuan bencana, dan webinar lingkungan.",
+    "org1.l3": "Terlibat dalam program pemberdayaan masyarakat dan lingkungan.",
+    "org2.l1": "Staf Koordinator Komisariat Malang.",
+    "org2.l2": "Menjadi duta Bank Indonesia dalam inisiatif pemberdayaan masyarakat.",
+    "org2.l3": "Mengoordinasikan program amal dan pendidikan.",
+    "org3.t": "BEM · FMIPA UB",
+    "org3.l1": "Staf Biro PJMO.",
+    "org3.l2": "Mengawasi dan mengevaluasi program kerja divisi.",
+    "org3.l3": "Mendukung audit mutu internal dan kegiatan pelaporan.",
+
+    "cert.h": "Sertifikasi", "cert.s": "Sertifikasi dan kursus pilihan yang memperkuat fondasi teknis saya.",
+    "cert.t1": "Data Science &amp; Analitik", "cert.t2": "Machine Learning &amp; Statistik", "cert.t3": "Program Lainnya",
+
+    "tab.s": "Dashboard interaktif yang dibuat dengan Tableau Public, menampilkan analitik konten Netflix.",
+    "tab.btn": "▶ Buka dashboard Tableau",
+    "pbi.s": "Dashboard interaktif yang dibuat dengan Microsoft Power BI.",
+    "pbi.btn": "▶ Buka dashboard Power BI",
+    "embed.note": "Dashboard dimuat saat dibuka, agar halaman ini tetap cepat.",
+
+    "wr.h": "Tulisan &amp; Blog",
+    "wr.s": "Catatan tentang data, beasiswa, dan tools yang kupakai sehari-hari (Power BI, Tableau, Python).",
+    "wr.featured": "Pilihan", "wr.read": "Baca →", "wr.more": "Baca selengkapnya →",
+    "f1.t": "Beasiswa Gratis DataCamp: Akses Semua Kursus &amp; Sertifikat",
+    "f1.meta": "🗓 16 November 2025 · 🎓 Beasiswa Data Science",
+    "f1.ex": "Beasiswa full akses ke seluruh kursus premium DataCamp: Python, SQL, Machine Learning, AI, dan sertifikat resmi tanpa biaya.",
+    "f2.t": "Belajar Data Science Gratis dari ASEAN Online Education Platform",
+    "f2.meta": "🗓 17 Januari 2025 · 🎓 Sertifikat Coursera",
+    "f2.ex": "Program lisensi Coursera gratis untuk warga ASEAN, cocok untuk pondasi Data Science &amp; Analytics dari universitas top.",
+    "b1.d": "📅 10 November 2025", "b1.c": "💭 Karier Data",
+    "b1.t": "Belajar Menerima Progres Pelan tapi Konsisten",
+    "b1.ex": "Kadang kita merasa tertinggal ketika melihat orang lain sudah jauh duluan. Di tulisan ini, aku cerita soal gimana aku mencoba fokus ke 1% improvement setiap hari, terutama lewat proyek kecil seperti dashboard dan eksperimen AI pribadi.",
+    "b1.soon": "Segera hadir",
+    "b2.d": "📅 17 Januari 2025", "b2.c": "🎓 Belajar Gratis",
+    "b2.t": "Belajar Data Science Gratis Melalui ASEAN Online Education Platform (Free Coursera Certificate)",
+    "b2.ex": "Program kolaborasi AS–ASEAN yang menyediakan akses gratis ke ratusan kursus Coursera, termasuk Data Analytics, Cybersecurity, Machine Learning, dan berbagai Professional Certificates.",
+    "b2.tag": "Beasiswa Gratis",
+
+    "ct.h": "Kontak",
+    "ct.s": "Silakan hubungi saya untuk kolaborasi, peluang kerja, atau sekadar ngobrol soal data dan AI.",
+    "ct.label1": "Instagram, Threads &amp; Email", "ct.label2": "Profil Online",
+    "ct.p1": "Saya terbuka untuk peran di data analytics, data science, dan pekerjaan terkait AI, juga kolaborasi proyek dan riset.",
+    "ct.p2": "Anda juga bisa meminta portofolio lengkap saya lewat email atau LinkedIn.",
+    "ct.dl": "Unduh CV",
+    "footer.t": "Dibuat dengan HTML &amp; CSS · Di-host di GitHub Pages"
+  };
+
+  var UI = {
+    en: { menuOpen: "Open menu", menuClose: "Close menu", toLight: "Switch to light theme", toDark: "Switch to dark theme", lang: "Switch language", prev: "Previous section", next: "Next section", back: "Back to start" },
+    id: { menuOpen: "Buka menu", menuClose: "Tutup menu", toLight: "Ganti ke tema terang", toDark: "Ganti ke tema gelap", lang: "Ganti bahasa", prev: "Bagian sebelumnya", next: "Bagian berikutnya", back: "Kembali ke awal" }
+  };
+
+  var PANEL_LABELS = {
+    en: { top: "Home", about: "About", education: "Education", skills: "Skills", experience: "Experience", projects: "Highlights", organizations: "Community", certifications: "Certifications", tableau: "Tableau", powerbi: "Power BI", writing: "Writing", contact: "Contact" },
+    id: { top: "Beranda", about: "Tentang", education: "Pendidikan", skills: "Keahlian", experience: "Pengalaman", projects: "Sorotan", organizations: "Komunitas", certifications: "Sertifikasi", tableau: "Tableau", powerbi: "Power BI", writing: "Tulisan", contact: "Kontak" }
+  };
+
+  var I18N_EN = {};
+  var currentLang = document.documentElement.getAttribute('data-lang') === 'id' ? 'id' : 'en';
+  var onLangChange = [];
+
+  function applyLang(l) {
+    currentLang = l;
+    document.documentElement.setAttribute('data-lang', l);
+    document.documentElement.lang = l;
+    document.querySelectorAll('[data-i18n]').forEach(function (el) {
+      var k = el.getAttribute('data-i18n');
+      if (!(k in I18N_EN)) I18N_EN[k] = el.innerHTML;
+      el.innerHTML = (l === 'id' && I18N_ID[k] != null) ? I18N_ID[k] : I18N_EN[k];
+    });
+    try { localStorage.setItem('lang', l); } catch (e) {}
+    onLangChange.forEach(function (fn) { fn(); });
+  }
+
+  /* ===== Theme ===== */
+  function applyTheme(t) {
+    document.documentElement.setAttribute('data-theme', t);
+    try { localStorage.setItem('theme', t); } catch (e) {}
+    var m = document.getElementById('meta-theme');
+    if (m) m.setAttribute('content', t === 'light' ? '#f4f7fb' : '#050816');
+    refreshUiLabels();
+  }
+
+  function refreshUiLabels() {
+    var u = UI[currentLang];
+    var theme = document.documentElement.getAttribute('data-theme');
+    var menuBtn = document.getElementById('menu-btn');
+    document.getElementById('theme-btn').setAttribute('aria-label', theme === 'light' ? u.toDark : u.toLight);
+    document.getElementById('lang-btn').setAttribute('aria-label', u.lang);
+    menuBtn.setAttribute('aria-label', menuBtn.getAttribute('aria-expanded') === 'true' ? u.menuClose : u.menuOpen);
+    document.getElementById('arrow-prev').setAttribute('aria-label', u.prev);
+    document.getElementById('arrow-next').setAttribute('aria-label', u.next);
+    document.querySelector('.nav-left').setAttribute('aria-label', u.back);
+  }
+
+  document.getElementById('theme-btn').addEventListener('click', function () {
+    applyTheme(document.documentElement.getAttribute('data-theme') === 'light' ? 'dark' : 'light');
+  });
+  document.getElementById('lang-btn').addEventListener('click', function () {
+    applyLang(currentLang === 'en' ? 'id' : 'en');
+  });
+  onLangChange.push(refreshUiLabels);
+  applyLang(currentLang);
+  applyTheme(document.documentElement.getAttribute('data-theme') === 'light' ? 'light' : 'dark');
+
   /* Footer year */
   document.getElementById('year').textContent = new Date().getFullYear();
 
-  /* Mobile menu */
+  /* ===== Mobile menu ===== */
   (function () {
     var btn = document.getElementById('menu-btn');
     var links = document.getElementById('nav-links');
-    function close() { links.classList.remove('open'); btn.setAttribute('aria-expanded', 'false'); btn.setAttribute('aria-label', 'Open menu'); }
-    btn.addEventListener('click', function () {
-      var open = links.classList.toggle('open');
+    function setOpen(open) {
+      links.classList.toggle('open', open);
       btn.setAttribute('aria-expanded', open ? 'true' : 'false');
-      btn.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+      refreshUiLabels();
+    }
+    btn.addEventListener('click', function () { setOpen(!links.classList.contains('open')); });
+    links.addEventListener('click', function (e) { if (e.target.tagName === 'A') setOpen(false); });
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape') setOpen(false); });
+    window.addEventListener('resize', function () { if (window.innerWidth >= 1000) setOpen(false); });
+  })();
+
+  /* ===== Horizontal panels: navigation, transitions, dots ===== */
+  (function () {
+    var track = document.getElementById('track');
+    var panels = Array.prototype.slice.call(track.querySelectorAll('.panel'));
+    var inners = panels.map(function (p) { return p.querySelector('.panel-inner'); });
+    var idxById = {};
+    panels.forEach(function (p, i) { idxById[p.id] = i; });
+
+    var dotsEl = document.getElementById('dots');
+    var dots = panels.map(function (p, i) {
+      var b = document.createElement('button');
+      b.type = 'button'; b.className = 'dot';
+      b.innerHTML = '<span class="tip"></span>';
+      b.addEventListener('click', function () { go(i); });
+      dotsEl.appendChild(b);
+      return b;
     });
-    links.addEventListener('click', function (e) { if (e.target.tagName === 'A') close(); });
-    document.addEventListener('keydown', function (e) { if (e.key === 'Escape') close(); });
-    window.addEventListener('resize', function () { if (window.innerWidth >= 900) close(); });
-  })();
-
-  /* Scroll reveal */
-  (function () {
-    var items = document.querySelectorAll('.reveal');
-    if (!('IntersectionObserver' in window)) { items.forEach(function (el) { el.classList.add('in'); }); return; }
-    var io = new IntersectionObserver(function (entries) {
-      entries.forEach(function (en) { if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); } });
-    }, { threshold: 0.08 });
-    items.forEach(function (el) { io.observe(el); });
-  })();
-
-  /* Active section highlight in navbar */
-  (function () {
-    if (!('IntersectionObserver' in window)) return;
-    var map = { powerbi: 'tableau', projects: 'projects' };
-    var links = {};
-    document.querySelectorAll('.nav-links a').forEach(function (a) { links[a.getAttribute('href').slice(1)] = a; });
-    var ids = ['about', 'skills', 'experience', 'projects', 'tableau', 'powerbi', 'writing', 'contact'];
-    var io = new IntersectionObserver(function (entries) {
-      entries.forEach(function (en) {
-        if (!en.isIntersecting) return;
-        var key = map[en.target.id] || en.target.id;
-        Object.keys(links).forEach(function (k) { links[k].classList.toggle('active', k === key); });
+    function refreshDotLabels() {
+      dots.forEach(function (b, i) {
+        var label = PANEL_LABELS[currentLang][panels[i].id] || panels[i].id;
+        b.setAttribute('aria-label', label);
+        b.firstChild.textContent = label;
       });
-    }, { rootMargin: '-35% 0px -55% 0px' });
-    ids.forEach(function (id) { var el = document.getElementById(id); if (el) io.observe(el); });
+    }
+    onLangChange.push(refreshDotLabels);
+    refreshDotLabels();
+
+    var navMap = { top: null, about: 'about', education: 'education', skills: 'skills', experience: 'experience', projects: 'projects', tableau: 'tableau', powerbi: 'tableau', writing: 'writing', contact: 'contact' };
+    var navLinks = {};
+    document.querySelectorAll('.nav-links a').forEach(function (a) { navLinks[a.getAttribute('href').slice(1)] = a; });
+
+    var prev = document.getElementById('arrow-prev');
+    var next = document.getElementById('arrow-next');
+    var bar = document.getElementById('progress-bar');
+    var orbA = document.getElementById('orb-a');
+    var orbB = document.getElementById('orb-b');
+    var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    var cur = 0, programmatic = false, settleTimer = null, ticking = false;
+
+    function width() { return track.clientWidth || 1; }
+
+    function setCurrent(i) {
+      if (i === cur && dots[i].classList.contains('active')) return;
+      cur = i;
+      dots.forEach(function (d, k) { d.classList.toggle('active', k === i); });
+      var key = navMap[panels[i].id];
+      Object.keys(navLinks).forEach(function (k) { navLinks[k].classList.toggle('active', k === key); });
+      prev.disabled = i === 0;
+      next.disabled = i === panels.length - 1;
+      try { history.replaceState(null, '', '#' + panels[i].id); } catch (e) {}
+    }
+
+    function frame() {
+      ticking = false;
+      var w = width(), sl = track.scrollLeft;
+      var max = track.scrollWidth - w;
+      bar.style.width = (max > 0 ? (sl / max) * 100 : 0) + '%';
+      var pr = max > 0 ? sl / max : 0;
+      orbA.style.transform = 'translate3d(' + (pr * -18) + 'vw,' + (pr * 10) + 'vh,0)';
+      orbB.style.transform = 'translate3d(' + (pr * 16) + 'vw,' + (pr * -12) + 'vh,0)';
+
+      var nearest = Math.round(sl / w);
+      nearest = Math.max(0, Math.min(panels.length - 1, nearest));
+
+      for (var i = 0; i < panels.length; i++) {
+        var rel = (i * w - sl) / w;      /* 0 = centered, >0 = to the right, <0 = to the left */
+        var a = Math.abs(rel);
+        var inner = inners[i];
+        if (a < 0.002 || a > 1.2 || reduce) {
+          inner.style.transform = '';
+          inner.style.opacity = (a > 1.2 && !reduce) ? '0' : '';
+        } else {
+          var tx = -rel * 16;                    /* parallax: content drifts against the scroll */
+          var sc = 1 - a * 0.14;
+          var ry = rel * -16;
+          inner.style.transformOrigin = rel > 0 ? 'left center' : 'right center';
+          inner.style.transform = 'translate3d(' + tx + '%,0,0) scale(' + sc + ') rotateY(' + ry + 'deg)';
+          inner.style.opacity = String(Math.max(0, 1 - a * 0.95));
+        }
+        if (a < 0.55 && !panels[i].classList.contains('seen')) panels[i].classList.add('seen');
+      }
+      setCurrent(nearest);
+    }
+
+    track.addEventListener('scroll', function () {
+      if (!ticking) { ticking = true; requestAnimationFrame(frame); }
+      clearTimeout(settleTimer);
+      settleTimer = setTimeout(function () {
+        if (programmatic) { programmatic = false; track.classList.remove('nosnap'); }
+      }, 140);
+    }, { passive: true });
+
+    function go(i, instant) {
+      i = Math.max(0, Math.min(panels.length - 1, i));
+      var target = i * width();
+      if (instant || reduce) {
+        track.scrollTo({ left: target, behavior: 'auto' });
+      } else {
+        programmatic = true;
+        track.classList.add('nosnap');
+        track.scrollTo({ left: target, behavior: 'smooth' });
+      }
+      setTimeout(function () { try { panels[i].focus({ preventScroll: true }); } catch (e) {} }, instant ? 0 : 450);
+    }
+
+    prev.addEventListener('click', function () { go(cur - 1); });
+    next.addEventListener('click', function () { go(cur + 1); });
+
+    /* in-page links (#about etc.) */
+    document.addEventListener('click', function (e) {
+      var a = e.target.closest && e.target.closest('a[href^="#"]');
+      if (!a) return;
+      var id = a.getAttribute('href').slice(1);
+      if (!(id in idxById)) return;
+      e.preventDefault();
+      go(idxById[id]);
+    });
+
+    /* keyboard */
+    document.addEventListener('keydown', function (e) {
+      if (e.altKey || e.ctrlKey || e.metaKey) return;
+      var t = e.target;
+      if (t && (t.tagName === 'INPUT' || t.tagName === 'TEXTAREA' || t.isContentEditable)) return;
+      if (e.key === 'ArrowRight') { e.preventDefault(); go(cur + 1); }
+      else if (e.key === 'ArrowLeft') { e.preventDefault(); go(cur - 1); }
+      else if (e.key === 'Home' && !e.shiftKey) { e.preventDefault(); go(0); }
+      else if (e.key === 'End') { e.preventDefault(); go(panels.length - 1); }
+    });
+
+    /* mouse wheel: scroll the panel first; at its edge, move to the next/previous panel */
+    var wheelLock = false, lastInner = 0;
+    track.addEventListener('wheel', function (e) {
+      if (e.ctrlKey) return;
+      if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) return;       /* trackpad sideways: native */
+      if (e.target.closest && e.target.closest('.featured-carousel') && e.shiftKey) return;
+      var p = panels[cur], dy = e.deltaY, now = Date.now();
+      var canScroll = p.scrollHeight > p.clientHeight + 2;
+      if (canScroll) {
+        var atTop = p.scrollTop <= 0;
+        var atBottom = p.scrollTop + p.clientHeight >= p.scrollHeight - 2;
+        if ((dy > 0 && !atBottom) || (dy < 0 && !atTop)) { lastInner = now; return; }
+        if (now - lastInner < 300) { e.preventDefault(); return; }   /* ignore momentum right after reaching the edge */
+      }
+      e.preventDefault();
+      if (wheelLock || Math.abs(dy) < 8) return;
+      wheelLock = true;
+      setTimeout(function () { wheelLock = false; }, 850);
+      go(cur + (dy > 0 ? 1 : -1));
+    }, { passive: false });
+
+    window.addEventListener('resize', function () { track.scrollLeft = cur * width(); frame(); });
+
+    /* initial position (supports #hash deep links) */
+    var start = (location.hash && idxById[location.hash.slice(1)]) || 0;
+    track.scrollLeft = start * width();
+    frame();
+    if (start) panels[start].classList.add('seen');
+    window.addEventListener('hashchange', function () {
+      var id = location.hash.slice(1);
+      if (id in idxById && idxById[id] !== cur) go(idxById[id]);
+    });
   })();
 
-  /* Carousel */
+  /* ===== Blog carousel ===== */
   function scrollCarousel(direction) {
     var c = document.getElementById('featured-carousel');
     var card = c.querySelector('.featured-card');
     c.scrollBy({ left: direction * (card.offsetWidth + 16), behavior: 'smooth' });
   }
 
-  /* Lazy-load Tableau */
+  /* ===== Lazy-load Tableau ===== */
   (function () {
     var loaded = false;
     var placeholder = document.getElementById('tableau-placeholder');
@@ -1258,7 +1697,7 @@
     document.getElementById('tableau-load').addEventListener('click', load);
   })();
 
-  /* Lazy-load Power BI */
+  /* ===== Lazy-load Power BI ===== */
   (function () {
     var btn = document.getElementById('powerbi-load');
     btn.addEventListener('click', function () {
