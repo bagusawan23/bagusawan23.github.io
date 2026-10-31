@@ -1013,6 +1013,54 @@
       </div></div>
     </section>
 
+    <!-- APBD SPENDING MAP (lazy preview) -->
+    <section class="panel" id="apbd" tabindex="-1">
+      <div class="panel-inner"><div class="content">
+        <h2 class="section-heading" data-i18n="ap.h">Indonesia Regional Spending Map (APBD)</h2>
+        <p class="section-subtitle" data-i18n="ap.s">A drill-down map of realized regional budget (APBD) spending for provinces and districts/cities across Indonesia.</p>
+
+        <div class="embed-card">
+          <div class="embed-placeholder" id="ap-placeholder">
+            <div class="featured-label" data-i18n="ap.label">Interactive map · 2015–2024</div>
+            <p style="max-width:640px" data-i18n="ap.p">Explore realized spending from the national view down to each province and district/city, compare regions side by side, and download the data as CSV.</p>
+            <div class="timeline-tags" style="justify-content:center"><span class="timeline-tag">Drill-down Map</span><span class="timeline-tag">Region Comparison</span><span class="timeline-tag">CSV Export</span></div>
+            <div class="hero-actions" style="justify-content:center">
+              <button class="btn-primary" id="ap-load" type="button" data-i18n="sc.prev">▶ Load live preview</button>
+              <a class="btn-ghost" href="https://datawithbagus.my.id/dashboard-bps/dashboards/apbd/" target="_blank" rel="noopener noreferrer" data-i18n="sc.btn">Open full dashboard ↗</a>
+            </div>
+          </div>
+          <div class="powerbi-container" id="ap-frame" hidden></div>
+          <div id="ap-bar" hidden style="display:flex;justify-content:flex-end;margin-top:10px">
+            <a class="btn-ghost" href="https://datawithbagus.my.id/dashboard-bps/dashboards/apbd/" target="_blank" rel="noopener noreferrer" data-i18n="sc.btn">Open full dashboard ↗</a>
+          </div>
+        </div>
+      </div></div>
+    </section>
+
+    <!-- PDRB ECONOMIC MAP (lazy preview) -->
+    <section class="panel" id="pdrb" tabindex="-1">
+      <div class="panel-inner"><div class="content">
+        <h2 class="section-heading" data-i18n="pd.h">Indonesia Economic Map (GRDP)</h2>
+        <p class="section-subtitle" data-i18n="pd.s">An interactive 3D isometric map of Indonesia’s 38 provinces by regional GDP (PDRB).</p>
+
+        <div class="embed-card">
+          <div class="embed-placeholder" id="pd-placeholder">
+            <div class="featured-label" data-i18n="pd.label">3D isometric map · 2025 (very preliminary)</div>
+            <p style="max-width:640px" data-i18n="pd.p">Province height shows economic output, while color shows real growth or the dominant sector. Click a province to open an animated diorama of its 17 business sectors. Data: BPS (Statistics Indonesia), constant 2010 prices.</p>
+            <div class="timeline-tags" style="justify-content:center"><span class="timeline-tag">3D Map</span><span class="timeline-tag">BPS Data</span><span class="timeline-tag">Regional GDP</span></div>
+            <div class="hero-actions" style="justify-content:center">
+              <button class="btn-primary" id="pd-load" type="button" data-i18n="sc.prev">▶ Load live preview</button>
+              <a class="btn-ghost" href="https://datawithbagus.my.id/dashboard-bps/dashboards/pdrb/" target="_blank" rel="noopener noreferrer" data-i18n="sc.btn">Open full dashboard ↗</a>
+            </div>
+          </div>
+          <div class="powerbi-container" id="pd-frame" hidden></div>
+          <div id="pd-bar" hidden style="display:flex;justify-content:flex-end;margin-top:10px">
+            <a class="btn-ghost" href="https://datawithbagus.my.id/dashboard-bps/dashboards/pdrb/" target="_blank" rel="noopener noreferrer" data-i18n="sc.btn">Open full dashboard ↗</a>
+          </div>
+        </div>
+      </div></div>
+    </section>
+
     <!-- TABLEAU DASHBOARD (lazy-load) -->
     <section class="panel" id="tableau" tabindex="-1">
       <div class="panel-inner"><div class="content">
@@ -1413,6 +1461,14 @@
     "sc.p": "Bandingkan biaya per siswa, per kunjungan, per kilometer, atau per rumah tangga di seluruh 32 council. Data berasal dari Local Government Benchmarking Framework (LGBF) melalui Spatial Hub Scotland, di bawah UK Open Government Licence.",
     "sc.btn": "Buka dashboard penuh ↗",
     "sc.prev": "▶ Muat pratinjau langsung",
+    "ap.h": "Peta Belanja APBD Indonesia",
+    "ap.s": "Peta drill-down realisasi belanja APBD provinsi dan kabupaten/kota di seluruh Indonesia.",
+    "ap.label": "Peta interaktif · 2015–2024",
+    "ap.p": "Telusuri realisasi belanja dari tingkat nasional hingga tiap provinsi dan kabupaten/kota, bandingkan antarwilayah, dan unduh datanya sebagai CSV.",
+    "pd.h": "Peta Ekonomi Indonesia (PDRB)",
+    "pd.s": "Peta isometrik 3D interaktif 38 provinsi Indonesia berdasarkan PDRB.",
+    "pd.label": "Peta isometrik 3D · 2025 (angka sangat sementara)",
+    "pd.p": "Tinggi provinsi menunjukkan besaran output ekonomi, sedangkan warna menunjukkan pertumbuhan riil atau sektor dominan. Klik provinsi untuk membuka diorama animasi 17 lapangan usahanya. Data: BPS, harga konstan 2010.",
     "tab.s": "Dashboard interaktif yang dibuat dengan Tableau Public, menampilkan analitik konten Netflix.",
     "tab.btn": "▶ Buka dashboard Tableau",
     "pbi.s": "Dashboard interaktif yang dibuat dengan Microsoft Power BI.",
@@ -1452,8 +1508,8 @@
   };
 
   var PANEL_LABELS = {
-    en: { top: "Home", about: "About", education: "Education", skills: "Skills", experience: "Experience", projects: "Highlights", organizations: "Community", certifications: "Certifications", scotland: "Scotland Spending", tableau: "Tableau", powerbi: "Power BI", writing: "Writing", contact: "Contact" },
-    id: { top: "Beranda", about: "Tentang", education: "Pendidikan", skills: "Keahlian", experience: "Pengalaman", projects: "Sorotan", organizations: "Komunitas", certifications: "Sertifikasi", scotland: "Belanja Skotlandia", tableau: "Tableau", powerbi: "Power BI", writing: "Tulisan", contact: "Kontak" }
+    en: { top: "Home", about: "About", education: "Education", skills: "Skills", experience: "Experience", projects: "Highlights", organizations: "Community", certifications: "Certifications", scotland: "Scotland Spending", apbd: "APBD Map", pdrb: "GRDP Map", tableau: "Tableau", powerbi: "Power BI", writing: "Writing", contact: "Contact" },
+    id: { top: "Beranda", about: "Tentang", education: "Pendidikan", skills: "Keahlian", experience: "Pengalaman", projects: "Sorotan", organizations: "Komunitas", certifications: "Sertifikasi", scotland: "Belanja Skotlandia", apbd: "Peta APBD", pdrb: "Peta PDRB", tableau: "Tableau", powerbi: "Power BI", writing: "Tulisan", contact: "Kontak" }
   };
 
   var I18N_EN = {};
@@ -1549,7 +1605,7 @@
     onLangChange.push(refreshDotLabels);
     refreshDotLabels();
 
-    var navMap = { top: null, about: 'about', education: 'education', skills: 'skills', experience: 'experience', projects: 'projects', scotland: 'scotland', tableau: 'scotland', powerbi: 'scotland', writing: 'writing', contact: 'contact' };
+    var navMap = { top: null, about: 'about', education: 'education', skills: 'skills', experience: 'experience', projects: 'projects', scotland: 'scotland', apbd: 'scotland', pdrb: 'scotland', tableau: 'scotland', powerbi: 'scotland', writing: 'writing', contact: 'contact' };
     var navLinks = {};
     document.querySelectorAll('.nav-links a').forEach(function (a) { navLinks[a.getAttribute('href').slice(1)] = a; });
 
@@ -1731,20 +1787,26 @@
     document.getElementById('tableau-load').addEventListener('click', load);
   })();
 
-  /* ===== Lazy-load Scotland dashboard preview ===== */
+  /* ===== Lazy-load dashboard previews (Scotland, APBD, PDRB) ===== */
   (function () {
-    var btn = document.getElementById('sc-load');
-    btn.addEventListener('click', function () {
-      var wrap = document.getElementById('sc-frame');
-      var f = document.createElement('iframe');
-      f.title = 'Council service costs across Scotland';
-      f.loading = 'lazy';
-      f.allowFullscreen = true;
-      f.src = 'https://datawithbagus.my.id/scotland-council-spending/';
-      wrap.appendChild(f);
-      wrap.hidden = false;
-      document.getElementById('sc-bar').hidden = false;
-      document.getElementById('sc-placeholder').hidden = true;
+    [
+      ['sc', 'Council service costs across Scotland', 'https://datawithbagus.my.id/scotland-council-spending/'],
+      ['ap', 'Peta Belanja APBD', 'https://datawithbagus.my.id/dashboard-bps/dashboards/apbd/'],
+      ['pd', 'Peta Ekonomi Indonesia', 'https://datawithbagus.my.id/dashboard-bps/dashboards/pdrb/']
+    ].forEach(function (d) {
+      var btn = document.getElementById(d[0] + '-load');
+      btn.addEventListener('click', function () {
+        var wrap = document.getElementById(d[0] + '-frame');
+        var f = document.createElement('iframe');
+        f.title = d[1];
+        f.loading = 'lazy';
+        f.allowFullscreen = true;
+        f.src = d[2];
+        wrap.appendChild(f);
+        wrap.hidden = false;
+        document.getElementById(d[0] + '-bar').hidden = false;
+        document.getElementById(d[0] + '-placeholder').hidden = true;
+      });
     });
   })();
 
